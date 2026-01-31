@@ -1,25 +1,147 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="Watch this space...">
-    <meta name="theme-color" content="rgb(5, 111, 168)">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google-site-verification" content="cyVTYhmgppDe1qKYnH7tl7XoIAvaHZlKuZgWMMA6GcU">
-    <title>Feef.io</title>
-    <link rel="stylesheet" href="css/feef.css">
-  </head>
-  <body>
-    <header>
-      <h1>Feef.</h1>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phil Powell — Fractional CTO · Principal Engineer · Architect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <style>
+    /* Noise overlay - subtle grain */
+    .noise::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    /* Respect reduced motion for theme transition and any animation */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body class="noise min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 antialiased transition-colors duration-200">
+  <main class="max-w-2xl mx-auto px-6 py-16">
+    <header class="mb-20" aria-labelledby="hero-heading">
+      <h1 id="hero-heading" class="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl">Phil Powell</h1>
+      <p class="mt-2 text-lg text-amber-700 dark:text-amber-400 font-medium" id="hero-subheading">Fractional CTO · Principal Engineer · Architect</p>
+      <p class="mt-6 text-slate-600 dark:text-slate-300 leading-relaxed">
+        I work with founders and leadership teams when they need senior technical judgement — not just more output.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        I step in to help teams navigate growth, complexity, and technical risk, combining hands-on engineering with calm, pragmatic leadership.
+      </p>
+      <p class="mt-8">
+        <a href="https://www.linkedin.com/in/pmpowell/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-medium text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 rounded">
+          → Start a conversation on LinkedIn
+        </a>
+      </p>
     </header>
-    <footer>
-      <p>
-        &copy; 2019 Feef Ltd, a limited company registered in England under company number 11802758.
+
+    <section class="mb-20" aria-labelledby="what-i-do">
+      <h2 id="what-i-do" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">What I Do</h2>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        I'm typically brought in when a business is at an inflection point — when existing teams are capable, but need experienced reinforcement to move forward with confidence.
       </p>
-      <p>
-        We don't use cookies or track your usage.
+      <p class="mt-4 text-slate-600 dark:text-slate-300">That might mean:</p>
+      <ul class="mt-4 space-y-2 text-slate-600 dark:text-slate-300 list-disc list-inside marker:text-amber-600 dark:marker:text-amber-500">
+        <li>Providing fractional CTO leadership during growth or transition</li>
+        <li>Acting as a senior technical counterweight for founders or executives</li>
+        <li>Diagnosing delivery, quality, or scalability issues</li>
+        <li>Bridging the gap between strategy and hands-on engineering</li>
+        <li>Reducing technical risk before it becomes organisational risk</li>
+      </ul>
+      <p class="mt-6 text-slate-600 dark:text-slate-300 leading-relaxed">
+        I work alongside existing teams, focusing on clarity, judgement, and progress — not disruption.
       </p>
-    </footer>
-  </body>
+    </section>
+
+    <section class="mb-20" aria-labelledby="how-i-help">
+      <h2 id="how-i-help" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">How I Help</h2>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        Most engagements are short, focused, and outcome-driven.
+      </p>
+      <ul class="mt-6 space-y-8 text-slate-600 dark:text-slate-300">
+        <li>
+          <span class="font-semibold text-slate-900 dark:text-slate-100">Diagnostic &amp; Intervention (2–6 weeks)</span>
+          <span class="block mt-1">A fast, structured assessment of technical reality — architecture, delivery, quality, and decision-making — with clear recommendations and next steps.</span>
+        </li>
+        <li>
+          <span class="font-semibold text-slate-900 dark:text-slate-100">Hands-on Delivery (1–3 months)</span>
+          <span class="block mt-1">Targeted leadership and engineering input to unblock progress, stabilise systems, or support a specific phase of change.</span>
+        </li>
+        <li>
+          <span class="font-semibold text-slate-900 dark:text-slate-100">Ongoing Advisory (1–2 days / week)</span>
+          <span class="block mt-1">Senior technical perspective on demand — supporting founders, CTOs, or leadership teams without adding long-term overhead.</span>
+        </li>
+      </ul>
+      <p class="mt-8 text-slate-600 dark:text-slate-300 leading-relaxed">
+        I don't offer long-term staff augmentation. My goal is to leave teams clearer, stronger, and better equipped than when I arrived.
+      </p>
+    </section>
+
+    <section class="mb-20" aria-labelledby="experience">
+      <h2 id="experience" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Experience &amp; Context</h2>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        I've worked across a wide range of environments — from early-stage startups to scaling SaaS platforms — often in situations where clarity and judgement mattered more than speed alone.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300">My background spans:</p>
+      <ul class="mt-4 space-y-2 text-slate-600 dark:text-slate-300 list-disc list-inside marker:text-amber-600 dark:marker:text-amber-500">
+        <li>Technical leadership at scale</li>
+        <li>Complex, real-world systems rather than greenfield demos</li>
+        <li>Regulated and non-regulated environments, including work with sensitive data</li>
+        <li>Teams with mixed levels of maturity and capability</li>
+      </ul>
+      <p class="mt-6 text-slate-600 dark:text-slate-300 leading-relaxed">
+        I've led and supported teams handling high‑risk data — including student and health information — where security, continuity, and trust were non‑negotiable, and where delivery needed to coexist with formal risk and assurance frameworks.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        I'm comfortable operating where product, engineering, risk, and business constraints intersect — and translating between technical and non-technical stakeholders when it matters.
+      </p>
+    </section>
+
+    <section class="mb-20" aria-labelledby="why-this-now">
+      <h2 id="why-this-now" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Why This, Now</h2>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        After stepping away from a full-time CTO role, I'm intentionally working in short, high-impact engagements while building my own product.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        This lets me apply what I've learned across multiple organisations, stay hands-on, and be selective about the work I take on — focusing on situations where experience genuinely makes a difference.
+      </p>
+    </section>
+
+    <section class="mb-20" aria-labelledby="lets-talk">
+      <h2 id="lets-talk" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Let's Talk</h2>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        If you think my experience could be useful — for a specific challenge, a short engagement, or simply to sense-check a situation — I'm always open to a conversation.
+      </p>
+      <p class="mt-8">
+        <a href="https://www.linkedin.com/in/pmpowell/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-medium text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 rounded">
+          → Connect with me on LinkedIn
+        </a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8">
+    <div class="max-w-2xl mx-auto px-6 text-center text-sm text-slate-500 dark:text-slate-400">
+      <a href="#" class="hover:text-slate-700 dark:hover:text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 rounded">Phil Powell</a>
+      <span class="mx-2">·</span>
+      <span>© <span id="year"></span></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>

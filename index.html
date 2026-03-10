@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phil Powell — Fractional CTO · Principal Engineer · Architect</title>
+  <title>Phil Powell — Technical Advisor &amp; Interim CTO</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { darkMode: 'class' };
@@ -19,6 +19,11 @@
       pointer-events: none;
       z-index: 9999;
     }
+    /* Bullet lists: wrapped lines indent to align with first line of text, not the bullet */
+    main ul {
+      list-style-position: outside;
+      padding-left: 1.5rem;
+    }
     /* Respect reduced motion for theme transition and any animation */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -33,12 +38,12 @@
   <main class="max-w-2xl mx-auto px-6 py-16">
     <header class="mb-20" aria-labelledby="hero-heading">
       <h1 id="hero-heading" class="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl">Phil Powell</h1>
-      <p class="mt-2 text-lg text-amber-700 dark:text-amber-400 font-medium" id="hero-subheading">Fractional CTO · Principal Engineer · Architect</p>
+      <p class="mt-2 text-lg text-amber-700 dark:text-amber-400 font-medium" id="hero-subheading">Technical Advisor &amp; Interim CTO</p>
       <p class="mt-6 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I work with founders and leadership teams when they need senior technical judgement — not just more output.
+        <em>Helping growing technology companies regain confidence in their systems, delivery, and technical leadership.</em>
       </p>
       <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I step in to help teams navigate growth, complexity, and technical risk, combining hands-on engineering with calm, pragmatic leadership.
+        I'm usually brought in when delivery slows, architecture becomes uncertain, or leadership needs experienced technical judgement before making major technical decisions.
       </p>
       <p class="mt-8">
         <a href="https://www.linkedin.com/in/pmpowell/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-medium text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 rounded">
@@ -47,82 +52,152 @@
       </p>
     </header>
 
-    <section class="mb-20" aria-labelledby="what-i-do">
-      <h2 id="what-i-do" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">What I Do</h2>
+    <section class="mb-20" aria-labelledby="when-bring-me-in">
+      <h2 id="when-bring-me-in" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">When Companies Bring Me In</h2>
       <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I'm typically brought in when a business is at an inflection point — when existing teams are capable, but need experienced reinforcement to move forward with confidence.
+        Most companies already have capable engineers.
       </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300">That might mean:</p>
-      <ul class="mt-4 space-y-2 text-slate-600 dark:text-slate-300 list-disc list-inside marker:text-amber-600 dark:marker:text-amber-500">
-        <li>Providing fractional CTO leadership during growth or transition</li>
-        <li>Acting as a senior technical counterweight for founders or executives</li>
-        <li>Diagnosing delivery, quality, or scalability issues</li>
-        <li>Bridging the gap between strategy and hands-on engineering</li>
-        <li>Reducing technical risk before it becomes organisational risk</li>
-      </ul>
-      <p class="mt-6 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I work alongside existing teams, focusing on clarity, judgement, and progress — not disruption.
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        But as a company grows there are moments when <strong>delivery slows, confidence in the architecture starts to fade, or important technical decisions become harder to make</strong>.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        These situations usually appear as the engineering team and systems enter unfamiliar territory — scaling pressure, architectural complexity, leadership gaps, or rising reliability and regulatory expectations.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        At that point, adding more engineers rarely solves the underlying problem.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        What leadership often needs instead is <strong>experienced technical judgement</strong>: someone who can step back, understand how the systems and team actually operate, identify where risk or complexity is building, and help decide what truly needs to change.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        That is where I usually get involved.
       </p>
     </section>
 
-    <section class="mb-20" aria-labelledby="how-i-help">
-      <h2 id="how-i-help" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">How I Help</h2>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Most engagements are short, focused, and outcome-driven.
-      </p>
-      <ul class="mt-6 space-y-8 text-slate-600 dark:text-slate-300">
-        <li>
-          <span class="font-semibold text-slate-900 dark:text-slate-100">Diagnostic &amp; Intervention (2–6 weeks)</span>
-          <span class="block mt-1">A fast, structured assessment of technical reality — architecture, delivery, quality, and decision-making — with clear recommendations and next steps.</span>
-        </li>
-        <li>
-          <span class="font-semibold text-slate-900 dark:text-slate-100">Hands-on Delivery (1–3 months)</span>
-          <span class="block mt-1">Targeted leadership and engineering input to unblock progress, stabilise systems, or support a specific phase of change.</span>
-        </li>
-        <li>
-          <span class="font-semibold text-slate-900 dark:text-slate-100">Ongoing Advisory (1–2 days / week)</span>
-          <span class="block mt-1">Senior technical perspective on demand — supporting founders, CTOs, or leadership teams without adding long-term overhead.</span>
-        </li>
+    <section class="mb-20" aria-labelledby="common-situations">
+      <h2 id="common-situations" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Common Situations</h2>
+      <ul class="mt-4 space-y-2 text-slate-600 dark:text-slate-300 list-disc marker:text-amber-600 dark:marker:text-amber-500">
+        <li>Delivery used to feel predictable, but progress has become slower or inconsistent.</li>
+        <li>The system works, but confidence in the architecture is beginning to fade.</li>
+        <li>Engineers are working hard, yet progress feels harder than it should be.</li>
+        <li>The team is capable but lacks senior technical leadership for difficult decisions.</li>
+        <li>Founders want an experienced second opinion before making major technical bets.</li>
+        <li>Reliability, security, or compliance suddenly carry greater weight.</li>
+        <li>The business is growing faster than the technical foundations underneath it.</li>
       </ul>
-      <p class="mt-8 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I don't offer long-term staff augmentation. My goal is to leave teams clearer, stronger, and better equipped than when I arrived.
+      <p class="mt-6 text-slate-600 dark:text-slate-300 leading-relaxed">
+        In these moments the issue is rarely a shortage of engineers.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        What is missing is <strong>clear technical judgement at leadership level</strong> — someone who can step back, see the system as a whole, and help leadership decide what to change and what to leave alone.
+      </p>
+    </section>
+
+    <section class="mb-20" aria-labelledby="who-i-work-with">
+      <h2 id="who-i-work-with" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Who I Work With</h2>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        I typically work with organisations that already have a capable engineering team and established product, but are entering a phase where <strong>technical decisions carry greater consequences</strong>.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300">This usually includes:</p>
+      <ul class="mt-4 space-y-2 text-slate-600 dark:text-slate-300 list-disc marker:text-amber-600 dark:marker:text-amber-500">
+        <li><strong>Founders or leadership teams</strong> seeking experienced technical judgement as their company grows</li>
+        <li><strong>CTOs or senior engineers</strong> who want a second opinion on difficult architectural or organisational decisions</li>
+        <li><strong>Investors or boards</strong> looking for an independent view of technical risk or delivery confidence</li>
+      </ul>
+      <p class="mt-6 text-slate-600 dark:text-slate-300 leading-relaxed">
+        In most cases the organisation is technically capable — the leadership team simply wants clearer visibility, stronger direction, or reassurance before making important decisions.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        Many conversations begin simply as a second opinion on a situation that feels unclear.
+      </p>
+    </section>
+
+    <section class="mb-20" aria-labelledby="what-i-do">
+      <h2 id="what-i-do" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">What I Do</h2>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        I help organisations reduce technical risk before it becomes organisational risk.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        Organisations usually work with me in one of three ways.
+      </p>
+      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">Technical Diagnostic</h3>
+      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+        A structured assessment of architecture, delivery, quality, and technical decision‑making.
+      </p>
+      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+        This produces a clear view of how the system and engineering organisation are actually functioning, where risk is building, and which changes will have the greatest impact.
+      </p>
+      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+        The goal is not documentation for its own sake, but practical clarity that leadership can act on immediately.
+      </p>
+      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">Focused Intervention</h3>
+      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+        Where specific problems need resolving, I work directly with the team to stabilise delivery, architecture, or decision‑making structures.
+      </p>
+      <p class="mt-2 text-slate-600 dark:text-slate-300">This might include:</p>
+      <ul class="mt-2 space-y-2 text-slate-600 dark:text-slate-300 list-disc marker:text-amber-600 dark:marker:text-amber-500">
+        <li>untangling architectural complexity</li>
+        <li>establishing clearer engineering leadership</li>
+        <li>improving delivery reliability</li>
+        <li>addressing security or compliance pressures</li>
+      </ul>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        The aim is to restore momentum and confidence while leaving the organisation stronger than before.
+      </p>
+      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">Ongoing Advisory</h3>
+      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+        Some organisations benefit from having experienced technical judgement available on an ongoing basis.
+      </p>
+      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
+        In these cases I act as a fractional CTO or technical advisor, helping leadership teams make better decisions as the company continues to grow.
       </p>
     </section>
 
     <section class="mb-20" aria-labelledby="experience">
-      <h2 id="experience" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Experience &amp; Context</h2>
+      <h2 id="experience" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Experience</h2>
       <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I've worked across a wide range of environments — from early-stage startups to scaling SaaS platforms — often in situations where clarity and judgement mattered more than speed alone.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300">My background spans:</p>
-      <ul class="mt-4 space-y-2 text-slate-600 dark:text-slate-300 list-disc list-inside marker:text-amber-600 dark:marker:text-amber-500">
-        <li>Technical leadership at scale</li>
-        <li>Complex, real-world systems rather than greenfield demos</li>
-        <li>Regulated and non-regulated environments, including work with sensitive data</li>
-        <li>Teams with mixed levels of maturity and capability</li>
-      </ul>
-      <p class="mt-6 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I've led and supported teams handling high‑risk data — including student and health information — where security, continuity, and trust were non‑negotiable, and where delivery needed to coexist with formal risk and assurance frameworks.
+        I have spent much of my career leading technology in organisations operating in <strong>regulated and high‑accountability environments</strong>, including education and social housing.
       </p>
       <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I'm comfortable operating where product, engineering, risk, and business constraints intersect — and translating between technical and non-technical stakeholders when it matters.
+        Most recently I served as CTO of an <strong>EdTech company</strong>, guiding the engineering team and technical platform through a period of organisational change while strengthening delivery, reliability, and operational maturity.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        Across these roles I have worked with <strong>mission‑critical systems</strong> used by organisations supporting vulnerable people, and implemented governance frameworks including <strong>GDPR, ISO 27001, ISO 9001, and ISO 22301</strong> to ensure systems, teams, and processes remain dependable as organisations grow.
       </p>
     </section>
 
-    <section class="mb-20" aria-labelledby="why-this-now">
-      <h2 id="why-this-now" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Why This, Now</h2>
+    <section class="mb-20" aria-labelledby="how-i-work">
+      <h2 id="how-i-work" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">How I Work</h2>
       <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        After stepping away from a full-time CTO role, I'm intentionally working in short, high-impact engagements while building my own product.
+        My approach is calm and pragmatic.
       </p>
       <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        This lets me apply what I've learned across multiple organisations, stay hands-on, and be selective about the work I take on — focusing on situations where experience genuinely makes a difference.
+        I begin by understanding how the system actually behaves, how decisions are made, and where the real constraints lie. From there we identify the small number of changes that will make the greatest difference.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        My perspective is grounded in many years <strong>building and operating systems myself</strong>, which allows me to move comfortably between architectural thinking, engineering detail, and leadership decisions.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        The aim is not to impose process or theory, but to restore clarity and direction so that teams can move forward with confidence.
       </p>
     </section>
 
-    <section class="mb-20" aria-labelledby="lets-talk">
-      <h2 id="lets-talk" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Let's Talk</h2>
+    <section class="mb-20" aria-labelledby="when-worth-talking">
+      <h2 id="when-worth-talking" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">When It's Worth Talking</h2>
       <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        If you think my experience could be useful — for a specific challenge, a short engagement, or simply to sense-check a situation — I'm always open to a conversation.
+        Most of my work begins with a simple conversation.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        A founder, investor, or technical leader notices that something in the system or organisation does not feel quite right. Delivery is drifting, confidence is dropping, or an important decision needs stronger technical judgement.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        At that point it is often helpful to compare notes with someone who has seen these situations before.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        If that sounds familiar, feel free to reach out via LinkedIn.
+      </p>
+      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+        Sometimes a short conversation is all that is needed to clarify the next step.
       </p>
       <p class="mt-8">
         <a href="https://www.linkedin.com/in/pmpowell/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-medium text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 rounded">

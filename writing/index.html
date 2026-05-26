@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing — Phil Powell</title>
+  <meta name="description" content="Long-form thinking on engineering leadership, systems, and delivery.">
+  <meta name="theme-color" content="#f7f4ee" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <style>
+    /* --- TOKENS --- */
+    :root {
+      --measure:  38rem;
+      --display:  "Fraunces", Georgia, serif;
+
+      --ink:      #1a1714;
+      --ink-soft: #5c554d;
+      --paper:    #f7f4ee;
+      --rule:     #e2dcd1;
+      --accent:   #b45309;
+
+      --fs-body:  1.0625rem;
+      --lh-body:  1.65;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink:      #ece5da;
+        --ink-soft: #a59c8f;
+        --paper:    #1a1714;
+        --rule:     #36302a;
+        --accent:   #fbbf24;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- LAYOUT --- */
+    main {
+      max-width: var(--measure);
+      margin: 0 auto;
+      padding: 0 1.5rem 6rem;
+    }
+
+    /* --- MASTHEAD --- */
+    header.masthead {
+      padding: calc(8rem + var(--feef-nav-h)) 0 4rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 3rem;
+    }
+
+    .masthead h1 {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.04;
+      letter-spacing: -0.015em;
+      margin: 0 0 1rem;
+    }
+
+    .masthead p { margin: 0; color: var(--ink-soft); }
+
+    /* --- ESSAYS --- */
+    .essays article {
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .essays a {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .essays h2 {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      color: var(--ink);
+      margin: 0 0 0.6rem;
+      transition: color 0.15s;
+    }
+
+    .essays a:hover h2 { color: var(--accent); }
+
+    .essays p {
+      margin: 0 0 0.8rem;
+      color: var(--ink-soft);
+    }
+
+    .read-link {
+      font-family: var(--display);
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* --- FOOTER --- */
+    footer { border-top: 1px solid var(--rule); padding: 2rem 1.5rem; }
+
+    .footer-inner {
+      max-width: var(--measure);
+      margin: 0 auto;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--ink-soft);
+    }
+
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 64rem) {
+      header.masthead { padding-top: calc(4.5rem + var(--feef-nav-h)); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .essays h2 { transition: none; }
+    }
+  </style>
+</head>
+<body class="noise">
+  <nav class="site-nav" aria-label="Site navigation">
+    <a href="/" class="site-nav__wordmark">Phil Powell</a>
+    <div class="site-nav__links">
+      <a href="/writing/" class="site-nav__link" aria-current="page">Writing</a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="masthead">
+      <h1>Writing</h1>
+      <p>Long-form thinking on engineering leadership, systems, and delivery.</p>
+    </header>
+
+    <section class="essays" aria-label="Essays">
+      <article>
+        <a href="/roadmap/">
+          <h2>Why Your Roadmap Keeps Slipping</h2>
+          <p>Roadmap slippage is a systems problem, not an execution problem — and the usual responses tend to make it worse.</p>
+          <span class="read-link">Read essay →</span>
+        </a>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="/">Phil Powell</a>
+      <span>&middot;</span>
+      <span>&copy; <span id="year"></span></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

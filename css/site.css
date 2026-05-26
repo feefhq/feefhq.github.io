@@ -4,9 +4,7 @@
    ============================================================ */
 
 /* --- TOKENS ---
-   Default values are light-mode (roadmap on a light-preference system).
-   Class-based dark override handles the main page (<html class="dark">).
-   Media-query dark override handles the roadmap (respects system pref).
+   Default values are light-mode. All pages use system preference for dark mode.
    -------------------------------------------------------------- */
 :root {
   --feef-nav-h: 3rem;
@@ -23,7 +21,7 @@
   --feef-callout-border: #b45309;
 }
 
-/* Roadmap dark mode (system preference). */
+/* Dark mode — all pages use system preference. */
 @media (prefers-color-scheme: dark) {
   :root {
     --feef-accent:         #fbbf24;  /* amber-400 — on dark backgrounds  */
@@ -37,20 +35,6 @@
     --feef-callout-bg:     rgba(251, 191, 36, 0.07);
     --feef-callout-border: #fbbf24;
   }
-}
-
-/* Main page dark mode (class-based: <html class="dark">). */
-.dark {
-  --feef-accent:         #fbbf24;
-  --feef-accent-hover:   #fde68a;
-
-  --feef-nav-bg:         rgb(15 23 42);     /* slate-900 */
-  --feef-nav-border:     rgb(30 41 59);     /* slate-800 */
-  --feef-nav-fg:         rgb(100 116 139);  /* slate-500 */
-  --feef-nav-fg-hover:   rgb(226 232 240);  /* slate-200 */
-
-  --feef-callout-bg:     rgba(251, 191, 36, 0.07);
-  --feef-callout-border: #fbbf24;
 }
 
 /* --- NAVIGATION --- */
@@ -78,6 +62,22 @@
 
 .site-nav__wordmark:hover { color: var(--feef-nav-fg-hover); }
 
+.site-nav__links {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.site-nav__link {
+  color: var(--feef-nav-fg);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.site-nav__link:hover { color: var(--feef-nav-fg-hover); }
+.site-nav__link[aria-current="page"] { color: var(--feef-nav-fg-hover); }
+
 /* --- CALLOUTS ---
    Use on either page: <div class="callout">...</div>
    -------------------------------------------------------------- */
@@ -89,7 +89,7 @@
   border-radius: 0 4px 4px 0;
 }
 
-/* --- NOISE OVERLAY (main page) --- */
+/* --- NOISE OVERLAY --- */
 .noise::after {
   content: '';
   position: fixed;
@@ -98,14 +98,6 @@
   opacity: 0.04;
   pointer-events: none;
   z-index: 9999;
-}
-
-/* --- BULLET LIST INDENT (main page) ---
-   Wrapped lines indent to align with first line of text, not the bullet.
-   -------------------------------------------------------------- */
-main ul {
-  list-style-position: outside;
-  padding-left: 1.5rem;
 }
 
 /* --- REDUCED MOTION --- */
@@ -118,4 +110,5 @@ main ul {
   html { scroll-behavior: auto; }
   .progress__fill { transition: none; }
   .site-nav__wordmark { transition: none; }
+  .site-nav__link { transition: none; }
 }

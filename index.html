@@ -1,54 +1,212 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Phil Powell — Fractional CTO</title>
+  <meta name="theme-color" content="#f7f4ee" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
   <link rel="stylesheet" href="/css/site.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { darkMode: 'class' };
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <style>
+    /* --- TOKENS --- */
+    :root {
+      --measure:  38rem;
+      --display:  "Fraunces", Georgia, serif;
+
+      --ink:      #1a1714;
+      --ink-soft: #5c554d;
+      --paper:    #f7f4ee;
+      --rule:     #e2dcd1;
+      --accent:   #b45309;
+
+      --fs-body:  1.0625rem;
+      --lh-body:  1.65;
+      --space:    1.5rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink:      #ece5da;
+        --ink-soft: #a59c8f;
+        --paper:    #1a1714;
+        --rule:     #36302a;
+        --accent:   #fbbf24;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- LAYOUT --- */
+    main {
+      max-width: var(--measure);
+      margin: 0 auto;
+      padding: 0 1.5rem 6rem;
+    }
+
+    /* --- MASTHEAD --- */
+    header.masthead {
+      padding: calc(8rem + var(--feef-nav-h)) 0 4rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 3rem;
+    }
+
+    .masthead h1 {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.04;
+      letter-spacing: -0.015em;
+      margin: 0 0 1rem;
+    }
+
+    .masthead .standfirst {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      line-height: 1.45;
+      color: var(--accent);
+      font-style: italic;
+      margin: 0 0 1.75rem;
+      max-width: 30rem;
+    }
+
+    .masthead p { margin: 0 0 1rem; color: var(--ink-soft); }
+    .masthead .cta { margin-top: 2rem; }
+
+    /* --- SECTIONS --- */
+    .chapter {
+      margin: 0 0 5rem;
+      scroll-margin-top: calc(2rem + var(--feef-nav-h));
+    }
+
+    .chapter h2 {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 1.75rem;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin: 0 0 1.25rem;
+      color: var(--ink);
+    }
+
+    .chapter h3 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.2rem;
+      line-height: 1.2;
+      margin: calc(var(--space) * 1.5) 0 0.5rem;
+      color: var(--ink);
+    }
+
+    .chapter h2 + h3 { margin-top: var(--space); }
+
+    .chapter p { margin: 0 0 1.1rem; color: var(--ink-soft); }
+
+    .chapter ul {
+      list-style: none;
+      margin: var(--space) 0;
+      padding: 0;
+    }
+
+    .chapter ul li {
+      position: relative;
+      padding-left: 1.4rem;
+      margin: 0 0 0.5rem;
+      color: var(--ink-soft);
+    }
+
+    .chapter ul li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .meta {
+      font-size: 0.875rem;
+      color: var(--ink-soft);
+      margin-top: 0.4rem;
+      margin-bottom: 0;
+    }
+
+    /* --- LINKS --- */
+    .link-cta {
+      font-family: var(--display);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .link-cta:hover { opacity: 0.8; }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* --- FOOTER --- */
+    footer { border-top: 1px solid var(--rule); padding: 2rem 1.5rem; }
+
+    .footer-inner {
+      max-width: var(--measure);
+      margin: 0 auto;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--ink-soft);
+    }
+
+    footer a { color: var(--ink-soft); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 64rem) {
+      header.masthead { padding-top: calc(4.5rem + var(--feef-nav-h)); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
-<body class="noise min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 antialiased transition-colors duration-200">
+<body class="noise">
   <nav class="site-nav" aria-label="Site navigation">
     <a href="/" class="site-nav__wordmark">Phil Powell</a>
+    <div class="site-nav__links">
+      <a href="/writing/" class="site-nav__link">Writing</a>
+    </div>
   </nav>
-  <main class="max-w-2xl mx-auto px-6 pt-20 pb-16">
-    <header class="mb-20" aria-labelledby="hero-heading">
-      <h1 id="hero-heading" class="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl">Phil Powell</h1>
-      <p class="mt-2 text-lg text-amber-700 dark:text-amber-400 font-medium" id="hero-subheading">Your product is growing. Your engineering function is still catching up.</p>
-      <p class="mt-6 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I help founder-led SaaS companies stabilise fragile systems, improve delivery confidence, and build the technical foundations needed for the next stage of growth.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        You have traction, customers, and a roadmap that matters. But behind the scenes, too much still depends on a few people holding the system together: unclear architecture, fragile releases, growing technical debt, inconsistent delivery, or a founder who is still pulled into every important technical decision.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I help turn that engineering drag into something the business can trust: clearer technical direction, stronger delivery habits, more reliable systems, and a team that can keep improving without everything depending on one person.
-      </p>
-      <p class="mt-8">
-        <a href="https://www.linkedin.com/in/pmpowell/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-medium text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 rounded">
-          → Start a conversation on LinkedIn
-        </a>
-      </p>
+
+  <main>
+    <header class="masthead" aria-labelledby="hero-heading">
+      <h1 id="hero-heading">Phil Powell</h1>
+      <p class="standfirst" id="hero-subheading">Your product is growing. Your engineering function is still catching up.</p>
+      <p>I help founder-led SaaS companies stabilise fragile systems, improve delivery confidence, and build the technical foundations needed for the next stage of growth.</p>
+      <p>You have traction, customers, and a roadmap that matters. But behind the scenes, too much still depends on a few people holding the system together: unclear architecture, fragile releases, growing technical debt, inconsistent delivery, or a founder who is still pulled into every important technical decision.</p>
+      <p>I help turn that engineering drag into something the business can trust: clearer technical direction, stronger delivery habits, more reliable systems, and a team that can keep improving without everything depending on one person.</p>
+      <p class="cta"><a href="https://www.linkedin.com/in/pmpowell/" target="_blank" rel="noopener noreferrer" class="link-cta">→ Start a conversation on LinkedIn</a></p>
     </header>
 
-    <section class="mb-20" aria-labelledby="the-moment">
-      <h2 id="the-moment" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">The moment I help with</h2>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Most companies do not reach this point because engineering has failed.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        They reach it because the product worked.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Early decisions got the company moving. A small team shipped quickly. Customers arrived. The roadmap expanded. The business started depending on technology that was never designed for this much pressure.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        That is when the same patterns usually appear:
-      </p>
-      <ul class="mt-4 space-y-2 text-slate-600 dark:text-slate-300 list-disc marker:text-amber-600 dark:marker:text-amber-500">
+    <section class="chapter" aria-labelledby="the-moment">
+      <h2 id="the-moment">The moment I help with</h2>
+      <p>Most companies do not reach this point because engineering has failed.</p>
+      <p>They reach it because the product worked.</p>
+      <p>Early decisions got the company moving. A small team shipped quickly. Customers arrived. The roadmap expanded. The business started depending on technology that was never designed for this much pressure.</p>
+      <p>That is when the same patterns usually appear:</p>
+      <ul>
         <li>Releases take longer than expected, even when the changes sound simple</li>
         <li>Quality problems keep resurfacing after work is marked as done</li>
         <li>Technical debt is discussed often, but rarely translated into business risk</li>
@@ -56,128 +214,74 @@
         <li>The team is busy, but leadership lacks confidence in what is actually improving</li>
         <li>Compliance, security, reliability, or scale concerns are starting to become unavoidable</li>
       </ul>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        At that stage, the answer is rarely "more process" or "rewrite everything".
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        The work is to understand what is really creating drag, stabilise the parts of the system that matter most, and build the technical function around the business the company is becoming.
-      </p>
+      <p>At that stage, the answer is rarely "more process" or "rewrite everything".</p>
+      <p>The work is to understand what is really creating drag, stabilise the parts of the system that matter most, and build the technical function around the business the company is becoming.</p>
     </section>
 
-    <section class="mb-20" aria-labelledby="what-i-do">
-      <h2 id="what-i-do" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">What I do</h2>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I work across the space between business leadership and engineering reality.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        That means I can help founders understand what is going on technically, help engineers work with clearer priorities, and make sure the decisions being made in code, infrastructure, process, and team structure support the next stage of the business.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        My work usually focuses on four areas:
-      </p>
+    <section class="chapter" aria-labelledby="what-i-do">
+      <h2 id="what-i-do">What I do</h2>
+      <p>I work across the space between business leadership and engineering reality.</p>
+      <p>That means I can help founders understand what is going on technically, help engineers work with clearer priorities, and make sure the decisions being made in code, infrastructure, process, and team structure support the next stage of the business.</p>
+      <p>My work usually focuses on four areas:</p>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">1. Engineering clarity</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I make the current state understandable: what is fragile, what is slowing delivery, what is creating operational risk, and what deserves attention first.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        This often includes reviewing architecture, infrastructure, delivery flow, QA practices, technical debt, team structure, and how technical decisions are being made.
-      </p>
+      <h3>1. Engineering clarity</h3>
+      <p>I make the current state understandable: what is fragile, what is slowing delivery, what is creating operational risk, and what deserves attention first.</p>
+      <p>This often includes reviewing architecture, infrastructure, delivery flow, QA practices, technical debt, team structure, and how technical decisions are being made.</p>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">2. Stabilisation</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I help reduce the risk in systems that have become hard to change, hard to explain, or hard to trust.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        That might mean improving release practices, tackling reliability issues, creating safer migration paths, strengthening observability, or reducing dependency on individual people and undocumented knowledge.
-      </p>
+      <h3>2. Stabilisation</h3>
+      <p>I help reduce the risk in systems that have become hard to change, hard to explain, or hard to trust.</p>
+      <p>That might mean improving release practices, tackling reliability issues, creating safer migration paths, strengthening observability, or reducing dependency on individual people and undocumented knowledge.</p>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">3. Engineering leadership</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I help put the right operating rhythm around the team: clearer priorities, better delivery habits, stronger technical decision-making, and enough structure for the business to see progress without burying engineers in process.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        In earlier-stage companies, this often means building or reshaping the engineering function from the ground up.
-      </p>
+      <h3>3. Engineering leadership</h3>
+      <p>I help put the right operating rhythm around the team: clearer priorities, better delivery habits, stronger technical decision-making, and enough structure for the business to see progress without burying engineers in process.</p>
+      <p>In earlier-stage companies, this often means building or reshaping the engineering function from the ground up.</p>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">4. Foundations for growth</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I help companies prepare for the next stage: scaling the product, growing the team, improving security and compliance, or making the platform reliable enough for larger customers and higher expectations.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        The goal is not to make engineering look mature. It is to make it capable.
-      </p>
+      <h3>4. Foundations for growth</h3>
+      <p>I help companies prepare for the next stage: scaling the product, growing the team, improving security and compliance, or making the platform reliable enough for larger customers and higher expectations.</p>
+      <p>The goal is not to make engineering look mature. It is to make it capable.</p>
     </section>
 
-    <section class="mb-20" aria-labelledby="diagnostic">
-      <h2 id="diagnostic" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">First step: Engineering Health Diagnostic</h2>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        For many companies, the best starting point is a short diagnostic engagement.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        In one focused review, I look at how your product, platform, team, and delivery process are really working — and where the business is carrying hidden technical risk.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        You get a clear, plain-English assessment of:
-      </p>
-      <ul class="mt-4 space-y-2 text-slate-600 dark:text-slate-300 list-disc marker:text-amber-600 dark:marker:text-amber-500">
+    <section class="chapter" aria-labelledby="diagnostic">
+      <h2 id="diagnostic">First step: Engineering Health Diagnostic</h2>
+      <p>For many companies, the best starting point is a short diagnostic engagement.</p>
+      <p>In one focused review, I look at how your product, platform, team, and delivery process are really working — and where the business is carrying hidden technical risk.</p>
+      <p>You get a clear, plain-English assessment of:</p>
+      <ul>
         <li>Where engineering is creating drag for the business</li>
         <li>Which risks are urgent, and which are just noise</li>
         <li>Where technical debt is slowing delivery or increasing operational risk</li>
         <li>Whether the current team structure and delivery process fit the stage of the company</li>
         <li>What should be fixed first, and what can safely wait</li>
       </ul>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        The output is not a long consultancy report that nobody reads.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        It is a practical view of what is going on, what it means for the business, and what to do next.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        This can lead into an advisory, fractional, or hands-on engagement — or it can simply give you the clarity needed to make better decisions with your existing team.
-      </p>
+      <p>The output is not a long consultancy report that nobody reads.</p>
+      <p>It is a practical view of what is going on, what it means for the business, and what to do next.</p>
+      <p>This can lead into an advisory, fractional, or hands-on engagement — or it can simply give you the clarity needed to make better decisions with your existing team.</p>
     </section>
 
-    <section class="mb-20" aria-labelledby="ways-i-work">
-      <h2 id="ways-i-work" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Ways I work</h2>
+    <section class="chapter" aria-labelledby="ways-i-work">
+      <h2 id="ways-i-work">Ways I work</h2>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">Engineering Health Diagnostic</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        A short, focused review for founders who want to understand where engineering is creating risk, drag, or uncertainty.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Useful when you know something is slowing the business down, but you are not yet sure whether the problem is architecture, process, people, technical debt, reliability, or leadership focus.
-      </p>
-      <p class="mt-2 text-slate-500 dark:text-slate-400 text-sm">Typical shape: 1–2 weeks.</p>
+      <h3>Engineering Health Diagnostic</h3>
+      <p>A short, focused review for founders who want to understand where engineering is creating risk, drag, or uncertainty.</p>
+      <p>Useful when you know something is slowing the business down, but you are not yet sure whether the problem is architecture, process, people, technical debt, reliability, or leadership focus.</p>
+      <p class="meta">Typical shape: 1–2 weeks.</p>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">Fractional CTO</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Ongoing technical leadership for companies that need senior engineering judgement, but do not yet need a full-time CTO.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I work with founders and engineering teams to shape technical direction, improve delivery, reduce risk, and make engineering easier for the business to understand and trust.
-      </p>
-      <p class="mt-2 text-slate-500 dark:text-slate-400 text-sm">Typical shape: 1–2 days per week.</p>
+      <h3>Fractional CTO</h3>
+      <p>Ongoing technical leadership for companies that need senior engineering judgement, but do not yet need a full-time CTO.</p>
+      <p>I work with founders and engineering teams to shape technical direction, improve delivery, reduce risk, and make engineering easier for the business to understand and trust.</p>
+      <p class="meta">Typical shape: 1–2 days per week.</p>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">Outcome-based engagements</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Focused work around a specific technical or organisational goal.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Examples include stabilising a fragile platform, preparing for compliance, improving release confidence, supporting a key migration, establishing QA and delivery practices, or helping a growing team move from informal habits to a more reliable engineering function.
-      </p>
-      <p class="mt-2 text-slate-500 dark:text-slate-400 text-sm">Typical shape: 2–12 weeks, depending on the work.</p>
+      <h3>Outcome-based engagements</h3>
+      <p>Focused work around a specific technical or organisational goal.</p>
+      <p>Examples include stabilising a fragile platform, preparing for compliance, improving release confidence, supporting a key migration, establishing QA and delivery practices, or helping a growing team move from informal habits to a more reliable engineering function.</p>
+      <p class="meta">Typical shape: 2–12 weeks, depending on the work.</p>
     </section>
 
-    <section class="mb-20" aria-labelledby="track-record">
-      <h2 id="track-record" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Track record</h2>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I have spent much of my career stepping into environments where technology is already carrying real responsibility: vulnerable users, sensitive data, operational risk, compliance expectations, and systems that need to keep working while they change.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Across CTO and senior engineering roles, I have:
-      </p>
-      <ul class="mt-4 space-y-3 text-slate-600 dark:text-slate-300 list-disc marker:text-amber-600 dark:marker:text-amber-500">
+    <section class="chapter" aria-labelledby="track-record">
+      <h2 id="track-record">Track record</h2>
+      <p>I have spent much of my career stepping into environments where technology is already carrying real responsibility: vulnerable users, sensitive data, operational risk, compliance expectations, and systems that need to keep working while they change.</p>
+      <p>Across CTO and senior engineering roles, I have:</p>
+      <ul>
         <li>Built engineering teams from zero and created the structure needed for them to work well</li>
         <li>Rebuilt fragile legacy platforms into reliable production systems</li>
         <li>Delivered zero-downtime migrations of mission-critical infrastructure</li>
@@ -185,135 +289,75 @@
         <li>Led organisations through ISO 27001, ISO 22301, and ISO 9001 certification and external audits</li>
         <li>Helped founder-led companies move from informal technical ownership to a more mature engineering function</li>
       </ul>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        The pattern is consistent: I bring structure to complexity without losing the ability to work practically inside the details.
-      </p>
+      <p>The pattern is consistent: I bring structure to complexity without losing the ability to work practically inside the details.</p>
     </section>
 
-    <section class="mb-20" aria-labelledby="experience">
-      <h2 id="experience" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Experience</h2>
+    <section class="chapter" aria-labelledby="experience">
+      <h2 id="experience">Experience</h2>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">Alertacall</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        At Alertacall, I joined as the sole engineer working on technology that vulnerable people relied on to live safely and independently.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        The company grew from a small startup into an organisation of more than seventy people, and the technology had to grow with it. I built the engineering function from scratch, modernised legacy systems, rebuilt core signalling infrastructure, and helped create a platform that could support real-world operational demands without losing service continuity.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        That work required more than writing software. It meant understanding risk, designing migration paths carefully, supporting contact centre operations, improving reliability, and building a team around systems that had to work every day.
-      </p>
+      <h3>Alertacall</h3>
+      <p>At Alertacall, I joined as the sole engineer working on technology that vulnerable people relied on to live safely and independently.</p>
+      <p>The company grew from a small startup into an organisation of more than seventy people, and the technology had to grow with it. I built the engineering function from scratch, modernised legacy systems, rebuilt core signalling infrastructure, and helped create a platform that could support real-world operational demands without losing service continuity.</p>
+      <p>That work required more than writing software. It meant understanding risk, designing migration paths carefully, supporting contact centre operations, improving reliability, and building a team around systems that had to work every day.</p>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">Medical Tracker</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        At Medical Tracker, I joined a product with real usage, sensitive medical data, a large technical backlog, and no engineering team in place.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I built the engineering function from the ground up, introduced delivery structure and QA discipline, modernised infrastructure, improved reliability, and helped the platform mature as the business scaled.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        The company went on to pass ISO 27001 and ISO 22301 audits with zero non-conformities, supported by stronger engineering practices, clearer ownership, and more reliable technical foundations.
-      </p>
+      <h3>Medical Tracker</h3>
+      <p>At Medical Tracker, I joined a product with real usage, sensitive medical data, a large technical backlog, and no engineering team in place.</p>
+      <p>I built the engineering function from the ground up, introduced delivery structure and QA discipline, modernised infrastructure, improved reliability, and helped the platform mature as the business scaled.</p>
+      <p>The company went on to pass ISO 27001 and ISO 22301 audits with zero non-conformities, supported by stronger engineering practices, clearer ownership, and more reliable technical foundations.</p>
     </section>
 
-    <section class="mb-20" aria-labelledby="working-principles">
-      <h2 id="working-principles" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Working principles</h2>
+    <section class="chapter" aria-labelledby="working-principles">
+      <h2 id="working-principles">Working principles</h2>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">Stabilise before you scale</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Growth exposes weak points. It does not fix them.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Before adding more people, more process, or more roadmap pressure, it is worth understanding what is already fragile and what needs to be made safer.
-      </p>
+      <h3>Stabilise before you scale</h3>
+      <p>Growth exposes weak points. It does not fix them.</p>
+      <p>Before adding more people, more process, or more roadmap pressure, it is worth understanding what is already fragile and what needs to be made safer.</p>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">The CTO should not be the system</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        If one person has to remember how everything works, approve every important decision, or explain every technical trade-off, the business has not yet built a technical function. It has built dependency.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Good engineering leadership reduces that dependency over time.
-      </p>
+      <h3>The CTO should not be the system</h3>
+      <p>If one person has to remember how everything works, approve every important decision, or explain every technical trade-off, the business has not yet built a technical function. It has built dependency.</p>
+      <p>Good engineering leadership reduces that dependency over time.</p>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">Technical debt is only useful when translated</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        A backlog full of technical debt does not help a founder make decisions.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        The useful question is: what risk does this create, what does it slow down, what could it cost, and what happens if we leave it alone?
-      </p>
+      <h3>Technical debt is only useful when translated</h3>
+      <p>A backlog full of technical debt does not help a founder make decisions.</p>
+      <p>The useful question is: what risk does this create, what does it slow down, what could it cost, and what happens if we leave it alone?</p>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">Process should create confidence, not theatre</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Teams do not need ceremonies for the sake of looking mature.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        They need enough rhythm, visibility, and discipline that people can trust what is being worked on, what is blocked, what is risky, and what is actually done.
-      </p>
+      <h3>Process should create confidence, not theatre</h3>
+      <p>Teams do not need ceremonies for the sake of looking mature.</p>
+      <p>They need enough rhythm, visibility, and discipline that people can trust what is being worked on, what is blocked, what is risky, and what is actually done.</p>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">Rewrites are rarely the first answer</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Sometimes systems need major change. But most companies cannot pause the business while engineering starts again.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        The better path is usually careful stabilisation, parallel migration, and incremental replacement of the parts that create the most risk.
-      </p>
+      <h3>Rewrites are rarely the first answer</h3>
+      <p>Sometimes systems need major change. But most companies cannot pause the business while engineering starts again.</p>
+      <p>The better path is usually careful stabilisation, parallel migration, and incremental replacement of the parts that create the most risk.</p>
 
-      <h3 class="mt-8 text-xl font-semibold text-slate-900 dark:text-slate-100">Compliance should prove the system works</h3>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Security and compliance are strongest when they reflect how the organisation actually operates.
-      </p>
-      <p class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Done well, they make responsibilities clearer, reduce operational risk, and give customers confidence. Done badly, they become paperwork over uncertainty.
-      </p>
+      <h3>Compliance should prove the system works</h3>
+      <p>Security and compliance are strongest when they reflect how the organisation actually operates.</p>
+      <p>Done well, they make responsibilities clearer, reduce operational risk, and give customers confidence. Done badly, they become paperwork over uncertainty.</p>
     </section>
 
-    <section class="mb-20" aria-labelledby="about">
-      <h2 id="about" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">About</h2>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I am a CTO and senior technical leader with a background in SaaS, platform modernisation, engineering leadership, reliability, and compliance.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I have built engineering teams from scratch, rebuilt legacy systems, led zero-downtime migrations, supported high-stakes products, and helped companies create the technical foundations needed for sustainable growth.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        My work tends to sit where business pressure meets technical complexity: the point where founders need clearer judgement, engineers need stronger direction, and the organisation needs technology to become more dependable without slowing everything down.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        I am also registered as visually impaired. It has shaped how I think about accessibility, edge cases, resilience, and the gap between how systems are expected to behave and how they behave under real conditions.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        That perspective shows up in my work: I look for assumptions, weak signals, unclear ownership, and the places where systems are relying on ideal conditions.
-      </p>
+    <section class="chapter" aria-labelledby="about">
+      <h2 id="about">About</h2>
+      <p>I am a CTO and senior technical leader with a background in SaaS, platform modernisation, engineering leadership, reliability, and compliance.</p>
+      <p>I have built engineering teams from scratch, rebuilt legacy systems, led zero-downtime migrations, supported high-stakes products, and helped companies create the technical foundations needed for sustainable growth.</p>
+      <p>My work tends to sit where business pressure meets technical complexity: the point where founders need clearer judgement, engineers need stronger direction, and the organisation needs technology to become more dependable without slowing everything down.</p>
+      <p>I am also registered as visually impaired. It has shaped how I think about accessibility, edge cases, resilience, and the gap between how systems are expected to behave and how they behave under real conditions.</p>
+      <p>That perspective shows up in my work: I look for assumptions, weak signals, unclear ownership, and the places where systems are relying on ideal conditions.</p>
     </section>
 
-    <section class="mb-20" aria-labelledby="closing-thought">
-      <h2 id="closing-thought" class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Closing thought</h2>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Engineering problems rarely appear all at once.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        They accumulate.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        A shortcut becomes a dependency. A workaround becomes the process. A senior person becomes the documentation. A fragile release becomes normal. A system that once helped the business move quickly starts quietly slowing it down.
-      </p>
-      <p class="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-        My work is about recognising that moment early and helping companies restore clarity, stability, and confidence before the drag becomes too expensive to ignore.
-      </p>
-      <p class="mt-8">
-        <a href="https://www.linkedin.com/in/pmpowell/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-medium text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 rounded">
-          → Connect with me on LinkedIn
-        </a>
-      </p>
+    <section class="chapter" aria-labelledby="closing-thought">
+      <h2 id="closing-thought">Closing thought</h2>
+      <p>Engineering problems rarely appear all at once.</p>
+      <p>They accumulate.</p>
+      <p>A shortcut becomes a dependency. A workaround becomes the process. A senior person becomes the documentation. A fragile release becomes normal. A system that once helped the business move quickly starts quietly slowing it down.</p>
+      <p>My work is about recognising that moment early and helping companies restore clarity, stability, and confidence before the drag becomes too expensive to ignore.</p>
+      <p class="cta"><a href="https://www.linkedin.com/in/pmpowell/" target="_blank" rel="noopener noreferrer" class="link-cta">→ Connect with me on LinkedIn</a></p>
     </section>
   </main>
 
-  <footer class="border-t border-slate-200 dark:border-slate-800 py-8">
-    <div class="max-w-2xl mx-auto px-6 text-center text-sm text-slate-500 dark:text-slate-400">
-      <a href="#" class="hover:text-slate-700 dark:hover:text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 rounded">Phil Powell</a>
-      <span class="mx-2">·</span>
-      <span>© <span id="year"></span></span>
+  <footer>
+    <div class="footer-inner">
+      <a href="#">Phil Powell</a>
+      <span>&middot;</span>
+      <span>&copy; <span id="year"></span></span>
     </div>
   </footer>
 

@@ -34,6 +34,7 @@
 <!-- <meta property="og:image" content="https://feef.io/roadmap/cover.png"> -->
 <meta name="twitter:card" content="summary_large_image">
 
+<link rel="stylesheet" href="../css/site.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -50,7 +51,7 @@
     --paper: #f7f4ee;
     --paper-raised: #fffdf8;
     --rule: #e2dcd1;
-    --accent: #9a3b25;
+    --accent: #b45309;  /* amber-700 */
 
     --fs-body: 1.1875rem;
     --lh-body: 1.7;
@@ -60,8 +61,7 @@
   /* Dark mode: respects the system preference. Only the tokens change —
      everything else references these variables, so the whole page
      re-themes from here. Warm near-black (not cold grey) to keep the
-     editorial, paper-like feel. Accent is lifted slightly so the
-     terracotta stays legible against the dark background. */
+     editorial, paper-like feel. Accent lifts to amber-400 on dark. */
   @media (prefers-color-scheme: dark) {
     :root {
       --ink: #ece5da;          /* warm off-white text */
@@ -69,7 +69,7 @@
       --paper: #1a1714;        /* warm near-black background */
       --paper-raised: #221e1a; /* cards / colophon */
       --rule: #36302a;         /* hairlines */
-      --accent: #d4694e;       /* lifted terracotta, legible on dark */
+      --accent: #fbbf24;       /* amber-400, legible on dark */
     }
   }
 
@@ -88,7 +88,7 @@
   }
 
   /* ---------- READING PROGRESS BAR ---------- */
-  .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 100; background: transparent; }
+  .progress { position: fixed; top: var(--feef-nav-h); left: 0; right: 0; height: 3px; z-index: 100; background: transparent; }
   .progress__fill { height: 100%; width: 0%; background: var(--accent); transition: width 0.1s linear; }
 
   /* ---------- LAYOUT ---------- */
@@ -98,7 +98,7 @@
   /* ---------- CONTENTS SIDEBAR ---------- */
   .book-nav {
     grid-column: 1; justify-self: end; align-self: start;
-    position: sticky; top: 0; max-height: 100vh; overflow-y: auto;
+    position: sticky; top: var(--feef-nav-h); max-height: calc(100vh - var(--feef-nav-h)); overflow-y: auto;
     padding: 4rem 2.5rem 4rem 2rem; width: 18rem;
     font-family: var(--display); font-size: 0.82rem; line-height: 1.4;
   }
@@ -114,7 +114,7 @@
   .book-nav a.is-active { color: var(--ink); border-left-color: var(--accent); }
 
   /* ---------- MASTHEAD ---------- */
-  header.masthead { padding: 8rem 0 4rem; border-bottom: 1px solid var(--rule); margin-bottom: 3rem; }
+  header.masthead { padding: calc(8rem + var(--feef-nav-h)) 0 4rem; border-bottom: 1px solid var(--rule); margin-bottom: 3rem; }
   .masthead h1 {
     font-family: var(--display); font-weight: 500;
     font-size: clamp(2.6rem, 6vw, 4.1rem); line-height: 1.04;
@@ -129,7 +129,7 @@
 
   /* ---------- BOOK BODY ---------- */
   article.book { padding-bottom: 4rem; counter-reset: chap; }
-  .chapter { margin: 0 0 var(--space); scroll-margin-top: 2rem; }
+  .chapter { margin: 0 0 var(--space); scroll-margin-top: calc(2rem + var(--feef-nav-h)); }
 
   .chapter h2 {
     font-family: var(--display); font-weight: 500;
@@ -184,7 +184,7 @@
   .cta h3 { font-family: var(--display); font-weight: 600; font-size: 1.15rem; margin: 0 0 0.6rem; }
   .cta .field { display: flex; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap; }
   .cta input[type=email] { flex: 1 1 16rem; font-family: var(--body); font-size: 1rem; padding: 0.7rem 0.9rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); }
-  .cta button { font-family: var(--display); font-weight: 600; font-size: 0.95rem; padding: 0.7rem 1.4rem; background: var(--accent); color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+  .cta button { font-family: var(--display); font-weight: 600; font-size: 0.95rem; padding: 0.7rem 1.4rem; background: #b45309; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
   .colophon .signoff a { color: var(--accent); }
 
   /* ---------- RESPONSIVE ---------- */
@@ -194,7 +194,7 @@
     .wrap > * { grid-column: 1; max-width: var(--measure); margin-left: auto; margin-right: auto; width: 100%; }
     .book-nav { display: none; }
     .toc-inline { display: block; }
-    header.masthead { padding-top: 4.5rem; }
+    header.masthead { padding-top: calc(4.5rem + var(--feef-nav-h)); }
   }
   .toc-inline { border: 1px solid var(--rule); border-radius: 8px; padding: 1.4rem 1.5rem; margin-bottom: 3rem; background: var(--paper-raised); }
   .toc-inline p { margin: 0 0 0.8rem; font-family: var(--display); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.66rem; color: var(--ink-soft); }
@@ -206,6 +206,10 @@
 </style>
 </head>
 <body>
+
+<nav class="site-nav" aria-label="Site navigation">
+  <a href="/" class="site-nav__wordmark">Phil Powell</a>
+</nav>
 
 <div class="progress" aria-hidden="true"><div class="progress__fill" id="progressFill"></div></div>
 

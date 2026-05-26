@@ -4,38 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Phil Powell — Fractional CTO</title>
+  <link rel="stylesheet" href="/css/site.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { darkMode: 'class' };
   </script>
-  <style>
-    /* Noise overlay - subtle grain */
-    .noise::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.04;
-      pointer-events: none;
-      z-index: 9999;
-    }
-    /* Bullet lists: wrapped lines indent to align with first line of text, not the bullet */
-    main ul {
-      list-style-position: outside;
-      padding-left: 1.5rem;
-    }
-    /* Respect reduced motion for theme transition and any animation */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-  </style>
 </head>
 <body class="noise min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 antialiased transition-colors duration-200">
-  <main class="max-w-2xl mx-auto px-6 py-16">
+  <nav class="site-nav" aria-label="Site navigation">
+    <a href="/" class="site-nav__wordmark">Phil Powell</a>
+  </nav>
+  <main class="max-w-2xl mx-auto px-6 pt-20 pb-16">
     <header class="mb-20" aria-labelledby="hero-heading">
       <h1 id="hero-heading" class="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl">Phil Powell</h1>
       <p class="mt-2 text-lg text-amber-700 dark:text-amber-400 font-medium" id="hero-subheading">Your product is growing. Your engineering function is still catching up.</p>

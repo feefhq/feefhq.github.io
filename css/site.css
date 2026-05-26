@@ -1,0 +1,121 @@
+/* ============================================================
+   feef.io — shared design system
+   Tokens, navigation, and callout components across all pages.
+   ============================================================ */
+
+/* --- TOKENS ---
+   Default values are light-mode (roadmap on a light-preference system).
+   Class-based dark override handles the main page (<html class="dark">).
+   Media-query dark override handles the roadmap (respects system pref).
+   -------------------------------------------------------------- */
+:root {
+  --feef-nav-h: 3rem;
+
+  --feef-accent:         #b45309;  /* amber-700 — on light backgrounds  */
+  --feef-accent-hover:   #92400e;  /* amber-800                         */
+
+  --feef-nav-bg:         #f7f4ee;
+  --feef-nav-border:     #e2dcd1;
+  --feef-nav-fg:         #5c554d;
+  --feef-nav-fg-hover:   #1a1714;
+
+  --feef-callout-bg:     rgba(180, 83, 9, 0.07);
+  --feef-callout-border: #b45309;
+}
+
+/* Roadmap dark mode (system preference). */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --feef-accent:         #fbbf24;  /* amber-400 — on dark backgrounds  */
+    --feef-accent-hover:   #fde68a;  /* amber-200                        */
+
+    --feef-nav-bg:         #1a1714;
+    --feef-nav-border:     #36302a;
+    --feef-nav-fg:         #a59c8f;
+    --feef-nav-fg-hover:   #ece5da;
+
+    --feef-callout-bg:     rgba(251, 191, 36, 0.07);
+    --feef-callout-border: #fbbf24;
+  }
+}
+
+/* Main page dark mode (class-based: <html class="dark">). */
+.dark {
+  --feef-accent:         #fbbf24;
+  --feef-accent-hover:   #fde68a;
+
+  --feef-nav-bg:         rgb(15 23 42);     /* slate-900 */
+  --feef-nav-border:     rgb(30 41 59);     /* slate-800 */
+  --feef-nav-fg:         rgb(100 116 139);  /* slate-500 */
+  --feef-nav-fg-hover:   rgb(226 232 240);  /* slate-200 */
+
+  --feef-callout-bg:     rgba(251, 191, 36, 0.07);
+  --feef-callout-border: #fbbf24;
+}
+
+/* --- NAVIGATION --- */
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--feef-nav-h);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  background: var(--feef-nav-bg);
+  border-bottom: 1px solid var(--feef-nav-border);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 0.875rem;
+}
+
+.site-nav__wordmark {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--feef-nav-fg);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.site-nav__wordmark:hover { color: var(--feef-nav-fg-hover); }
+
+/* --- CALLOUTS ---
+   Use on either page: <div class="callout">...</div>
+   -------------------------------------------------------------- */
+.callout {
+  border-left: 3px solid var(--feef-callout-border);
+  background: var(--feef-callout-bg);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+/* --- NOISE OVERLAY (main page) --- */
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* --- BULLET LIST INDENT (main page) ---
+   Wrapped lines indent to align with first line of text, not the bullet.
+   -------------------------------------------------------------- */
+main ul {
+  list-style-position: outside;
+  padding-left: 1.5rem;
+}
+
+/* --- REDUCED MOTION --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .progress__fill { transition: none; }
+  .site-nav__wordmark { transition: none; }
+}

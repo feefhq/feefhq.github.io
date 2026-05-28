@@ -55,3 +55,63 @@ CNAME                   # feef.io
 - Don't introduce a build system, bundler, or package.json — the zero-dependency approach is intentional.
 - Don't use a CSS framework or CDN stylesheet (no Tailwind, no Bootstrap) — the hand-written CSS is intentional.
 - Don't add a local font directory — fonts are loaded via Google Fonts CDN.
+
+## CTA, Analytics & Sharing Work (current focus)
+
+### Goal
+
+Add CTAs across the book to encourage sharing and professional connection,
+plus privacy-friendly analytics. Restraint is deliberate — senior readers
+(engineering + business leaders) reward a few well-placed asks over many.
+Only two of the touchpoints below actively ask; the rest are ambient.
+
+### CTA placement map
+
+- **Two-thirds inline** (after the strongest chapter): leads with SHARE,
+  with a quiet CONNECT link underneath. Conviction peaks here; use the
+  soft "if this resonates" framing.
+- **End of book** (highest intent): leads with CONNECT, with SHARE as the
+  immediate second line ("if someone on your team is fighting this, send
+  it their way").
+- **Persistent thin footer bar**: both share + connect as small equal
+  links. This is the ONLY place co-equal links are acceptable, because
+  it's ambient, not a decision moment.
+- **About/author block** (near the end): credibility bridge, not a button.
+  One paragraph + LinkedIn link.
+
+### Sequencing principle
+
+Share and connect matter equally, but never present them as two co-equal
+buttons at a decision moment — that causes readers to do neither. Let
+page position prioritize: share at conviction peaks, connect at the end.
+
+### Voice / content discipline
+
+- Dual audience (engineering + business leaders) — keep CTA copy legible
+  to both, no jargon that excludes either.
+- Main text keeps its no-named-frameworks discipline. Do not introduce
+  framework names into CTA copy.
+- Tone is feedback pitch, NOT launch marketing. Avoid hype, newsletter
+  capture, and aggressive asks.
+
+### Analytics: Plausible
+
+- Privacy-friendly, cookieless, GDPR-ready — no consent banner needed
+  (and a banner would clash with the feedback-pitch tone, so don't add one).
+- Scroll depth is built in by default (tracked as percentage). Read it
+  alongside time-on-page — scroll depth alone overcounts fast scanners.
+- CTA clicks = tagged custom events on outbound links (the
+  `script.tagged-events.js` variant). Every CTA link should fire a
+  trackable event so we can see whether reads convert to engagement.
+- Skip Google Analytics: overkill, triggers consent obligations, wrong tone.
+
+### Hosting
+
+- Static HTML on GitHub Pages — do not migrate. Serve the book at a clean
+  dedicated path/subdomain, not buried under the portfolio one-pager.
+
+### Working rules for edits
+
+- Work on a branch; surface diffs for review before committing.
+- Let GitHub Pages deploy only after diffs are eyeballed — don't run
+  unattended.

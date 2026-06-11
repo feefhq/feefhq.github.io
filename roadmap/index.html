@@ -156,8 +156,10 @@
     font-size: 1.3rem; line-height: 1.5; color: var(--ink-soft);
     font-style: italic; margin: 0 0 2rem; max-width: 32rem;
   }
-  .masthead .byline { font-family: var(--display); font-size: 0.95rem; color: var(--ink-soft); }
+  .masthead .byline { font-family: var(--display); font-size: 0.95rem; color: var(--ink-soft); margin: 0 0 0.35rem; }
   .masthead .byline a { color: var(--accent); text-decoration: none; }
+  .masthead .byline-meta { font-size: 0.8125rem; color: var(--ink-soft); opacity: 0.7; margin: 0; }
+  /* When previous revisions exist, add a .revision-history link here */
 
   /* ---------- BOOK BODY ---------- */
   article.book { padding-bottom: 4rem; counter-reset: chap; }
@@ -348,6 +350,8 @@
     <h1>Why Your Roadmap Keeps Slipping</h1>
     <p class="standfirst">And what your system has to do with it.</p>
     <p class="byline">by Phil Powell &middot; <a href="https://feef.io">feef.io</a></p>
+    <p class="byline-meta"><time datetime="2026-05-26">26 May 2026</time> &middot; r1</p>
+    <!-- When previous revisions exist, add: <p class="revision-history"><a href="/roadmap/history/">Previous revisions</a></p> -->
   </header>
 
   <nav class="toc-inline" aria-label="Contents">

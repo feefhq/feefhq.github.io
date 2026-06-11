@@ -84,7 +84,7 @@
 
     /* --- ESSAYS --- */
     .essays article {
-      padding: 1.75rem 0;
+      padding: 2rem 0;
       border-bottom: 1px solid var(--rule);
     }
 
@@ -100,22 +100,53 @@
       font-size: 1.35rem;
       line-height: 1.2;
       color: var(--ink);
-      margin: 0 0 0.6rem;
+      margin: 0 0 0.4rem;
       transition: color 0.15s;
     }
 
     .essays a:hover h2 { color: var(--accent); }
 
-    .essays p {
-      margin: 0 0 0.8rem;
+    .essay-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.8125rem;
+      color: var(--ink-soft);
+      margin: 0 0 0.75rem;
+      opacity: 0.75;
+    }
+
+    .essay-meta .sep { user-select: none; }
+
+    .essay-meta .rev {
+      font-family: var(--display);
+      font-size: 0.75rem;
+      letter-spacing: 0.01em;
+    }
+
+    .essays p.desc {
+      margin: 0 0 0.85rem;
       color: var(--ink-soft);
     }
 
     .read-link {
       font-family: var(--display);
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       color: var(--accent);
     }
+
+    .revision-history {
+      margin: 0.5rem 0 0;
+      font-size: 0.8rem;
+    }
+
+    .revision-history a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      opacity: 0.6;
+    }
+
+    .revision-history a:hover { opacity: 1; }
 
     :focus-visible {
       outline: 2px solid var(--accent);
@@ -166,9 +197,15 @@
       <article>
         <a href="/roadmap/">
           <h2>Why Your Roadmap Keeps Slipping</h2>
-          <p>Roadmap slippage is a systems problem, not an execution problem — and the usual responses tend to make it worse.</p>
+          <p class="essay-meta">
+            <time datetime="2026-05-26">26 May 2026</time>
+            <span class="sep" aria-hidden="true">&middot;</span>
+            <span class="rev">r1</span>
+          </p>
+          <p class="desc">Roadmap slippage is a systems problem, not an execution problem — and the usual responses tend to make it worse.</p>
           <span class="read-link">Read essay →</span>
         </a>
+        <!-- When previous revisions exist, add: <p class="revision-history"><a href="/roadmap/history/">Previous revisions</a></p> -->
       </article>
     </section>
   </main>

@@ -93,6 +93,52 @@
     .masthead p { margin: 0 0 1rem; color: var(--ink-soft); }
     .masthead .cta { margin-top: 2rem; }
 
+    /* --- WRITING NUDGE --- */
+    .writing-nudge {
+      margin: -2rem -1.5rem 3rem;
+      padding: 0.8rem 1.5rem;
+      background: var(--rule);
+    }
+
+    .writing-nudge a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .writing-nudge__label {
+      font-size: 0.8125rem;
+      color: var(--ink-soft);
+    }
+
+    .writing-nudge__sep {
+      font-size: 0.8125rem;
+      color: var(--ink-soft);
+      user-select: none;
+    }
+
+    .writing-nudge__title {
+      font-family: var(--display);
+      font-size: 1rem;
+      color: var(--ink);
+      transition: color 0.15s;
+    }
+
+    .writing-nudge__arrow {
+      font-size: 0.875rem;
+      color: var(--accent);
+      transition: color 0.15s;
+    }
+
+    .writing-nudge a:hover .writing-nudge__title { color: var(--accent); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .writing-nudge__title,
+      .writing-nudge__arrow { transition: none; }
+    }
+
     /* --- SECTIONS --- */
     .chapter {
       margin: 0 0 5rem;
@@ -205,6 +251,15 @@
       <p>I help turn that engineering drag into something the business can trust: clearer technical direction, stronger delivery habits, more reliable systems, and a team that can keep improving without everything depending on one person.</p>
       <p class="cta"><a href="https://www.linkedin.com/in/pmpowell/" target="_blank" rel="noopener noreferrer" class="link-cta">→ Start a conversation on LinkedIn</a></p>
     </header>
+
+    <aside class="writing-nudge" aria-label="Latest writing">
+      <a href="/behavioural-drift/" onclick="plausible('Writing nudge click', {props: {essay: 'Behavioural Drift'}})">
+        <span class="writing-nudge__label">New essay</span>
+        <span class="writing-nudge__sep" aria-hidden="true">&middot;</span>
+        <span class="writing-nudge__title">Behavioural Drift</span>
+        <span class="writing-nudge__arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </aside>
 
     <section class="chapter" aria-labelledby="the-moment">
       <h2 id="the-moment">The moment I help with</h2>

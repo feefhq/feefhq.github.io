@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Behavioural Drift</title>
+<meta name="description" content="A system that works and a system you understand are not the same thing. Behavioural drift is what fills the gap — and most teams are trained to miss it.">
+
+<meta name="theme-color" content="#f7f4ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Behavioural Drift">
+<meta property="og:description" content="A system that works and a system you understand are not the same thing. Behavioural drift is what fills the gap — and most teams are trained to miss it.">
+<meta property="og:url" content="https://feef.io/behavioural-drift">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="../css/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-nHwfBm4RapVL-W4ldvkAY.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+
+<style>
+  /* ---------- DESIGN TOKENS ---------- */
+  :root {
+    --measure: 38rem;
+    --body: "Spectral", Georgia, serif;
+    --display: "Fraunces", Georgia, serif;
+
+    --ink: #1a1714;
+    --ink-soft: #5c554d;
+    --paper: #f7f4ee;
+    --paper-raised: #fffdf8;
+    --rule: #e2dcd1;
+    --accent: #b45309;
+
+    --fs-body: 1.1875rem;
+    --lh-body: 1.7;
+    --space: 1.7rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #ece5da;
+      --ink-soft: #a59c8f;
+      --paper: #1a1714;
+      --paper-raised: #221e1a;
+      --rule: #36302a;
+      --accent: #fbbf24;
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- READING PROGRESS BAR ---------- */
+  .progress { position: fixed; top: var(--feef-nav-h); left: 0; right: 0; height: 3px; z-index: 100; background: transparent; }
+  .progress__fill { height: 100%; width: 0%; background: var(--accent); transition: width 0.1s linear; }
+
+  /* ---------- LAYOUT ---------- */
+  .wrap { display: grid; grid-template-columns: 1fr var(--measure) 1fr; gap: 0; }
+  .wrap > * { grid-column: 2; }
+
+  /* ---------- CONTENTS SIDEBAR ---------- */
+  .book-nav {
+    grid-column: 1; justify-self: end; align-self: start;
+    position: sticky; top: var(--feef-nav-h); max-height: calc(100vh - var(--feef-nav-h)); overflow-y: auto;
+    padding: 4rem 2.5rem 4rem 2rem; width: 18rem;
+    font-family: var(--display); font-size: 0.82rem; line-height: 1.4;
+  }
+  .book-nav__label { text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.66rem; color: var(--ink-soft); margin: 0 0 1.2rem; }
+  .book-nav ol { list-style: none; margin: 0; padding: 0; }
+  .book-nav li { margin: 0 0 0.55rem; }
+  .book-nav a {
+    color: var(--ink-soft); text-decoration: none; display: block;
+    padding-left: 0.9rem; border-left: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .book-nav a:hover { color: var(--ink); }
+  .book-nav a.is-active { color: var(--ink); border-left-color: var(--accent); }
+
+  /* ---------- RAIL FOOT: SHARE / CONNECT ---------- */
+  .book-nav__foot {
+    margin-top: 1.8rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    gap: 1rem;
+  }
+  .book-nav__foot a,
+  .book-nav__share {
+    font-family: var(--display);
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    line-height: 1.4;
+    transition: color 0.15s;
+  }
+  .book-nav__foot a:hover,
+  .book-nav__share:hover { color: var(--ink); }
+  .book-nav__share:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- MASTHEAD ---------- */
+  header.masthead { padding: calc(8rem + var(--feef-nav-h)) 0 4rem; border-bottom: 1px solid var(--rule); margin-bottom: 3rem; }
+  .masthead h1 {
+    font-family: var(--display); font-weight: 500;
+    font-size: clamp(2.6rem, 6vw, 4.1rem); line-height: 1.04;
+    letter-spacing: -0.015em; margin: 0 0 1.2rem; text-wrap: balance;
+  }
+  .masthead .standfirst {
+    font-size: 1.3rem; line-height: 1.5; color: var(--ink-soft);
+    font-style: italic; margin: 0 0 2rem; max-width: 32rem;
+  }
+  .masthead .byline { font-family: var(--display); font-size: 0.95rem; color: var(--ink-soft); margin: 0 0 0.35rem; }
+  .masthead .byline a { color: var(--accent); text-decoration: none; }
+  .masthead .byline-meta { font-size: 0.8125rem; color: var(--ink-soft); opacity: 0.7; margin: 0; }
+
+  /* ---------- BOOK BODY ---------- */
+  article.book { padding-bottom: 4rem; }
+  .chapter { margin: 0 0 var(--space); scroll-margin-top: calc(2rem + var(--feef-nav-h)); }
+
+  .chapter h2 {
+    font-family: var(--display); font-weight: 500;
+    font-size: 1.95rem; line-height: 1.15; letter-spacing: -0.01em;
+    margin: calc(var(--space) * 2.4) 0 var(--space); text-wrap: balance;
+  }
+
+  .book p { margin: 0 0 1.35rem; text-wrap: pretty; hanging-punctuation: first last; }
+
+  .book a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .book em { font-style: italic; }
+  .book strong { font-weight: 600; }
+
+  .book ul { list-style: none; margin: var(--space) 0; padding: 0; }
+  .book ul li {
+    position: relative; padding-left: 1.4rem; margin: 0 0 0.55rem;
+    color: var(--ink);
+  }
+  .book ul li::before {
+    content: "—"; position: absolute; left: 0; color: var(--accent);
+  }
+
+  /* ---------- COLOPHON ---------- */
+  .colophon { border-top: 1px solid var(--rule); margin-top: 5rem; padding: 4rem 0 7rem; }
+
+  /* ---------- ABOUT / AUTHOR ---------- */
+  .about-author { border-top: 1px solid var(--rule); margin-top: 5rem; padding: 3rem 0 1rem; }
+  .about-author p { color: var(--ink-soft); font-size: 1.05rem; line-height: var(--lh-body); }
+  .about-author a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+  /* ---------- RESPONSIVE ---------- */
+  .toc-inline { display: none; }
+  @media (max-width: 64rem) {
+    .wrap { grid-template-columns: 1fr; padding: 0 1.5rem; }
+    .wrap > * { grid-column: 1; max-width: var(--measure); margin-left: auto; margin-right: auto; width: 100%; }
+    .book-nav { display: none; }
+    .toc-inline { display: block; }
+    header.masthead { padding-top: calc(4.5rem + var(--feef-nav-h)); }
+  }
+  .toc-inline { border: 1px solid var(--rule); border-radius: 8px; padding: 1.4rem 1.5rem; margin-bottom: 3rem; background: var(--paper-raised); }
+  .toc-inline p { margin: 0 0 0.8rem; font-family: var(--display); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.66rem; color: var(--ink-soft); }
+  .toc-inline ol { margin: 0; padding-left: 1.1rem; font-family: var(--display); font-size: 0.95rem; }
+  .toc-inline li { margin: 0 0 0.4rem; }
+  .toc-inline a { color: var(--ink); text-decoration: none; }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .progress__fill { transition: none; } }
+
+  /* ---------- END-OF-BOOK CTA ---------- */
+  .cta-end {
+    border-top: 1px solid var(--rule);
+    margin-top: 3rem;
+    padding: 2.5rem 0 2.75rem;
+  }
+  .cta-end__primary {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    margin: 0 0 1rem;
+    text-wrap: pretty;
+  }
+  .cta-end__primary a {
+    color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  .cta-end__secondary {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  /* ---------- INLINE SHARE CTA ---------- */
+  .cta-inline {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 1.75rem 0;
+    margin: calc(var(--space) * 2.4) 0;
+  }
+  .cta-inline .cta-inline__body {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+    text-wrap: pretty;
+  }
+  .cta-inline .cta-inline__secondary {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin: 0.75rem 0 0;
+    text-wrap: pretty;
+  }
+  .cta-inline .cta-inline__secondary a {
+    color: var(--ink-soft);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  .cta-inline .cta-inline__secondary a:hover { color: var(--ink); }
+  .cta-inline__copy {
+    font-family: var(--display);
+    font-size: 0.875rem;
+    padding: 0.4rem 0.9rem;
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .cta-inline__copy:hover { border-color: var(--accent); color: var(--accent); }
+  .cta-inline__copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Site navigation">
+  <a href="/" class="site-nav__wordmark">Phil Powell</a>
+  <div class="site-nav__links">
+    <a href="/writing/" class="site-nav__link">Writing</a>
+  </div>
+</nav>
+
+<div class="progress" aria-hidden="true"><div class="progress__fill" id="progressFill"></div></div>
+
+<div class="wrap">
+
+  <nav class="book-nav" aria-label="Contents">
+    <p class="book-nav__label">Contents</p>
+    <ol id="tocList">
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#what-drift-is">What drift is, and what it isn&rsquo;t</a></li>
+      <li><a href="#failure-vs-normal">Why failure is easy and normal is hard</a></li>
+      <li><a href="#shapes">The shapes drift takes</a></li>
+      <li><a href="#illegibility">The cost of illegibility</a></li>
+      <li><a href="#tools">Why your tools don&rsquo;t catch it</a></li>
+      <li><a href="#visibility">Reframing toward behavioural visibility</a></li>
+      <li><a href="#where-to-start">Where to start</a></li>
+      <li><a href="#from-experience">A note from experience</a></li>
+      <li><a href="#closing">The system you still understand</a></li>
+    </ol>
+    <div class="book-nav__foot">
+      <button class="book-nav__share" id="copyLinkBtnRail" type="button">Share this</button>
+      <a href="https://www.linkedin.com/in/pmpowell/" rel="noopener noreferrer" class="plausible-event-name=Connect:+rail">Connect</a>
+    </div>
+  </nav>
+
+  <header class="masthead">
+    <h1>Behavioural Drift</h1>
+    <p class="standfirst">How software systems stop behaving like themselves.</p>
+    <p class="byline">by Phil Powell &middot; <a href="https://feef.io">feef.io</a></p>
+    <p class="byline-meta"><time datetime="2026-06-11">11 June 2026</time> &middot; r1</p>
+  </header>
+
+  <nav class="toc-inline" aria-label="Contents">
+    <p>Contents</p>
+    <ol>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#what-drift-is">What drift is, and what it isn&rsquo;t</a></li>
+      <li><a href="#failure-vs-normal">Why failure is easy and normal is hard</a></li>
+      <li><a href="#shapes">The shapes drift takes</a></li>
+      <li><a href="#illegibility">The cost of illegibility</a></li>
+      <li><a href="#tools">Why your tools don&rsquo;t catch it</a></li>
+      <li><a href="#visibility">Reframing toward behavioural visibility</a></li>
+      <li><a href="#where-to-start">Where to start</a></li>
+      <li><a href="#from-experience">A note from experience</a></li>
+      <li><a href="#closing">The system you still understand</a></li>
+    </ol>
+  </nav>
+
+  <article class="book">
+
+    <section class="chapter" id="introduction">
+      <p>An API call succeeds. The request completes, the response is valid JSON that passes schema validation, the status code is in the two hundreds, and no alert fires. By every measure the team watches, the system is healthy.</p>
+      <p>But a field that used to carry a value now returns an empty string. Another has grown tenfold since last quarter. A third still exists in the contract, but its meaning has shifted. Downstream, something is now being asked to handle a reality it was never built around. It compensates &mdash; a fallback here, a tolerated null there &mdash; and passes the altered data further along. Weeks later the cost surfaces somewhere unrelated: a report that no longer reconciles, a customer asking why a number looks wrong, an engineer staring at a value that should not be possible.</p>
+      <p>Nothing failed. The system did exactly what it was told. It just stopped behaving the way the people responsible for it believed it behaved.</p>
+      <p>This is behavioural drift, and it is the kind of risk most software teams are worst equipped to see. They are trained to look for failure &mdash; a test that breaks, a page that times out, a metric that crosses a line. Failure is legible. It gives the team a point of focus and permission to stop and respond. Drift offers none of that. It sits in the space between working and broken, and it arrives not as a problem but as a change in character. The system still works. It just feels different. And the gap between how it behaves and how the organisation thinks it behaves is where a great deal of software risk hides.</p>
+    </section>
+
+    <section class="chapter" id="what-drift-is">
+      <h2>What drift is, and what it isn&rsquo;t</h2>
+      <p>Behavioural drift is the gap that opens when a system&rsquo;s real behaviour moves away from the organisation&rsquo;s understanding of that behaviour.</p>
+      <p>The important word is <em>understanding</em>. Software is always changing &mdash; new features, more data, evolving integrations. Change is the normal condition. Drift is not the change itself. Drift is change that hasn&rsquo;t been seen, explained, or absorbed into the team&rsquo;s mental model of the system. The team may still understand the parts: the services, the tables, the queues, the deployment path. What they&rsquo;ve lost is a reliable sense of how the whole thing behaves.</p>
+      <p>It helps to say what drift is <em>not</em>, because most teams already have names that almost fit.</p>
+      <p>It is not a bug. A bug is a deviation from intended behaviour that can be identified, reproduced, and fixed. Drift is rarely attributable to a single cause, and it often isn&rsquo;t wrong &mdash; the system is doing exactly what it was most recently asked to do. The behaviour has changed; the documentation and the mental models haven&rsquo;t.</p>
+      <p>It is not technical debt. Debt is a deliberate trade-off: we accept this constraint now in exchange for speed, and we&rsquo;ll pay it back later. Drift isn&rsquo;t chosen. It isn&rsquo;t tracked. It accumulates in the gap between a system&rsquo;s actual behaviour and the organisation&rsquo;s working assumptions about that behaviour.</p>
+      <p>It is not degradation. A degrading system performs worse over time &mdash; slower, less reliable, more error-prone. A drifting system may perform perfectly well by every technical measure. The risk isn&rsquo;t in the system&rsquo;s performance. It&rsquo;s in the organisation&rsquo;s model of it.</p>
+    </section>
+
+    <section class="chapter" id="failure-vs-normal">
+      <h2>Why failure is easy and normal is hard</h2>
+      <p>Most observability is calibrated around failure states. An alert fires when error rates exceed a threshold. A dashboard turns red when latency spikes. A test fails when the output doesn&rsquo;t match the expectation.</p>
+      <p>These tools are well designed for what they do. The problem is that drift doesn&rsquo;t produce failures &mdash; it produces new normals. And the question &ldquo;has normal changed?&rdquo; is structurally different from &ldquo;has this broken?&rdquo;</p>
+      <p>To catch a failure, you need a threshold and a signal. To catch drift, you need a baseline, a comparison, and a view of what the organisation currently believes. The last element is the hard one. The system doesn&rsquo;t know what people think it does. It just runs.</p>
+      <p>Normal is also resistant to detection because it shifts gradually. Payload sizes grow. Latency creeps. Retry rates rise. Each incremental change is within tolerance; the cumulative change is not. The monitoring that would have caught a sudden spike lets the slow change through, because at each moment the current value is only marginally different from the value before it. By the time the difference is visible, it has already been normalised.</p>
+      <p>Drift arrives sideways. A workflow takes longer than it used to. An engineer checks something by hand that used to be automated. A support pattern changes. None of these is a fire. All of them are signals.</p>
+    </section>
+
+    <section class="chapter" id="shapes">
+      <h2>The shapes drift takes</h2>
+      <p>Drift is not a single phenomenon. It shows up differently depending on where in the system the gap has opened, and naming the type matters because it determines where to look and what to do about it.</p>
+      <p><strong>Shape drift</strong> is the most technically legible form. The data the system processes has changed in structure or distribution &mdash; values that were always present are now sometimes null, payloads that were small are now large, enumerations that had three possible values now have eight. The downstream systems were built around the old shape. Structural contracts catch type and schema violations, but they are blind to semantic change, distributional shift, and the gradual widening of optionality. A field that was always populated becoming sometimes empty is valid JSON. It is still drift.</p>
+      <p><strong>Operational drift</strong> is what happens when the system&rsquo;s support structure quietly changes around it. The cron job that used to run and self-correct now has someone checking it every morning. The integration that was fully automated now has a Slack message in the loop. The deployment that used to take twenty minutes now takes an hour, not because anything is broken but because caution has accumulated. This drift is visible in the team&rsquo;s routines rather than in the system&rsquo;s metrics. The fingerprints are compensating work, informal checkpoints, and the slow migration of knowledge from documentation into individuals.</p>
+      <p><strong>Confidence drift</strong> is the internal signal. Engineers become reluctant to touch certain areas. A question about how a particular component works gets vague or qualified answers. A task that should be straightforward gets broken into careful steps and reviewed more than once. The velocity in a part of the system softens in ways that don&rsquo;t show up in a sprint report. Confidence drift is often the earliest signal that behavioural drift has taken hold &mdash; the team&rsquo;s intuitions about the system are recalibrating before anyone has articulated why.</p>
+      <p><strong>Effort drift</strong> is what confidence drift produces at the team level. The cost of change in a part of the system rises without a visible technical explanation. Features take longer. Reviews take longer. Deploys are scheduled rather than routine. The effort isn&rsquo;t wasted &mdash; the team is being appropriately careful &mdash; but it is invisible to anyone outside the team and often invisible to the people living it, because the increase is gradual and the surrounding narrative is always &ldquo;this one is just a bit complicated.&rdquo;</p>
+      <p>These four types are distinct, but they tend to compound. Shape drift produces operational drift as the team adapts. Operational drift produces confidence drift as the adaptation becomes invisible overhead. Confidence drift produces effort drift as the team&rsquo;s caution becomes the default speed. By the time it is visible as a delivery problem, the original shape change is several layers removed.</p>
+    </section>
+
+    <section class="chapter" id="illegibility">
+      <h2>The cost of illegibility</h2>
+      <p>The cost is not visible in the system. It shows up in the organisation around it.</p>
+      <p>A decision that should take an afternoon takes three days, because no one can say with confidence what will break if one assumption changes. An incident that should have a clear owner gets routed twice before anyone accepts it, because the boundaries dissolved quietly and nobody updated the map. A new engineer joins and inherits something working &mdash; and spends their first month treating it as unexploded ordnance.</p>
+      <p>This is operating drag. It compounds. Each cycle of rediscovery costs time, but more than that it costs the organisation&rsquo;s model of itself. The understanding that was once distributed across a team &mdash; who owns which boundary, what tradeoff is being carried, what the system will and won&rsquo;t tolerate &mdash; doesn&rsquo;t disappear all at once. It erodes. And once it&rsquo;s gone, it doesn&rsquo;t come back through observation alone. Working systems don&rsquo;t explain themselves.</p>
+      <p>The conventional response is documentation. Write it down, keep it current. But documentation describes the system as it was understood at the moment of writing. Drift, by definition, happens in the gap between that moment and now.</p>
+    </section>
+
+    <section class="chapter" id="tools">
+      <h2>Why your tools don&rsquo;t catch it</h2>
+      <p>The evidence often exists &mdash; it&rsquo;s just rarely organised <em>as drift</em>, because drift is relational. Seeing it means comparing how the system behaves now against how it used to behave and what people still assume it does &mdash; and that comparison only forms when signals from different corners are placed side by side.</p>
+      <p>Drift is hard precisely because it appears before there&rsquo;s an agreed object to point at. No failed test. No obvious regression. No clean before-and-after. Only a growing sense that the system no longer behaves quite the way people expect.</p>
+      <p>Most teams have the signals. They have logs, dashboards, and support tickets. What they don&rsquo;t have is a way of reading those signals <em>together</em>, as evidence about how behaviour is shifting. Engineering sees retry rates. Support sees ticket patterns. Product sees user hesitation. Each signal is individually explicable. Together they describe shape drift compounding into confidence drift. But no existing tool assembles that picture, because each tool is built around a domain, not around a question.</p>
+      <p>Schema validation tells you the structure is intact. Monitoring tells you performance is within bounds. The combination tells you nothing about whether the system is still doing what the organisation thinks it does. More data doesn&rsquo;t automatically become a picture of how the system is moving.</p>
+    </section>
+
+    <div class="cta-inline">
+      <p class="cta-inline__body">If this is a pattern you recognise, send it to someone who&rsquo;d see themselves in it.</p>
+      <button class="cta-inline__copy" id="copyLinkBtn" type="button">Copy link</button>
+      <p class="cta-inline__secondary">And if you&rsquo;ve found a way to make drift visible in your own organisation &mdash; <a href="https://www.linkedin.com/in/pmpowell/" rel="noopener noreferrer" class="plausible-event-name=Connect:+inline+feedback">I&rsquo;d like to hear about it</a>.</p>
+    </div>
+
+    <section class="chapter" id="visibility">
+      <h2>Reframing toward behavioural visibility</h2>
+      <p>The thing teams actually need isn&rsquo;t more alerting. It&rsquo;s a practice of behavioural visibility &mdash; a way of comparing current behaviour against a known baseline, surfacing signals from across the stack, and making drift legible before it becomes a delivery or reliability issue.</p>
+      <p>This is different from observability as it is usually framed. Observability answers the question &ldquo;what is the system doing right now?&rdquo; Behavioural visibility answers the question &ldquo;has normal changed, and do we understand why?&rdquo;</p>
+      <p>The components are: a baseline of what the system&rsquo;s normal behaviour looks like, drawn from actual operation rather than design documents; a way of tracking distributional change over time, not just threshold breaches; and a means of connecting signals across domains &mdash; engineering, support, product, operations &mdash; so that the pattern of adaptation is visible as a pattern, not as a set of unrelated adjustments.</p>
+      <p>None of this requires a new category of tooling. Most of it starts with a question asked in the right room: <em>has anything changed in how this system behaves that we haven&rsquo;t explicitly decided to change?</em></p>
+    </section>
+
+    <section class="chapter" id="where-to-start">
+      <h2>Where to start</h2>
+      <p>The starting point is almost never the system. It&rsquo;s the people who work closest to it.</p>
+      <p>Every team carries informal knowledge about how a system&rsquo;s behaviour has shifted. An engineer who checks something manually every morning knows something. A support lead whose team has absorbed a class of tickets over the past quarter knows something. A product manager whose users have started taking a workaround knows something. That knowledge exists. It just hasn&rsquo;t been assembled.</p>
+      <p>Behavioural visibility starts by taking that knowledge seriously enough to ask for it in a structured way. Not as an incident review &mdash; there&rsquo;s no incident to respond to. Not as a retrospective &mdash; there&rsquo;s no sprint to close out. As a standing question: where has the system&rsquo;s behaviour moved away from what we expect, and where has someone quietly adjusted to compensate?</p>
+      <p>The first genuinely useful output is usually a named drift type and a responsible team &mdash; not &ldquo;the system is slow&rdquo; but &ldquo;effort drift in the payments service, owned by platform.&rdquo; Named, assigned, visible.</p>
+      <p>There&rsquo;s no incident to respond to. There&rsquo;s just a system that has moved, and an organisation still planning as if it hasn&rsquo;t.</p>
+      <p>The first useful thing is almost never a tool. It&rsquo;s a conversation that turns the mood into something specific &mdash; finding the one area where confidence has changed and asking, plainly, what the system did to change it. The answer is usually already known by someone. It just hadn&rsquo;t been worth a ticket on its own.</p>
+    </section>
+
+    <section class="chapter" id="from-experience">
+      <h2>A note from experience</h2>
+      <p>I&rsquo;ve worked across enough organisations to have seen this pattern repeat, and two things stand out.</p>
+      <p>The first is that the signal is almost always there &mdash; it just isn&rsquo;t connected. I&rsquo;ve sat in sessions where support&rsquo;s ticket data and engineering&rsquo;s retry data were telling the same story from different angles, neither team aware the other had it. Once you place the signals side by side the picture is usually obvious. The connection was the missing step, not the data. I&rsquo;ve seen retry rates trend slowly upward for six weeks, never coming close to an alerting threshold, while customer success were logging a pattern of users questioning their numbers. Neither team was alarmed in isolation. Together, the signals described a system whose behaviour had shifted enough to change what users could rely on.</p>
+      <p>The second is that this kind of signal surfaces more readily in organisations where people feel safe raising a concern before it becomes a formal problem. The best early-drift conversations I&rsquo;ve been part of didn&rsquo;t start with a ticket or a P1. They started with someone saying, quietly, &ldquo;I&rsquo;m not sure this is working the way we think it is.&rdquo; Surfaced quietly, but surfaced &mdash; which is the point.</p>
+      <p>The third is that fragility and drift are connected in ways that aren&rsquo;t obvious until something breaks. Systems with high-variance load, complex compensation logic, or accumulated workarounds give drift more places to hide. When something eventually does break in a system like that, the causal trail is cold. The behaviour changed weeks ago; the compensation absorbed it; the incident looks unrelated to the underlying drift. Naming drift early &mdash; even informally, even without a full picture &mdash; preserves the causal trail before it goes cold.</p>
+    </section>
+
+    <section class="chapter" id="closing">
+      <h2>The system you still understand</h2>
+      <p>A system that works and a system you understand are not the same thing. They overlap most of the time, which is why the gap is so easy to miss.</p>
+      <p>Behavioural drift is what fills that gap. It is not the result of negligence or poor engineering. It is the natural consequence of building systems that outlive the understanding of any single person, inside organisations that are themselves always changing. The question is not whether drift will occur. The question is whether the organisation will see it.</p>
+      <p>Named early, drift is a manageable adjustment &mdash; a conversation, a comparison, a decision about whether the change is acceptable. Named late, it is a risk that has already been carried for months, compounded by adaptations that are themselves no longer visible.</p>
+      <p>The system still works. The question is whether you still understand it.</p>
+    </section>
+
+  </article>
+
+  <section class="about-author">
+    <p>I&rsquo;m a fractional CTO. I work in the space between business leadership and engineering reality &mdash; helping founder-led SaaS companies see what their systems are actually doing, before the gap between working and understood becomes too costly to close. I wrote <em>Behavioural Drift</em> because the pattern is almost universal, and almost universally unnamed: the signals are there, in engineering, support, and product, and nobody is reading them together. If that&rsquo;s familiar, I&rsquo;d genuinely like to compare notes.</p>
+    <p><a href="https://www.linkedin.com/in/pmpowell/" rel="noopener noreferrer" class="plausible-event-name=Connect:+about-author">Let&rsquo;s talk on LinkedIn &rarr;</a></p>
+  </section>
+
+  <section class="cta-end">
+    <p class="cta-end__primary">If you work closely with this problem &mdash; or if you&rsquo;ve worked somewhere that handled it well &mdash; <a href="https://www.linkedin.com/in/pmpowell/" rel="noopener noreferrer" class="plausible-event-name=Connect:+end-of-book">I want to hear about it</a>.</p>
+    <p class="cta-end__secondary">And if it&rsquo;s worth a colleague&rsquo;s time, send it along. <button class="cta-inline__copy" id="copyLinkBtnEnd" type="button">Copy link</button></p>
+  </section>
+
+  <footer class="colophon">
+    <p style="font-size:0.8rem;color:var(--ink-soft)">&copy; <span id="year"></span> Phil Powell &middot; feef.io</p>
+  </footer>
+
+</div>
+
+<script>
+  // Reading progress bar
+  var fill = document.getElementById('progressFill');
+  function updateProgress() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    fill.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  // ToC active-state tracking
+  var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('#tocList a'));
+  var linkById = {};
+  tocLinks.forEach(function (a) { linkById[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(function (a) { a.classList.remove('is-active'); });
+          var active = linkById[entry.target.id];
+          if (active) active.classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    chapters.forEach(function (c) { observer.observe(c); });
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Inline copy-link CTA
+  var copyBtn = document.getElementById('copyLinkBtn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+      navigator.clipboard.writeText(window.location.href).then(function () {
+        if (window.plausible) window.plausible('Share: inline copy-link');
+        copyBtn.textContent = 'Copied!';
+        setTimeout(function () { copyBtn.textContent = 'Copy link'; }, 2000);
+      }).catch(function () {});
+    });
+  }
+
+  // End-of-book copy-link CTA
+  var copyBtnEnd = document.getElementById('copyLinkBtnEnd');
+  if (copyBtnEnd) {
+    copyBtnEnd.addEventListener('click', function () {
+      navigator.clipboard.writeText(window.location.href).then(function () {
+        if (window.plausible) window.plausible('Share: end-of-book copy-link');
+        copyBtnEnd.textContent = 'Copied!';
+        setTimeout(function () { copyBtnEnd.textContent = 'Copy link'; }, 2000);
+      }).catch(function () {});
+    });
+  }
+
+  // Rail copy-link
+  var copyBtnRail = document.getElementById('copyLinkBtnRail');
+  if (copyBtnRail) {
+    copyBtnRail.addEventListener('click', function () {
+      navigator.clipboard.writeText(window.location.href).then(function () {
+        if (window.plausible) window.plausible('Share: rail copy-link');
+        copyBtnRail.textContent = 'Copied!';
+        setTimeout(function () { copyBtnRail.textContent = 'Share this'; }, 2000);
+      }).catch(function () {});
+    });
+  }
+</script>
+
+</body>
+</html>

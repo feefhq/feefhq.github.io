@@ -1,0 +1,11 @@
+{
+  "name": "Phil Powell — Fractional CTO",
+  "short_name": "Phil Powell",
+  "icons": [
+    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#f8f6f1",
+  "background_color": "#f8f6f1",
+  "display": "standalone"
+}

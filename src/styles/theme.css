@@ -5,8 +5,6 @@
    ============================================================ */
 
 :root {
-  --feef-nav-h: 3rem;
-
   --measure:  38rem;
   --display:  "Fraunces", Georgia, serif;
   --body:     "Spectral", Georgia, serif;
@@ -23,11 +21,6 @@
   --lh-body:  1.65;
   --space:    1.5rem;
 
-  --feef-nav-bg:     #f8f6f1;
-  --feef-nav-border: #e2e1dc;
-  --feef-nav-fg:     #5f6776;
-  --feef-nav-fg-hover: #20242b;
-
   --feef-callout-bg:     rgba(194, 65, 12, 0.07);
   --feef-callout-border: #c2410c;
 }
@@ -42,11 +35,6 @@
     --rule:         #2b2f36;
     --accent:       #fb923c;
     --accent-hover: #fdba74;
-
-    --feef-nav-bg:     #14171c;
-    --feef-nav-border: #2b2f36;
-    --feef-nav-fg:     #9aa1ac;
-    --feef-nav-fg-hover: #eef0f2;
 
     --feef-callout-bg:     rgba(251, 146, 60, 0.07);
     --feef-callout-border: #fb923c;
@@ -76,44 +64,59 @@ body {
 
 /* --- NAVIGATION --- */
 .site-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: var(--feef-nav-h);
-  z-index: 200;
   display: flex;
   align-items: center;
-  padding: 0 1.5rem;
-  background: var(--feef-nav-bg);
-  border-bottom: 1px solid var(--feef-nav-border);
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  max-width: calc(var(--measure) + 3rem);
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 1.5rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  font-size: 0.875rem;
+}
+
+.site-nav__home {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.site-nav__home:hover { color: var(--accent); }
+
+.site-nav__mark {
+  display: block;
+  width: 1.85rem;
+  height: 1.85rem;
+  flex-shrink: 0;
 }
 
 .site-nav__wordmark {
+  font-family: var(--display);
   font-weight: 600;
+  font-size: 1.05rem;
   letter-spacing: -0.01em;
-  color: var(--feef-nav-fg);
-  text-decoration: none;
-  transition: color 0.15s;
 }
 
-.site-nav__wordmark:hover { color: var(--feef-nav-fg-hover); }
-
 .site-nav__links {
-  margin-left: auto;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .site-nav__link {
-  color: var(--feef-nav-fg);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: -0.005em;
+  color: var(--ink);
   text-decoration: none;
   transition: color 0.15s;
 }
 
-.site-nav__link:hover { color: var(--feef-nav-fg-hover); }
-.site-nav__link[aria-current="page"] { color: var(--feef-nav-fg-hover); }
+.site-nav__link:hover,
+.site-nav__link[aria-current="page"] { color: var(--accent); }
 
 /* --- CALLOUTS ---
    Use on any page: <div class="callout">...</div>
@@ -160,6 +163,6 @@ footer.site-footer a:hover { color: var(--ink); }
   }
   html { scroll-behavior: auto; }
   .progress__fill { transition: none; }
-  .site-nav__wordmark { transition: none; }
+  .site-nav__home { transition: none; }
   .site-nav__link { transition: none; }
 }

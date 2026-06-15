@@ -3,14 +3,14 @@
    ============================================================ */
 
 main {
-  max-width: var(--measure);
+  max-width: calc(var(--measure) + 3rem);
   margin: 0 auto;
   padding: 0 1.5rem 6rem;
 }
 
 /* --- MASTHEAD --- */
 header.masthead {
-  padding: calc(8rem + var(--feef-nav-h)) 0 4rem;
+  padding: 3rem 0 4rem;
   border-bottom: 1px solid var(--rule);
   margin-bottom: 3rem;
 }
@@ -85,7 +85,7 @@ header.masthead {
 /* --- SECTIONS --- */
 .chapter {
   margin: 0 0 5rem;
-  scroll-margin-top: calc(2rem + var(--feef-nav-h));
+  scroll-margin-top: 1.5rem;
 }
 
 .chapter h2 {
@@ -292,7 +292,7 @@ header.masthead {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 64rem) {
-  header.masthead { padding-top: calc(4.5rem + var(--feef-nav-h)); }
+  header.masthead { padding-top: 1.5rem; }
 }
 
 /* --- ESSAY LIST (writing index) --- */

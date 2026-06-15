@@ -18,20 +18,19 @@ header.masthead {
 .masthead h1 {
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-size: clamp(2.6rem, 6vw, 4.1rem);
   line-height: 1.04;
   letter-spacing: -0.015em;
-  margin: 0 0 1rem;
+  margin: 0 0 1.2rem;
 }
 
 .masthead .standfirst {
   font-family: var(--display);
-  font-size: 1.15rem;
-  line-height: 1.45;
-  color: var(--accent);
-  font-style: italic;
-  margin: 0 0 1.75rem;
-  max-width: 30rem;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0 0 2rem;
+  max-width: 32rem;
 }
 
 .masthead p { margin: 0 0 1rem; color: var(--ink-soft); }

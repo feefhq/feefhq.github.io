@@ -277,9 +277,19 @@ header.masthead {
   font-family: var(--display);
   color: var(--accent);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .link-cta:hover { opacity: 0.8; }
+
+.masthead .cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.masthead .cta .cta-sep { color: var(--ink-soft); }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 64rem) {

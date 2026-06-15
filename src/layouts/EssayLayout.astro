@@ -1,0 +1,120 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import "../styles/essay.css";
+
+interface TocEntry {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  standfirst: string;
+  description: string;
+  pubDate: Date;
+  revision: string;
+  ogImage: string;
+  toc: TocEntry[];
+}
+
+const { title, standfirst, description, pubDate, revision, ogImage, toc } = Astro.props;
+
+const dateLabel = pubDate.toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+const isoDate = pubDate.toISOString().slice(0, 10);
+---
+
+<BaseLayout title={title} description={description} ogImage={ogImage} ogType="article" bodyClass="book-page" fonts="essay">
+  <div class="progress" aria-hidden="true"><div class="progress__fill" id="progressFill"></div></div>
+
+  <div class="wrap">
+
+    <nav class="book-nav" aria-label="Contents">
+      <p class="book-nav__label">Contents</p>
+      <ol id="tocList">
+        {toc.map((entry) => (
+          <li><a href={`#${entry.id}`}>{entry.label}</a></li>
+        ))}
+      </ol>
+      <div class="book-nav__foot">
+        <button class="book-nav__share" id="copyLinkBtnRail" type="button">Share this</button>
+        <a href="https://www.linkedin.com/in/pmpowell/" rel="noopener noreferrer" class="plausible-event-name=Connect:+rail">Connect</a>
+      </div>
+    </nav>
+
+    <header class="masthead">
+      <h1>{title}</h1>
+      <p class="standfirst">{standfirst}</p>
+      <p class="byline">by Phil Powell &middot; <a href="https://feef.io">feef.io</a></p>
+      <p class="byline-meta"><time datetime={isoDate}>{dateLabel}</time> &middot; {revision}</p>
+    </header>
+
+    <nav class="toc-inline" aria-label="Contents">
+      <p>Contents</p>
+      <ol>
+        {toc.map((entry) => (
+          <li><a href={`#${entry.id}`}>{entry.label}</a></li>
+        ))}
+      </ol>
+    </nav>
+
+    <div class="book-content">
+      <slot />
+    </div>
+
+    <footer class="colophon">
+      <p style="font-size:0.8rem;color:var(--ink-soft)">&copy; {pubDate.getFullYear()} Phil Powell &middot; feef.io</p>
+    </footer>
+
+  </div>
+</BaseLayout>
+
+<script>
+  // Reading progress bar
+  const fill = document.getElementById("progressFill");
+  function updateProgress() {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    if (fill) fill.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
+  }
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  window.addEventListener("resize", updateProgress);
+  updateProgress();
+
+  // ToC active-state tracking
+  const chapters = Array.from(document.querySelectorAll(".book-content h2[id]"));
+  const tocLinks = Array.from(document.querySelectorAll("#tocList a"));
+  const linkById = new Map();
+  tocLinks.forEach((a) => linkById.set(a.getAttribute("href")?.slice(1), a));
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach((a) => a.classList.remove("is-active"));
+          const active = linkById.get(entry.target.id);
+          if (active) active.classList.add("is-active");
+        }
+      });
+    }, { rootMargin: "-20% 0px -70% 0px" });
+    chapters.forEach((c) => observer.observe(c));
+  }
+
+  // Copy-link CTAs (rail, inline, end-of-book)
+  function wireCopyLink(id, idleLabel) {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        if (window.plausible) window.plausible(`Share: ${id} copy-link`);
+        btn.textContent = "Copied!";
+        setTimeout(() => { btn.textContent = idleLabel; }, 2000);
+      }).catch(() => {});
+    });
+  }
+  wireCopyLink("copyLinkBtnRail", "Share this");
+  wireCopyLink("copyLinkBtn", "Copy link");
+  wireCopyLink("copyLinkBtnEnd", "Copy link");
+</script>

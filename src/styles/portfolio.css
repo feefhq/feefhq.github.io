@@ -1,0 +1,224 @@
+/* ============================================================
+   Portfolio pages — home and writing index.
+   ============================================================ */
+
+main {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.5rem 6rem;
+}
+
+/* --- MASTHEAD --- */
+header.masthead {
+  padding: calc(8rem + var(--feef-nav-h)) 0 4rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 3rem;
+}
+
+.masthead h1 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  margin: 0 0 1rem;
+}
+
+.masthead .standfirst {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: var(--accent);
+  font-style: italic;
+  margin: 0 0 1.75rem;
+  max-width: 30rem;
+}
+
+.masthead p { margin: 0 0 1rem; color: var(--ink-soft); }
+.masthead .cta { margin-top: 2rem; }
+
+/* --- WRITING NUDGE --- */
+.writing-nudge {
+  margin: -2rem -1.5rem 3rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--rule);
+}
+
+.writing-nudge a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.writing-nudge__label {
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+
+.writing-nudge__sep {
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+  user-select: none;
+}
+
+.writing-nudge__title {
+  font-family: var(--display);
+  font-size: 1rem;
+  color: var(--ink);
+  transition: color 0.15s;
+}
+
+.writing-nudge__arrow {
+  font-size: 0.875rem;
+  color: var(--accent);
+  transition: color 0.15s;
+}
+
+.writing-nudge a:hover .writing-nudge__title { color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .writing-nudge__title,
+  .writing-nudge__arrow { transition: none; }
+}
+
+/* --- SECTIONS --- */
+.chapter {
+  margin: 0 0 5rem;
+  scroll-margin-top: calc(2rem + var(--feef-nav-h));
+}
+
+.chapter h2 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.75rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.25rem;
+  color: var(--ink);
+}
+
+.chapter h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  margin: calc(var(--space) * 1.5) 0 0.5rem;
+  color: var(--ink);
+}
+
+.chapter h2 + h3 { margin-top: var(--space); }
+
+.chapter p { margin: 0 0 1.1rem; color: var(--ink-soft); }
+
+.chapter ul {
+  list-style: none;
+  margin: var(--space) 0;
+  padding: 0;
+}
+
+.chapter ul li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin: 0 0 0.5rem;
+  color: var(--ink-soft);
+}
+
+.chapter ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.meta {
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  margin-top: 0.4rem;
+  margin-bottom: 0;
+}
+
+/* --- LINKS --- */
+.link-cta {
+  font-family: var(--display);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.link-cta:hover { opacity: 0.8; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 64rem) {
+  header.masthead { padding-top: calc(4.5rem + var(--feef-nav-h)); }
+}
+
+/* --- ESSAY LIST (writing index) --- */
+.essays article {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.essays a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.essays h2 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0 0 0.4rem;
+  transition: color 0.15s;
+}
+
+.essays a:hover h2 { color: var(--accent); }
+
+.essay-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+  margin: 0 0 0.75rem;
+  opacity: 0.75;
+}
+
+.essay-meta .sep { user-select: none; }
+
+.essay-meta .rev {
+  font-family: var(--display);
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+}
+
+.essays p.desc {
+  margin: 0 0 0.85rem;
+  color: var(--ink-soft);
+}
+
+.read-link {
+  font-family: var(--display);
+  font-size: 0.875rem;
+  color: var(--accent);
+}
+
+.revision-history {
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+}
+
+.revision-history a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  opacity: 0.6;
+}
+
+.revision-history a:hover { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .essays h2 { transition: none; }
+}

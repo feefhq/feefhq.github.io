@@ -1,21 +1,32 @@
 /* ============================================================
    feef.io — shared design system
-   Tokens, navigation, and callout components across all pages.
+   Design tokens, base styles, navigation, callouts, noise
+   overlay, and reduced-motion rules used across every page.
    ============================================================ */
 
-/* --- TOKENS ---
-   Default values are light-mode. All pages use system preference for dark mode.
-   -------------------------------------------------------------- */
 :root {
   --feef-nav-h: 3rem;
 
-  --feef-accent:         #c2410c;  /* orange-700 — on light backgrounds */
-  --feef-accent-hover:   #9a3412;  /* orange-800                        */
+  --measure:  38rem;
+  --display:  "Fraunces", Georgia, serif;
+  --body:     "Spectral", Georgia, serif;
 
-  --feef-nav-bg:         #f8f6f1;
-  --feef-nav-border:     #e2e1dc;
-  --feef-nav-fg:         #5f6776;
-  --feef-nav-fg-hover:   #20242b;
+  --ink:         #20242b;
+  --ink-soft:    #5f6776;
+  --paper:       #f8f6f1;
+  --paper-raised:#fffdf9;
+  --rule:        #e2e1dc;
+  --accent:      #c2410c;
+  --accent-hover:#9a3412;
+
+  --fs-body:  1.0625rem;
+  --lh-body:  1.65;
+  --space:    1.5rem;
+
+  --feef-nav-bg:     #f8f6f1;
+  --feef-nav-border: #e2e1dc;
+  --feef-nav-fg:     #5f6776;
+  --feef-nav-fg-hover: #20242b;
 
   --feef-callout-bg:     rgba(194, 65, 12, 0.07);
   --feef-callout-border: #c2410c;
@@ -24,17 +35,43 @@
 /* Dark mode — all pages use system preference. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --feef-accent:         #fb923c;  /* orange-400 — on dark backgrounds */
-    --feef-accent-hover:   #fdba74;  /* orange-300                       */
+    --ink:          #eef0f2;
+    --ink-soft:     #9aa1ac;
+    --paper:        #14171c;
+    --paper-raised: #1d2127;
+    --rule:         #2b2f36;
+    --accent:       #fb923c;
+    --accent-hover: #fdba74;
 
-    --feef-nav-bg:         #14171c;
-    --feef-nav-border:     #2b2f36;
-    --feef-nav-fg:         #9aa1ac;
-    --feef-nav-fg-hover:   #eef0f2;
+    --feef-nav-bg:     #14171c;
+    --feef-nav-border: #2b2f36;
+    --feef-nav-fg:     #9aa1ac;
+    --feef-nav-fg-hover: #eef0f2;
 
     --feef-callout-bg:     rgba(251, 146, 60, 0.07);
     --feef-callout-border: #fb923c;
   }
+}
+
+/* --- BASE --- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* --- NAVIGATION --- */
@@ -79,7 +116,7 @@
 .site-nav__link[aria-current="page"] { color: var(--feef-nav-fg-hover); }
 
 /* --- CALLOUTS ---
-   Use on either page: <div class="callout">...</div>
+   Use on any page: <div class="callout">...</div>
    -------------------------------------------------------------- */
 .callout {
   border-left: 3px solid var(--feef-callout-border);
@@ -88,6 +125,20 @@
   margin: 1.5rem 0;
   border-radius: 0 4px 4px 0;
 }
+
+/* --- FOOTER --- */
+footer.site-footer { border-top: 1px solid var(--rule); padding: 2rem 1.5rem; }
+
+.footer-inner {
+  max-width: var(--measure);
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+footer.site-footer a { color: var(--ink-soft); text-decoration: none; }
+footer.site-footer a:hover { color: var(--ink); }
 
 /* --- NOISE OVERLAY --- */
 .noise::after {

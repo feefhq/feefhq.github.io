@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/portfolio.css";
+
+const essays = (await getCollection("essays")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title="Writing — Phil Powell" description="Long-form thinking on engineering leadership, systems, and delivery.">
+  <main>
+    <header class="masthead">
+      <h1>Writing</h1>
+      <p>Long-form thinking on engineering leadership, systems, and delivery.</p>
+    </header>
+
+    <section class="essays" aria-label="Essays">
+      {essays.map((essay) => (
+        <article>
+          <a href={`/${essay.id.replace(/\.md$/, "")}/`}>
+            <h2>{essay.data.title}</h2>
+            <p class="essay-meta">
+              <time datetime={essay.data.pubDate.toISOString().slice(0, 10)}>
+                {essay.data.pubDate.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+              </time>
+              <span class="sep" aria-hidden="true">&middot;</span>
+              <span class="rev">{essay.data.revision}</span>
+            </p>
+            <p class="desc">{essay.data.summary}</p>
+            <span class="read-link">Read essay &rarr;</span>
+          </a>
+        </article>
+      ))}
+    </section>
+  </main>
+</BaseLayout>

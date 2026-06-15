@@ -1,0 +1,89 @@
+---
+import "../styles/theme.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: string;
+  bodyClass?: string;
+  fonts?: "default" | "essay";
+}
+
+const {
+  title,
+  description,
+  ogImage,
+  ogType = "website",
+  bodyClass = "noise",
+  fonts = "default",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+
+    <meta name="theme-color" content="#f8f6f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14171c" media="(prefers-color-scheme: dark)" />
+
+    {ogType === "article" && (
+      <>
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={title} />
+        {description && <meta property="og:description" content={description} />}
+        <meta property="og:url" content={canonicalURL.toString()} />
+        {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />}
+        {ogImage && <meta property="og:image:width" content="1200" />}
+        {ogImage && <meta property="og:image:height" content="630" />}
+        <meta name="twitter:card" content="summary_large_image" />
+      </>
+    )}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {fonts === "essay" ? (
+      <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+    ) : (
+      <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
+    )}
+
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://plausible.io/js/pa-nHwfBm4RapVL-W4ldvkAY.js"></script>
+    <script is:inline>
+      window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments) };
+      window.plausible.init = window.plausible.init || function (i) { window.plausible.o = i || {} };
+      window.plausible.init();
+    </script>
+  </head>
+  <body class={bodyClass}>
+    <nav class="site-nav" aria-label="Site navigation">
+      <a href="/" class="site-nav__wordmark">Phil Powell</a>
+      <div class="site-nav__links">
+        <a
+          href="/writing/"
+          class="site-nav__link"
+          aria-current={Astro.url.pathname.startsWith("/writing") ? "page" : undefined}
+        >
+          Writing
+        </a>
+      </div>
+    </nav>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a href="/">Phil Powell</a>
+        <span>&middot;</span>
+        <span>&copy; {new Date().getFullYear()}</span>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -22,8 +22,8 @@
 <meta name="description" content="Roadmap slippage is a systems problem, not an execution problem — and the usual responses tend to make it worse.">
 
 <!-- Mobile browser chrome matches the page background in each scheme. -->
-<meta name="theme-color" content="#f7f4ee" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f8f6f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14171c" media="(prefers-color-scheme: dark)">
 
 <!-- Open Graph: what renders when shared on LinkedIn. -->
 <meta property="og:type" content="article">
@@ -53,12 +53,12 @@
     --body: "Spectral", Georgia, serif;
     --display: "Fraunces", Georgia, serif;
 
-    --ink: #1a1714;
-    --ink-soft: #5c554d;
-    --paper: #f7f4ee;
-    --paper-raised: #fffdf8;
-    --rule: #e2dcd1;
-    --accent: #b45309;  /* amber-700 */
+    --ink: #20242b;
+    --ink-soft: #5f6776;
+    --paper: #f8f6f1;
+    --paper-raised: #fffdf9;
+    --rule: #e2e1dc;
+    --accent: #c2410c;  /* orange-700 */
 
     --fs-body: 1.1875rem;
     --lh-body: 1.7;
@@ -67,16 +67,17 @@
 
   /* Dark mode: respects the system preference. Only the tokens change —
      everything else references these variables, so the whole page
-     re-themes from here. Warm near-black (not cold grey) to keep the
-     editorial, paper-like feel. Accent lifts to amber-400 on dark. */
+     re-themes from here. Cool slate near-black to keep the authoritative,
+     editorial feel without the heaviness of brown-black. Accent lifts to
+     orange-400 on dark. */
   @media (prefers-color-scheme: dark) {
     :root {
-      --ink: #ece5da;          /* warm off-white text */
-      --ink-soft: #a59c8f;     /* secondary text */
-      --paper: #1a1714;        /* warm near-black background */
-      --paper-raised: #221e1a; /* cards / colophon */
-      --rule: #36302a;         /* hairlines */
-      --accent: #fbbf24;       /* amber-400, legible on dark */
+      --ink: #eef0f2;          /* cool off-white text */
+      --ink-soft: #9aa1ac;     /* secondary text */
+      --paper: #14171c;        /* slate near-black background */
+      --paper-raised: #1d2127; /* cards / colophon */
+      --rule: #2b2f36;         /* hairlines */
+      --accent: #fb923c;       /* orange-400, legible on dark */
     }
   }
 
@@ -219,7 +220,7 @@
   .cta h3 { font-family: var(--display); font-weight: 600; font-size: 1.15rem; margin: 0 0 0.6rem; }
   .cta .field { display: flex; gap: 0.6rem; margin-top: 1rem; flex-wrap: wrap; }
   .cta input[type=email] { flex: 1 1 16rem; font-family: var(--body); font-size: 1rem; padding: 0.7rem 0.9rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); }
-  .cta button { font-family: var(--display); font-weight: 600; font-size: 0.95rem; padding: 0.7rem 1.4rem; background: #b45309; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+  .cta button { font-family: var(--display); font-weight: 600; font-size: 0.95rem; padding: 0.7rem 1.4rem; background: #c2410c; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
   .colophon .signoff a { color: var(--accent); }
 
   /* ---------- ABOUT / AUTHOR ---------- */

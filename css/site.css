@@ -9,31 +9,31 @@
 :root {
   --feef-nav-h: 3rem;
 
-  --feef-accent:         #b45309;  /* amber-700 — on light backgrounds  */
-  --feef-accent-hover:   #92400e;  /* amber-800                         */
+  --feef-accent:         #c2410c;  /* orange-700 — on light backgrounds */
+  --feef-accent-hover:   #9a3412;  /* orange-800                        */
 
-  --feef-nav-bg:         #f7f4ee;
-  --feef-nav-border:     #e2dcd1;
-  --feef-nav-fg:         #5c554d;
-  --feef-nav-fg-hover:   #1a1714;
+  --feef-nav-bg:         #f8f6f1;
+  --feef-nav-border:     #e2e1dc;
+  --feef-nav-fg:         #5f6776;
+  --feef-nav-fg-hover:   #20242b;
 
-  --feef-callout-bg:     rgba(180, 83, 9, 0.07);
-  --feef-callout-border: #b45309;
+  --feef-callout-bg:     rgba(194, 65, 12, 0.07);
+  --feef-callout-border: #c2410c;
 }
 
 /* Dark mode — all pages use system preference. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --feef-accent:         #fbbf24;  /* amber-400 — on dark backgrounds  */
-    --feef-accent-hover:   #fde68a;  /* amber-200                        */
+    --feef-accent:         #fb923c;  /* orange-400 — on dark backgrounds */
+    --feef-accent-hover:   #fdba74;  /* orange-300                       */
 
-    --feef-nav-bg:         #1a1714;
-    --feef-nav-border:     #36302a;
-    --feef-nav-fg:         #a59c8f;
-    --feef-nav-fg-hover:   #ece5da;
+    --feef-nav-bg:         #14171c;
+    --feef-nav-border:     #2b2f36;
+    --feef-nav-fg:         #9aa1ac;
+    --feef-nav-fg-hover:   #eef0f2;
 
-    --feef-callout-bg:     rgba(251, 191, 36, 0.07);
-    --feef-callout-border: #fbbf24;
+    --feef-callout-bg:     rgba(251, 146, 60, 0.07);
+    --feef-callout-border: #fb923c;
   }
 }
 

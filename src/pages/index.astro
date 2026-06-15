@@ -85,20 +85,23 @@ const findings = [
       <p>The same four-part shape every time. Four examples below — each a belief that turned out not to match the evidence. <em>(Drawn from prior leadership roles; details altered.)</em></p>
 
       <div class="findings-tabs">
-        <div class="findings-tablist" role="tablist" aria-label="Example findings">
-          {findings.map((finding, i) => (
-            <button
-              type="button"
-              role="tab"
-              id={`finding-tab-${i}`}
-              aria-controls={`finding-panel-${i}`}
-              aria-selected={i === 0 ? "true" : "false"}
-              tabindex={i === 0 ? 0 : -1}
-              class="findings-tab"
-            >
-              {finding.tab}
-            </button>
-          ))}
+        <div class="findings-tablist-wrap">
+          <div class="findings-tablist" role="tablist" aria-label="Example findings">
+            {findings.map((finding, i) => (
+              <button
+                type="button"
+                role="tab"
+                id={`finding-tab-${i}`}
+                aria-controls={`finding-panel-${i}`}
+                aria-selected={i === 0 ? "true" : "false"}
+                tabindex={i === 0 ? 0 : -1}
+                class="findings-tab"
+              >
+                <span class="findings-tab__badge">{String.fromCharCode(65 + i)}</span>
+                <span class="findings-tab__label">{finding.tab}</span>
+              </button>
+            ))}
+          </div>
         </div>
         <div class="findings-panels">
           {findings.map((finding, i) => (
@@ -213,11 +216,24 @@ const findings = [
           panelEls[i].hidden = !selected;
         });
         tabEls[index].focus();
+        updateScrollFade();
       }
 
       tabEls.forEach((tab, i) => {
         tab.addEventListener("click", () => activate(i));
       });
+
+      const tablistWrap = tabs.querySelector(".findings-tablist-wrap");
+
+      function updateScrollFade() {
+        const max = tabList.scrollWidth - tabList.clientWidth;
+        tablistWrap.classList.toggle("can-scroll-left", tabList.scrollLeft > 1);
+        tablistWrap.classList.toggle("can-scroll-right", tabList.scrollLeft < max - 1);
+      }
+
+      updateScrollFade();
+      tabList.addEventListener("scroll", updateScrollFade);
+      window.addEventListener("resize", updateScrollFade);
 
       tabList.addEventListener("keydown", (event) => {
         const current = tabEls.indexOf(document.activeElement);

@@ -144,28 +144,100 @@ header.masthead {
   margin: var(--space) 0 2rem;
 }
 
-.findings-tablist {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+@media (min-width: 60rem) {
+  .findings-tabs {
+    width: 100vw;
+    max-width: 50rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.findings-tablist-wrap {
+  position: relative;
   margin-bottom: 1rem;
 }
 
+.findings-tablist {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 0.15rem;
+  margin: -0.15rem;
+}
+
+.findings-tablist::-webkit-scrollbar { display: none; }
+
+.findings-tablist-wrap::before,
+.findings-tablist-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(2rem + 0.15rem);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.findings-tablist-wrap::before {
+  left: -0.15rem;
+  background: linear-gradient(to right, var(--paper), transparent);
+}
+
+.findings-tablist-wrap::after {
+  right: -0.15rem;
+  background: linear-gradient(to left, var(--paper), transparent);
+}
+
+.findings-tablist-wrap.can-scroll-left::before,
+.findings-tablist-wrap.can-scroll-right::after {
+  opacity: 1;
+}
+
 .findings-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+  white-space: nowrap;
   font-family: var(--display);
   font-size: 0.9rem;
   color: var(--ink-soft);
   background: none;
   border: 1px solid var(--rule);
   border-radius: 999px;
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 1rem 0.4rem 0.4rem;
   cursor: pointer;
   transition: color 0.15s, border-color 0.15s;
 }
 
 .findings-tab:hover { color: var(--ink); }
 
+.findings-tab__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 auto;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  transition: color 0.15s, border-color 0.15s;
+}
+
 .findings-tab[aria-selected="true"] {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.findings-tab[aria-selected="true"] .findings-tab__badge {
   color: var(--accent);
   border-color: var(--accent);
 }
@@ -176,8 +248,10 @@ header.masthead {
 }
 
 .finding {
-  border-left: 3px solid var(--rule);
-  padding: 0.25rem 0 0.25rem 1.25rem;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper-raised);
+  padding: 1.25rem 1.5rem;
 }
 
 .finding p { margin: 0 0 0.9rem; }
@@ -185,7 +259,11 @@ header.masthead {
 .finding strong { color: var(--ink); }
 
 @media (prefers-reduced-motion: reduce) {
-  .findings-tab { transition: none; }
+  .findings-tab,
+  .findings-tab__badge,
+  .findings-tablist-wrap::before,
+  .findings-tablist-wrap::after { transition: none; }
+  .findings-tablist { scroll-behavior: auto; }
 }
 
 /* --- LINKS --- */

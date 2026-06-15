@@ -142,6 +142,10 @@ header.masthead {
 /* --- FINDINGS TABS --- */
 .findings-tabs {
   margin: var(--space) 0 2rem;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper-raised);
+  overflow: hidden;
 }
 
 @media (min-width: 60rem) {
@@ -155,7 +159,8 @@ header.masthead {
 
 .findings-tablist-wrap {
   position: relative;
-  margin-bottom: 1rem;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--rule);
 }
 
 .findings-tablist {
@@ -176,21 +181,21 @@ header.masthead {
   content: "";
   position: absolute;
   top: 0;
-  bottom: 0;
-  width: calc(2rem + 0.15rem);
+  bottom: 1px;
+  width: 2rem;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.2s;
 }
 
 .findings-tablist-wrap::before {
-  left: -0.15rem;
-  background: linear-gradient(to right, var(--paper), transparent);
+  left: 0;
+  background: linear-gradient(to right, var(--paper-raised), transparent);
 }
 
 .findings-tablist-wrap::after {
-  right: -0.15rem;
-  background: linear-gradient(to left, var(--paper), transparent);
+  right: 0;
+  background: linear-gradient(to left, var(--paper-raised), transparent);
 }
 
 .findings-tablist-wrap.can-scroll-left::before,
@@ -204,8 +209,8 @@ header.masthead {
   gap: 0.5rem;
   flex: 0 0 auto;
   white-space: nowrap;
-  font-family: var(--display);
-  font-size: 0.9rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 1rem;
   color: var(--ink-soft);
   background: none;
   border: 1px solid var(--rule);
@@ -247,11 +252,12 @@ header.masthead {
   outline-offset: 2px;
 }
 
-.finding {
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  background: var(--paper-raised);
+.findings-panels {
   padding: 1.25rem 1.5rem;
+}
+
+.finding {
+  font-size: 1rem;
 }
 
 .finding p { margin: 0 0 0.9rem; }

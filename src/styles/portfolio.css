@@ -140,19 +140,15 @@ header.masthead {
 
 /* --- FINDINGS TABS --- */
 .findings-tabs {
-  margin: var(--space) 0 2rem;
+  margin: var(--space) -1.5rem 2rem;
   border: 1px solid var(--rule);
-  border-radius: 10px;
   background: var(--paper-raised);
   overflow: hidden;
 }
 
 @media (min-width: 60rem) {
   .findings-tabs {
-    width: 100vw;
-    max-width: 50rem;
-    margin-left: 50%;
-    transform: translateX(-50%);
+    border-radius: 10px;
   }
 }
 

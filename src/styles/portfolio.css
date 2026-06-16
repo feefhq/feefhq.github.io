@@ -411,7 +411,6 @@ header.masthead {
   font-family: var(--display);
   color: var(--accent);
   text-decoration: none;
-  white-space: nowrap;
 }
 
 .link-cta:hover { opacity: 0.8; }

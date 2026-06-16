@@ -184,12 +184,12 @@ header.masthead {
 }
 
 .findings-tablist-wrap::before {
-  left: 0;
+  left: 1.1rem;
   background: linear-gradient(to right, var(--paper-raised), transparent);
 }
 
 .findings-tablist-wrap::after {
-  right: 0;
+  right: 1.1rem;
   background: linear-gradient(to left, var(--paper-raised), transparent);
 }
 

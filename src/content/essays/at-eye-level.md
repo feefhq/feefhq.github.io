@@ -9,7 +9,7 @@ revision: "r1"
 
 "Blind" is a word most people are sure they understand. It means an absence of sight — darkness, a white cane, a life organised around not seeing.
 
-I am registered blind, and almost none of that picture fits me. I read. I write software. I walk into town, recognise faces across the street, watch the weather come in over the fells. For the purposes of registration I'm categorised as severely sight impaired — the category still commonly called blind — but I have usable vision and lead an unremarkable life.
+I am registered blind, and almost none of that picture fits me. I read. I write software. I walk into town and watch the weather come in over the fells. For the purposes of registration I'm categorised as severely sight impaired — the category still commonly called blind — but I have usable vision and lead an unremarkable life.
 
 So the word arrives carrying a model of me, and the model doesn't match the person. Almost everyone I tell has to set down what they were holding and pick up something else.
 

@@ -67,12 +67,6 @@ When the official account of a thing has repeatedly failed to match your experie
 
 Lateral by necessity, first-principles by temperament — what being on the far side of an assumption makes of a person.
 
-<div class="cta-inline">
-  <p class="cta-inline__body">If this is a pattern you recognise, send it to someone who'd see themselves in it.</p>
-  <button class="cta-inline__copy" id="copyLinkBtn" type="button">Copy link</button>
-  <p class="cta-inline__secondary">And if you work somewhere this gap is showing up — <a href="https://www.linkedin.com/in/pmpowell/" rel="noopener noreferrer" class="plausible-event-name=Connect:+inline+feedback">I'd like to hear about it</a>.</p>
-</div>
-
 ---
 
 Inside a company, that instinct has a job. The gap doesn't announce itself there either. It accumulates one workaround at a time, exactly as mine did at the station — a shortcut becomes a dependency, a workaround becomes the process, a senior person becomes the documentation.

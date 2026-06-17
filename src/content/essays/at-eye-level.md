@@ -5,6 +5,7 @@ description: "Being registered blind means meeting the edge of assumptions built
 summary: "Being registered blind means living on the far side of assumptions built for someone else. That gap turns out to have the same shape inside every company I've worked with."
 pubDate: 2026-06-17
 revision: "r1"
+ogImage: "/images/at-eye-level-splash.png"
 ---
 
 "Blind" is a word most people are sure they understand. It means an absence of sight — darkness, a white cane, a life organised around not seeing.

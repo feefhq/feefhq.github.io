@@ -13,8 +13,8 @@ interface Props {
   description: string;
   pubDate: Date;
   revision: string;
-  ogImage: string;
-  toc: TocEntry[];
+  ogImage?: string;
+  toc?: TocEntry[];
 }
 
 const { title, standfirst, description, pubDate, revision, ogImage, toc } = Astro.props;
@@ -33,13 +33,17 @@ const isoDate = pubDate.toISOString().slice(0, 10);
   <div class="wrap">
 
     <nav class="book-nav" aria-label="Contents">
-      <p class="book-nav__label">Contents</p>
-      <ol id="tocList">
-        {toc.map((entry) => (
-          <li><a href={`#${entry.id}`}>{entry.label}</a></li>
-        ))}
-      </ol>
-      <div class="book-nav__foot">
+      {toc && toc.length > 0 && (
+        <>
+          <p class="book-nav__label">Contents</p>
+          <ol id="tocList">
+            {toc.map((entry) => (
+              <li><a href={`#${entry.id}`}>{entry.label}</a></li>
+            ))}
+          </ol>
+        </>
+      )}
+      <div class="book-nav__foot" style={!toc || toc.length === 0 ? "margin-top:0;padding-top:0;border-top:none;" : ""}>
         <button class="book-nav__share" id="copyLinkBtnRail" type="button">Share this</button>
         <a href="https://www.linkedin.com/in/pmpowell/" rel="noopener noreferrer" class="plausible-event-name=Connect:+rail">Connect</a>
       </div>
@@ -52,14 +56,16 @@ const isoDate = pubDate.toISOString().slice(0, 10);
       <p class="byline-meta"><time datetime={isoDate}>{dateLabel}</time> &middot; {revision}</p>
     </header>
 
-    <nav class="toc-inline" aria-label="Contents">
-      <p>Contents</p>
-      <ol>
-        {toc.map((entry) => (
-          <li><a href={`#${entry.id}`}>{entry.label}</a></li>
-        ))}
-      </ol>
-    </nav>
+    {toc && toc.length > 0 && (
+      <nav class="toc-inline" aria-label="Contents">
+        <p>Contents</p>
+        <ol>
+          {toc.map((entry) => (
+            <li><a href={`#${entry.id}`}>{entry.label}</a></li>
+          ))}
+        </ol>
+      </nav>
+    )}
 
     <div class="book-content">
       <slot />

@@ -120,6 +120,13 @@
   scroll-margin-top: 1.5rem;
 }
 
+.book-content hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: calc(var(--space) * 2.4) auto;
+  width: 4rem;
+}
+
 .book-content p { margin: 0 0 1.35rem; text-wrap: pretty; hanging-punctuation: first last; }
 
 .book-content a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }

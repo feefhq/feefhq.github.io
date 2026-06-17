@@ -9,13 +9,13 @@ const essays = defineCollection({
     summary: z.string(),
     pubDate: z.date(),
     revision: z.string(),
-    ogImage: z.string(),
+    ogImage: z.string().optional(),
     toc: z.array(
       z.object({
         id: z.string(),
         label: z.string(),
       })
-    ),
+    ).optional(),
   }),
 });
 

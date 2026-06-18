@@ -74,7 +74,7 @@ const findings = [
         The usual first move is an Engineering Health Diagnostic.
       </p>
       <p class='cta'>
-        <a href='#the-engineering-health-diagnostic' class='btn-primary'
+        <a href='#the-engineering-health-diagnostic' class='btn btn--primary'
           >The Engineering Health Diagnostic <span class='arrow-accent'>→</span
           ></a
         >
@@ -82,7 +82,7 @@ const findings = [
           href='https://www.linkedin.com/in/pmpowell/'
           target='_blank'
           rel='noopener noreferrer'
-          class='cta-link-plain'
+          class='btn btn--plain'
           onclick="plausible('LinkedIn click', {props: {location: 'hero'}})"
           >Compare notes on LinkedIn <span class='arrow-accent'>→</span></a
         >
@@ -219,7 +219,7 @@ const findings = [
                   aria-controls={`finding-panel-${i}`}
                   aria-selected={i === 0 ? 'true' : 'false'}
                   tabindex={i === 0 ? 0 : -1}
-                  class='findings-tab'
+                  class='btn btn--tab findings-tab'
                 >
                   <span class='findings-tab__badge'>
                     {String.fromCharCode(65 + i)}
@@ -519,7 +519,7 @@ const findings = [
           href='https://www.linkedin.com/in/pmpowell/'
           target='_blank'
           rel='noopener noreferrer'
-          class='cta-link-plain'
+          class='btn btn--plain'
           onclick="plausible('LinkedIn click', {props: {location: 'close'}})"
           >Compare notes on LinkedIn <span class='arrow-accent'>→</span></a
         >

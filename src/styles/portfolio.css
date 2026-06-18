@@ -216,21 +216,18 @@ header.masthead {
   opacity: 1;
 }
 
-.findings-tab {
-  display: inline-flex;
-  align-items: center;
+/* .btn--tab: compact pill variant for tab selectors */
+.btn--tab {
+  padding: 0.35rem 0.85rem 0.35rem 0.35rem;
+  border-radius: 10px;
   gap: 0.5rem;
+}
+
+.findings-tab {
   flex: 0 0 auto;
-  white-space: nowrap;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  font-size: 1rem;
   color: var(--ink-soft);
   background: none;
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  padding: 0.4rem 1rem 0.4rem 0.4rem;
-  cursor: pointer;
-  transition: color 0.15s, border-color 0.15s;
+  border-color: var(--rule);
 }
 
 .findings-tab:hover { color: var(--ink); }
@@ -278,7 +275,7 @@ header.masthead {
 .finding strong { color: var(--ink); }
 
 @media (prefers-reduced-motion: reduce) {
-  .findings-tab,
+  .btn--tab,
   .findings-tab__badge,
   .findings-tablist-wrap::before,
   .findings-tablist-wrap::after { transition: none; }
@@ -433,34 +430,22 @@ header.masthead {
 
 .link-cta:hover { opacity: 0.8; }
 
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+.btn--primary {
   background: var(--ink);
   color: var(--paper);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.875rem 1.5rem;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: opacity 0.15s;
+  border-color: var(--ink);
 }
 
-.btn-primary:hover { opacity: 0.8; }
+.btn--primary:hover { opacity: 0.8; }
 
-.cta-link-plain {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+.btn--plain {
   font-weight: 600;
-  font-size: 1rem;
   color: var(--ink);
-  text-decoration: none;
-  transition: color 0.15s;
+  background: none;
 }
 
-.cta-link-plain .arrow-accent { color: var(--accent); }
-.cta-link-plain:hover { color: var(--accent); }
+.btn--plain .arrow-accent { color: var(--accent); }
+.btn--plain:hover { color: var(--accent); }
 
 .masthead .cta {
   display: flex;
@@ -542,6 +527,7 @@ header.masthead {
 
 @media (prefers-reduced-motion: reduce) {
   .essays h2,
-  .btn-primary,
-  .cta-link-plain { transition: none; }
+  .btn,
+  .btn--primary,
+  .btn--plain { transition: none; }
 }

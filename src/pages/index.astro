@@ -1,297 +1,596 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import "../styles/portfolio.css";
+import BaseLayout from '../layouts/BaseLayout.astro'
+import '../styles/portfolio.css'
 
 const findings = [
   {
     tab: `"It's automated"`,
-    believed: "the overnight reconciliation job was automated — a solved problem, and had been for six months.",
-    happening: "a senior engineer checked it by hand every morning, because of a silent failure found once and never fixed. The automation existed; the trust didn't. The check lived in one person's routine — not the runbook, not the monitoring, no one else's head.",
-    costing: "an unpriced single point of failure on a revenue-bearing process, and a knowledge dependency the business didn't know it had. If that engineer left, the first sign would have been a customer.",
-    first: "not a rewrite. Alert on the failure, name an owner, retire the manual check in a fortnight.",
+    believed:
+      'the overnight reconciliation job was automated — a solved problem, and had been for six months.',
+    happening:
+      "a senior engineer checked it by hand every morning, because of a silent failure found once and never fixed. The automation existed; the trust didn't. The check lived in one person's routine — not the runbook, not the monitoring, no one else's head.",
+    costing:
+      "an unpriced single point of failure on a revenue-bearing process, and a knowledge dependency the business didn't know it had. If that engineer left, the first sign would have been a customer.",
+    first:
+      'not a rewrite. Alert on the failure, name an owner, retire the manual check in a fortnight.',
   },
   {
     tab: `"Everything gets reviewed"`,
-    believed: "every change was peer-reviewed before release. The process was documented, and reported as followed.",
-    happening: "reviews had quietly become rubber stamps. Under deadline pressure the team learned a fast approval kept things moving, and the one engineer who still read the code closely was treated as a bottleneck.",
-    costing: "a quality control leadership counted on, and didn't have. The defects it was meant to catch were reaching production and being written off as bad luck.",
-    first: "review what carries risk, and stop reviewing what doesn't — a practice that means something on the changes that matter, not a ritual on all of them.",
+    believed:
+      'every change was peer-reviewed before release. The process was documented, and reported as followed.',
+    happening:
+      'reviews had quietly become rubber stamps. Under deadline pressure the team learned a fast approval kept things moving, and the one engineer who still read the code closely was treated as a bottleneck.',
+    costing:
+      "a quality control leadership counted on, and didn't have. The defects it was meant to catch were reaching production and being written off as bad luck.",
+    first:
+      "review what carries risk, and stop reviewing what doesn't — a practice that means something on the changes that matter, not a ritual on all of them.",
   },
   {
     tab: `"It's the price of quality"`,
-    believed: "releases were slow because the product was complex — the fair price of quality.",
-    happening: "every release was run by hand, in the evening, from a checklist two people trusted and nobody else understood. It worked, so no one questioned it.",
-    costing: "not the time — the caution. The team batched changes to avoid releasing, so releases grew bigger, rarer and riskier, which made everyone more cautious still. The \"cost of quality\" was a brake on the roadmap.",
-    first: "make one release boring. The aim isn't speed; it's breaking the loop where fear of releasing makes releasing more dangerous.",
+    believed:
+      'releases were slow because the product was complex — the fair price of quality.',
+    happening:
+      'every release was run by hand, in the evening, from a checklist two people trusted and nobody else understood. It worked, so no one questioned it.',
+    costing:
+      'not the time — the caution. The team batched changes to avoid releasing, so releases grew bigger, rarer and riskier, which made everyone more cautious still. The "cost of quality" was a brake on the roadmap.',
+    first:
+      "make one release boring. The aim isn't speed; it's breaking the loop where fear of releasing makes releasing more dangerous.",
   },
   {
     tab: `"We're audit-ready"`,
-    believed: "the company was audit-ready. Compliance evidence was produced and filed every quarter, and the audits passed.",
-    happening: "the evidence existed because one person assembled it by hand from systems that didn't talk to each other. The audits passed on their memory, not the company's records.",
-    costing: "an unseen single point of failure on something the business had told customers it had under control. If that person was away at audit time, \"compliant\" became \"unable to prove it.\"",
-    first: "not a compliance project. Make the evidence fall out of how the systems already run, so passing the audit stops depending on one person's recall.",
+    believed:
+      'the company was audit-ready. Compliance evidence was produced and filed every quarter, and the audits passed.',
+    happening:
+      "the evidence existed because one person assembled it by hand from systems that didn't talk to each other. The audits passed on their memory, not the company's records.",
+    costing:
+      'an unseen single point of failure on something the business had told customers it had under control. If that person was away at audit time, "compliant" became "unable to prove it."',
+    first:
+      "not a compliance project. Make the evidence fall out of how the systems already run, so passing the audit stops depending on one person's recall.",
   },
-];
+]
 ---
 
-<BaseLayout title="Phil Powell — Fractional CTO">
+<BaseLayout title='Phil Powell — Fractional CTO'>
   <main>
-    <header class="masthead" aria-labelledby="hero-heading">
-      <h1 id="hero-heading">Phil Powell</h1>
-      <p class="standfirst" id="hero-subheading">Fractional CTO for founder-led SaaS</p>
-      <p class="hero-tagline">Closing the gap between how systems actually behave and how a business believes they do.</p>
-      <p>The most expensive problems in software businesses rarely live inside the technology. They live in the gap between how systems actually behave and how the organisation believes they behave.</p>
-      <p>Every organisation runs on a model of its systems — how the software behaves, how work moves through the business, what depends on what, and what can safely change. The systems keep moving. The model lags. I work in that gap, closing it while it's still a correction, not yet a crisis. The usual first move is an Engineering Health Diagnostic.</p>
-      <p class="cta">
-        <a href="#the-engineering-health-diagnostic" class="btn-primary">The Engineering Health Diagnostic <span class="arrow-accent">→</span></a>
-        <a href="https://www.linkedin.com/in/pmpowell/" target="_blank" rel="noopener noreferrer" class="cta-link-plain" onclick="plausible('LinkedIn click', {props: {location: 'hero'}})">Compare notes on LinkedIn <span class="arrow-accent">→</span></a>
+    <header class='masthead' aria-labelledby='hero-heading'>
+      <h1 id='hero-heading'>Phil Powell</h1>
+      <p class='standfirst' id='hero-subheading'>
+        Fractional CTO for founder-led SaaS
       </p>
-      <p class="hero-location">Based between the UK and Austria, working in English across the UK and DACH.</p>
+      <p class='hero-tagline'>
+        Closing the gap between how systems actually behave and how a business
+        believes they do.
+      </p>
+      <p>
+        The most expensive problems in software businesses rarely live inside
+        the technology. They live in the gap between how systems actually behave
+        and how the organisation believes they behave.
+      </p>
+      <p>
+        Every organisation runs on a model of its systems — how the software
+        behaves, how work moves through the business, what depends on what, and
+        what can safely change. The systems keep moving. The model lags. I work
+        in that gap, closing it while it's still a correction, not yet a crisis.
+        The usual first move is an Engineering Health Diagnostic.
+      </p>
+      <p class='cta'>
+        <a href='#the-engineering-health-diagnostic' class='btn-primary'
+          >The Engineering Health Diagnostic <span class='arrow-accent'>→</span
+          ></a
+        >
+        <a
+          href='https://www.linkedin.com/in/pmpowell/'
+          target='_blank'
+          rel='noopener noreferrer'
+          class='cta-link-plain'
+          onclick="plausible('LinkedIn click', {props: {location: 'hero'}})"
+          >Compare notes on LinkedIn <span class='arrow-accent'>→</span></a
+        >
+      </p>
+      <p class='hero-location'>
+        Based between the UK and Austria, working in English across the UK and
+        DACH.
+      </p>
     </header>
 
-    <section class="chapter" aria-labelledby="the-moment">
-      <h2 id="the-moment">The moment I help with</h2>
-      <p>Most companies don't reach this point because engineering failed. They reach it because the product worked.</p>
-      <p>Early decisions got the company moving. A small team shipped quickly. Customers arrived. The roadmap expanded. And the business started depending on systems, people and habits built for an earlier stage.</p>
+    <section class='chapter' aria-labelledby='the-moment'>
+      <h2 id='the-moment'>The moment I help with</h2>
+      <p>
+        Most companies don't reach this point because engineering failed. They
+        reach it because the product worked.
+      </p>
+      <p>
+        Early decisions got the company moving. A small team shipped quickly.
+        Customers arrived. The roadmap expanded. And the business started
+        depending on systems, people and habits built for an earlier stage.
+      </p>
       <p>Then the same signs tend to appear:</p>
       <ul>
-        <li>Releases are harder to trust, even when the change sounds simple.</li>
-        <li>Technical debt is discussed often, but rarely translated into business risk.</li>
-        <li>You, or one senior engineer, are still needed to explain how everything works.</li>
-        <li>The team is busy, but it's hard to say what's actually improving.</li>
-        <li>Compliance, reliability, or scale is becoming unavoidable rather than optional.</li>
+        <li>
+          Releases are harder to trust, even when the change sounds simple.
+        </li>
+        <li>
+          Technical debt is discussed often, but rarely translated into business
+          risk.
+        </li>
+        <li>
+          You, or one senior engineer, are still needed to explain how
+          everything works.
+        </li>
+        <li>
+          The team is busy, but it's hard to say what's actually improving.
+        </li>
+        <li>
+          Compliance, reliability, or scale is becoming unavoidable rather than
+          optional.
+        </li>
       </ul>
-      <p>None of this means engineering has failed. It means the model the business runs on — what's automated, what's fragile, who knows what, what's safe to change — has quietly separated from the systems it describes.</p>
-      <p>That separation always has a cost, even when nobody has named it yet — and it's far cheaper to find than to wait for. That's what the diagnostic is for.</p>
+      <p>
+        None of this means engineering has failed. It means the model the
+        business runs on — what's automated, what's fragile, who knows what,
+        what's safe to change — has quietly separated from the systems it
+        describes.
+      </p>
+      <p>
+        That separation always has a cost, even when nobody has named it yet —
+        and it's far cheaper to find than to wait for. That's what the
+        diagnostic is for.
+      </p>
     </section>
 
-    <section class="chapter" aria-labelledby="diagnostic-heading">
-      <h2 id="the-engineering-health-diagnostic">The Engineering Health Diagnostic</h2>
-      <p>Most technical reviews audit the technology. This one audits the gap.</p>
-      <p>I start with your model: what leadership believes is automated, stable, nearly done, well understood, and safely changeable. Then I check that model against the evidence — the code, the pipelines, the incident history, the delivery data, and who actually gets asked when something breaks. The findings are the places where belief and behaviour have separated, what each gap is costing, and what to close first.</p>
-      <p>It's built for founder-led SaaS companies, typically 5–40 people, where the technology already carries real weight: revenue, sensitive data, compliance, or operational dependency.</p>
-      <p>Usually the gap builds slowly, as the business outgrows the systems and habits it started with. It can also open suddenly, at a leadership transition. When a founder steps back, an MD or CEO steps in, or new investment arrives, the incoming leadership inherits the business but not the model of it: in a founder-led company, much of the understanding of how everything actually works lived in the founder's head, and it doesn't transfer with the org chart. The gap is at its widest exactly then, which is why the diagnostic often earns its place in the first months after a handover.</p>
+    <section class='chapter' aria-labelledby='diagnostic-heading'>
+      <h2 id='the-engineering-health-diagnostic'>
+        The Engineering Health Diagnostic
+      </h2>
+      <p>
+        Most technical reviews audit the technology. This one audits the gap.
+      </p>
+      <p>
+        I start with your model: what leadership believes is automated, stable,
+        nearly done, well understood, and safely changeable. Then I check that
+        model against the evidence — the code, the pipelines, the incident
+        history, the delivery data, and who actually gets asked when something
+        breaks. The findings are the places where belief and behaviour have
+        separated, what each gap is costing, and what to close first.
+      </p>
+      <p>
+        It's built for founder-led SaaS companies, typically 5–40 people, where
+        the technology already carries real weight: revenue, sensitive data,
+        compliance, or operational dependency.
+      </p>
+      <p>
+        Usually the gap builds slowly, as the business outgrows the systems and
+        habits it started with. It can also open suddenly, at a leadership
+        transition. When a founder steps back, an MD or CEO steps in, or new
+        investment arrives, the incoming leadership inherits the business but
+        not the model of it: in a founder-led company, much of the understanding
+        of how everything actually works lived in the founder's head, and it
+        doesn't transfer with the org chart. The gap is at its widest exactly
+        then, which is why the diagnostic often earns its place in the first
+        months after a handover.
+      </p>
 
       <h3>What you get</h3>
       <ul>
-        <li><strong>A findings memo</strong> — 8–12 pages, plain English, written for the founder. Every finding takes the same shape: <em>what the business believed · what's actually happening · what the gap is costing · what to do first.</em> No finding without a cost; no cost without a first move.</li>
-        <li><strong>A first-moves page</strong> — one page, ordered. Some moves your existing team can take on themselves; others need sustained senior judgement, and the page is honest about which is which.</li>
-        <li><strong>A readout conversation</strong> — 90 minutes, you plus whoever you want in the room. The memo is what you keep; the conversation is where it lands.</li>
-        <li><strong>A follow-up call</strong> — 30 minutes, two weeks later. What moved, what stalled, and what that says about the conditions you're working in.</li>
+        <li>
+          <strong>A findings memo</strong> — 8–12 pages, plain English, written for
+          the founder. Every finding takes the same shape: <em
+            >what the business believed · what's actually happening · what the
+            gap is costing · what to do first.</em
+          > No finding without a cost; no cost without a first move.
+        </li>
+        <li>
+          <strong>A first-moves page</strong> — one page, ordered. Some moves your
+          existing team can take on themselves; others need sustained senior judgement,
+          and the page is honest about which is which.
+        </li>
+        <li>
+          <strong>A readout conversation</strong> — 90 minutes, you plus whoever you
+          want in the room. The memo is what you keep; the conversation is where it
+          lands.
+        </li>
+        <li>
+          <strong>A follow-up call</strong> — 30 minutes, two weeks later. What moved,
+          what stalled, and what that says about the conditions you're working in.
+        </li>
       </ul>
 
       <h3>What a finding looks like</h3>
-      <p>The same four-part shape every time. Four examples below — each a belief that turned out not to match the evidence. <em>(Drawn from prior leadership roles; details altered.)</em></p>
+      <p>
+        The same four-part shape every time. Four examples below — each a belief
+        that turned out not to match the evidence. <em
+          >(Drawn from prior leadership roles; details altered.)</em
+        >
+      </p>
 
-      <div class="findings-tabs">
-        <div class="findings-tablist-wrap">
-          <div class="findings-tablist" role="tablist" aria-label="Example findings">
-            {findings.map((finding, i) => (
-              <button
-                type="button"
-                role="tab"
-                id={`finding-tab-${i}`}
-                aria-controls={`finding-panel-${i}`}
-                aria-selected={i === 0 ? "true" : "false"}
-                tabindex={i === 0 ? 0 : -1}
-                class="findings-tab"
-              >
-                <span class="findings-tab__badge">{String.fromCharCode(65 + i)}</span>
-                <span class="findings-tab__label">{finding.tab}</span>
-              </button>
-            ))}
+      <div class='findings-tabs'>
+        <div class='findings-tablist-wrap'>
+          <div
+            class='findings-tablist'
+            role='tablist'
+            aria-label='Example findings'
+          >
+            {
+              findings.map((finding, i) => (
+                <button
+                  type='button'
+                  role='tab'
+                  id={`finding-tab-${i}`}
+                  aria-controls={`finding-panel-${i}`}
+                  aria-selected={i === 0 ? 'true' : 'false'}
+                  tabindex={i === 0 ? 0 : -1}
+                  class='findings-tab'
+                >
+                  <span class='findings-tab__badge'>
+                    {String.fromCharCode(65 + i)}
+                  </span>
+                  <span class='findings-tab__label'>{finding.tab}</span>
+                </button>
+              ))
+            }
           </div>
         </div>
-        <div class="findings-panels">
-          {findings.map((finding, i) => (
-            <div
-              role="tabpanel"
-              id={`finding-panel-${i}`}
-              aria-labelledby={`finding-tab-${i}`}
-              class="finding"
-              tabindex={0}
-              hidden={i !== 0}
-            >
-              <p><strong>What the business believed:</strong> {finding.believed}</p>
-              <p><strong>What was actually happening:</strong> {finding.happening}</p>
-              <p><strong>What the gap was costing:</strong> {finding.costing}</p>
-              <p><strong>What to do first:</strong> {finding.first}</p>
-            </div>
-          ))}
+        <div class='findings-panels'>
+          {
+            findings.map((finding, i) => (
+              <div
+                role='tabpanel'
+                id={`finding-panel-${i}`}
+                aria-labelledby={`finding-tab-${i}`}
+                class='finding'
+                tabindex={0}
+                hidden={i !== 0}
+              >
+                <p>
+                  <strong>What the business believed:</strong>{' '}
+                  {finding.believed}
+                </p>
+                <p>
+                  <strong>What was actually happening:</strong>{' '}
+                  {finding.happening}
+                </p>
+                <p>
+                  <strong>What the gap was costing:</strong> {finding.costing}
+                </p>
+                <p>
+                  <strong>What to do first:</strong> {finding.first}
+                </p>
+              </div>
+            ))
+          }
         </div>
       </div>
 
-      <p>Four beliefs, one pattern: a gap between what the business takes to be true and what the evidence shows. <a href="/behavioural-drift/" class="link-cta">Behavioural Drift</a> and <a href="/roadmap/" class="link-cta">Why Your Roadmap Keeps Slipping</a> take that pattern apart at length.</p>
+      <p>
+        Four beliefs, one pattern: a gap between what the business takes to be
+        true and what the evidence shows. <a
+          href='/behavioural-drift/'
+          class='link-cta'>Behavioural Drift</a
+        > and <a href='/roadmap/' class='link-cta'
+          >Why Your Roadmap Keeps Slipping</a
+        > take that pattern apart at length.
+      </p>
 
       <h3>Shape</h3>
       <p>Two weeks, start to finish.</p>
-      <p>Week one is conversations and evidence gathering. I talk to whoever holds the most context — the founder, others in leadership, a product owner, the senior engineers, and the touch points in other teams who feel problems first — for an hour or so each, scheduled around their work. Because the subject is the systems, not just the code, that usually reaches beyond engineering.</p>
+      <p>
+        Week one is conversations and evidence gathering. I talk to whoever
+        holds the most context — the founder, others in leadership, a product
+        owner, the senior engineers, and the touch points in other teams who
+        feel problems first — for an hour or so each, scheduled around their
+        work. Because the subject is the systems, not just the code, that
+        usually reaches beyond engineering.
+      </p>
       <p>Week two is synthesis, the memo, and the readout.</p>
-      <p>Read access to repositories, pipelines, and incident and delivery tooling is required; production access is not.</p>
+      <p>
+        Read access to repositories, pipelines, and incident and delivery
+        tooling is required; production access is not.
+      </p>
 
       <h3>What it isn't</h3>
       <ul>
-        <li>Not an audit of the team's competence. Most companies reach this point because the product worked, not because engineering failed.</li>
+        <li>
+          Not an audit of the team's competence. Most companies reach this point
+          because the product worked, not because engineering failed.
+        </li>
         <li>Not a rewrite recommendation in disguise.</li>
-        <li>Not a compliance gap analysis, though it will surface where compliance exposure is accumulating.</li>
+        <li>
+          Not a compliance gap analysis, though it will surface where compliance
+          exposure is accumulating.
+        </li>
         <li>Not a long report nobody reads.</li>
       </ul>
 
-      <div class="price-block" aria-label="Price">
-        <div class="price-left">
-          <div class="price-eyebrow">
-            <img src="/images/icon-square.svg" alt="" class="price-icon" aria-hidden="true" width="28" height="28" />
-            <span class="price-label">Price</span>
+      <div class='price-block' aria-label='Price'>
+        <div class='price-left'>
+          <div class='price-eyebrow'>
+            <img
+              src='/images/icon-square.svg'
+              alt=''
+              class='price-icon'
+              aria-hidden='true'
+              width='28'
+              height='28'
+            />
+            <span class='price-label'>Price</span>
           </div>
-          <p class="price-amount">
-            <span class="price-number">£7,500</span><span class="price-fixed">fixed</span>
+          <p class='price-amount'>
+            <span class='price-number'>£7,500</span><span class='price-fixed'
+              >fixed</span
+            >
           </p>
-          <p class="price-eur">≈ €8,700</p>
-          <p class="price-desc">Agreed scope, agreed artefacts, no day-rate meter running.</p>
+          <p class='price-eur'>≈ €8,700</p>
+          <p class='price-desc'>
+            Agreed scope, agreed artefacts, no day-rate meter running.
+          </p>
         </div>
-        <div class="price-right">
-          <p class="price-covers-label">What the fee covers</p>
-          <dl class="price-deliverables">
-            <div class="price-item">
+        <div class='price-right'>
+          <p class='price-covers-label'>What the fee covers</p>
+          <dl class='price-deliverables'>
+            <div class='price-item'>
               <dt>A findings memo</dt>
               <dd>8–12 pages, plain English, written for the founder.</dd>
             </div>
-            <div class="price-item">
+            <div class='price-item'>
               <dt>A first-moves page</dt>
-              <dd>Ordered, and honest about what your team can take on alone.</dd>
+              <dd>
+                Ordered, and honest about what your team can take on alone.
+              </dd>
             </div>
-            <div class="price-item">
+            <div class='price-item'>
               <dt>A readout conversation</dt>
               <dd>90 minutes, you plus whoever you want in the room.</dd>
             </div>
-            <div class="price-item">
+            <div class='price-item'>
               <dt>A follow-up call</dt>
               <dd>30 minutes, two weeks on — what moved, what stalled.</dd>
             </div>
           </dl>
-          <p class="price-duration">Two weeks, start to finish.</p>
+          <p class='price-duration'>Two weeks, start to finish.</p>
         </div>
       </div>
-      <p class="price-footnote">The fee isn't credited against any follow-on work. The diagnostic is complete in itself — if the right outcome is that your team executes the first-moves page without me, it has done its job.</p>
+      <p class='price-footnote'>
+        The fee isn't credited against any follow-on work. The diagnostic is
+        complete in itself — if the right outcome is that your team executes the
+        first-moves page without me, it has done its job.
+      </p>
     </section>
 
-    <section class="chapter" aria-labelledby="where-it-leads">
-      <h2 id="where-it-leads">Where it leads</h2>
+    <section class='chapter' aria-labelledby='where-it-leads'>
+      <h2 id='where-it-leads'>Where it leads</h2>
       <p>The diagnostic stands alone. Three things tend to follow from it:</p>
       <ul>
-        <li><strong>You execute it yourselves.</strong> The first-moves page is written to make this possible.</li>
-        <li><strong>Outcome-based engagement</strong> — one finding becomes a focused piece of work: a stabilisation, a migration path, release confidence, compliance preparation. Typically 2–12 weeks.</li>
-        <li><strong>Fractional CTO</strong> — where the findings point at direction, decision-making and the operating rhythm of the team rather than any single system. Typically 1–2 days per week, growing out of the diagnostic's priorities rather than a generic engagement.</li>
+        <li>
+          <strong>You execute it yourselves.</strong> The first-moves page is written
+          to make this possible.
+        </li>
+        <li>
+          <strong>Outcome-based engagement</strong> — one finding becomes a focused
+          piece of work: a stabilisation, a migration path, release confidence, compliance
+          preparation. Typically 2–12 weeks.
+        </li>
+        <li>
+          <strong>Fractional CTO</strong> — where the findings point at direction,
+          decision-making and the operating rhythm of the team rather than any single
+          system. Typically 1–2 days per week, growing out of the diagnostic's priorities
+          rather than a generic engagement.
+        </li>
       </ul>
-      <p>Nothing is pitched in the readout. If a continuation makes sense, it surfaces at the two-week follow-up, where there's evidence to base it on.</p>
+      <p>
+        Nothing is pitched in the readout. If a continuation makes sense, it
+        surfaces at the two-week follow-up, where there's evidence to base it
+        on.
+      </p>
     </section>
 
-    <section class="chapter" aria-labelledby="proof">
-      <h2 id="proof">Proof</h2>
-      <p>I've spent much of my career stepping into environments where technology already carried real responsibility — vulnerable users, sensitive medical data, operational risk, external compliance — and the cost of misunderstanding it was never theoretical.</p>
-      <p>Across CTO and senior engineering roles, I've built engineering functions from scratch, rebuilt fragile legacy platforms into reliable production systems, delivered zero-downtime migrations of mission-critical infrastructure, and led organisations through ISO 27001, ISO 22301 and ISO 9001 certification and external audits.</p>
-      <p><strong>Alertacall.</strong> I joined as the sole engineer on technology that vulnerable people relied on to live safely and independently. The company grew from a small startup into an organisation of more than seventy people, and the technology had to grow with it. I built the engineering function from scratch, modernised legacy systems, rebuilt core signalling infrastructure, and helped create a platform that could carry real operational demand without losing service continuity.</p>
-      <p><strong>Medical Tracker.</strong> I joined a product with real usage, sensitive medical data, a large backlog, and no engineering team in place. I built the function from the ground up, introduced delivery structure and QA discipline, modernised infrastructure, and helped the platform mature as the business scaled. It went on to pass ISO 27001 and ISO 22301 audits with zero non-conformities.</p>
-      <p>The pattern is consistent: structure brought to complexity without losing the ability to work practically inside the details.</p>
+    <section class='chapter' aria-labelledby='proof'>
+      <h2 id='proof'>Proof</h2>
+      <p>
+        I've spent much of my career stepping into environments where technology
+        already carried real responsibility — vulnerable users, sensitive
+        medical data, operational risk, external compliance — and the cost of
+        misunderstanding it was never theoretical.
+      </p>
+      <p>
+        Across CTO and senior engineering roles, I've built engineering
+        functions from scratch, rebuilt fragile legacy platforms into reliable
+        production systems, delivered zero-downtime migrations of
+        mission-critical infrastructure, and led organisations through ISO
+        27001, ISO 22301 and ISO 9001 certification and external audits.
+      </p>
+      <p>
+        <strong>Alertacall.</strong> I joined as the sole engineer on technology that
+        vulnerable people relied on to live safely and independently. The company
+        grew from a small startup into an organisation of more than seventy people,
+        and the technology had to grow with it. I built the engineering function from
+        scratch, modernised legacy systems, rebuilt core signalling infrastructure,
+        and helped create a platform that could carry real operational demand without
+        losing service continuity.
+      </p>
+      <p>
+        <strong>Medical Tracker.</strong> I joined a product with real usage, sensitive
+        medical data, a large backlog, and no engineering team in place. I built the
+        function from the ground up, introduced delivery structure and QA discipline,
+        modernised infrastructure, and helped the platform mature as the business
+        scaled. It went on to pass ISO 27001 and ISO 22301 audits with zero non-conformities.
+      </p>
+      <p>
+        The pattern is consistent: structure brought to complexity without
+        losing the ability to work practically inside the details.
+      </p>
     </section>
 
-    <section class="chapter" aria-labelledby="how-i-think">
-      <h2 id="how-i-think">How I think</h2>
-      <p>Everything above is built on one idea: the expensive problems live in the gap, not the technology. The two essays are that idea at full length.</p>
+    <section class='chapter' aria-labelledby='how-i-think'>
+      <h2 id='how-i-think'>How I think</h2>
+      <p>
+        Everything above is built on one idea: the expensive problems live in
+        the gap, not the technology. These essays are that idea at full length —
+        where it comes from, and how it plays out in systems and delivery.
+      </p>
 
       <h3>Behavioural Drift</h3>
-      <p>How software systems stop behaving like themselves, and why a system that works and a system you understand quietly stop being the same thing.</p>
-      <p><a href="/behavioural-drift/" class="link-cta">→ Read</a></p>
+      <p>
+        How software systems stop behaving like themselves, and why a system
+        that works and a system you understand quietly stop being the same
+        thing.
+      </p>
+      <p><a href='/behavioural-drift/' class='link-cta'>→ Read</a></p>
 
       <h3>Why Your Roadmap Keeps Slipping</h3>
-      <p>Why slippage is a property of the system rather than a failure of effort, and why the usual responses — more planning, more control, more people — tend to make it worse. The roadmap is a model; the delivery system is the reality.</p>
-      <p><a href="/roadmap/" class="link-cta">→ Read</a></p>
+      <p>
+        Why slippage is a property of the system rather than a failure of
+        effort, and why the usual responses — more planning, more control, more
+        people — tend to make it worse. The roadmap is a model; the delivery
+        system is the reality.
+      </p>
+      <p><a href='/roadmap/' class='link-cta'>→ Read</a></p>
+
+      <h3>At Eye Level</h3>
+      <p>
+        Where the habit of looking for the gap comes from. Every system encodes
+        a model of the person who'll use it and the conditions it expects — and
+        that model is always narrower than the world it meets.
+      </p>
+      <p><a href='/at-eye-level/' class='link-cta'>→ Read</a></p>
 
       <p>A few principles I keep coming back to:</p>
 
       <h3>The CTO should not be the system</h3>
-      <p>If one person has to remember how everything works, approve every important decision, or explain every trade-off, the business hasn't built a technical function — it's built a dependency. Good leadership reduces that over time.</p>
+      <p>
+        If one person has to remember how everything works, approve every
+        important decision, or explain every trade-off, the business hasn't
+        built a technical function — it's built a dependency. Good leadership
+        reduces that over time.
+      </p>
 
       <h3>Technical debt is only useful when translated</h3>
-      <p>A backlog of debt doesn't help a founder decide anything. The useful questions are: what risk does this create, what does it slow down, what could it cost, and what happens if we leave it alone?</p>
+      <p>
+        A backlog of debt doesn't help a founder decide anything. The useful
+        questions are: what risk does this create, what does it slow down, what
+        could it cost, and what happens if we leave it alone?
+      </p>
 
       <h3>Stabilise before you scale</h3>
-      <p>Growth exposes weak points. It doesn't fix them. Before adding more people, more process, or more roadmap pressure, it's worth understanding what's already fragile and what needs to be made safer first.</p>
+      <p>
+        Growth exposes weak points. It doesn't fix them. Before adding more
+        people, more process, or more roadmap pressure, it's worth understanding
+        what's already fragile and what needs to be made safer first.
+      </p>
     </section>
 
-    <section class="chapter" aria-labelledby="about">
-      <h2 id="about">About</h2>
-      <p>I'm a CTO and senior technical leader with a background in SaaS, platform modernisation, engineering leadership, reliability and compliance. I work where business pressure meets technical complexity — the point where founders need clearer judgement, engineers need stronger direction, and the organisation needs its technology to become more dependable without slowing everything down.</p>
-      <p>I'm also registered as visually impaired. It has shaped how I think about accessibility, edge cases, resilience, and the distance between how systems are expected to behave and how they behave under real conditions. That's not separate from how I work; it's where I first learned to look for the gap. I notice assumptions, weak signals, unclear ownership, and the places where a system is quietly relying on ideal conditions.</p>
-      <p>I'm based between the UK and Austria, working in English across the UK and DACH.</p>
+    <section class='chapter' aria-labelledby='about'>
+      <h2 id='about'>About</h2>
+      <p>
+        I'm a CTO and senior technical leader with a background in SaaS,
+        platform modernisation, engineering leadership, reliability and
+        compliance. I work where business pressure meets technical complexity —
+        the point where founders need clearer judgement, engineers need stronger
+        direction, and the organisation needs its technology to become more
+        dependable without slowing everything down.
+      </p>
+      <p>
+        I'm also registered as severely sight impaired. It shaped how I think
+        about edge cases, resilience, and the distance between how systems are
+        expected to behave and how they behave under real conditions — it's
+        where I first learned to look for the gap. I've written about that in <a
+          href='/at-eye-level'
+          class='link-cta'>At Eye Level</a
+        >. I notice assumptions, weak signals, unclear ownership, and the places
+        where a system is quietly relying on ideal conditions.
+      </p>
+      <p>
+        I'm based between the UK and Austria, working in English across the UK
+        and DACH.
+      </p>
     </section>
 
-    <section class="chapter" aria-labelledby="close">
-      <h2 id="close">Close</h2>
-      <p>Engineering problems rarely arrive all at once. They accumulate. A shortcut becomes a dependency. A workaround becomes the process. A senior person becomes the documentation. A fragile release becomes normal. I help companies recognise that moment while it's still a correction, and close the gap before it gets priced in.</p>
-      <p>If any of this matches what you're seeing inside your own company, I'm always glad to compare notes.</p>
-      <p class="cta"><a href="https://www.linkedin.com/in/pmpowell/" target="_blank" rel="noopener noreferrer" class="cta-link-plain" onclick="plausible('LinkedIn click', {props: {location: 'close'}})">Compare notes on LinkedIn <span class="arrow-accent">→</span></a></p>
+    <section class='chapter' aria-labelledby='close'>
+      <h2 id='close'>Close</h2>
+      <p>
+        Engineering problems rarely arrive all at once. They accumulate. A
+        shortcut becomes a dependency. A workaround becomes the process. A
+        senior person becomes the documentation. A fragile release becomes
+        normal. I help companies recognise that moment while it's still a
+        correction, and close the gap before it gets priced in.
+      </p>
+      <p>
+        If any of this matches what you're seeing inside your own company, I'm
+        always glad to compare notes.
+      </p>
+      <p class='cta'>
+        <a
+          href='https://www.linkedin.com/in/pmpowell/'
+          target='_blank'
+          rel='noopener noreferrer'
+          class='cta-link-plain'
+          onclick="plausible('LinkedIn click', {props: {location: 'close'}})"
+          >Compare notes on LinkedIn <span class='arrow-accent'>→</span></a
+        >
+      </p>
     </section>
   </main>
 
   <script>
-    document.querySelectorAll(".findings-tabs").forEach((tabs) => {
-      const tabList = tabs.querySelector('[role="tablist"]');
-      const tabEls = Array.from(tabs.querySelectorAll('[role="tab"]'));
-      const panelEls = Array.from(tabs.querySelectorAll('[role="tabpanel"]'));
+    document.querySelectorAll('.findings-tabs').forEach(tabs => {
+      const tabList = tabs.querySelector('[role="tablist"]')
+      const tabEls = Array.from(tabs.querySelectorAll('[role="tab"]'))
+      const panelEls = Array.from(tabs.querySelectorAll('[role="tabpanel"]'))
 
       function activate(index) {
         tabEls.forEach((tab, i) => {
-          const selected = i === index;
-          tab.setAttribute("aria-selected", selected ? "true" : "false");
-          tab.tabIndex = selected ? 0 : -1;
-          panelEls[i].hidden = !selected;
-        });
-        tabEls[index].focus();
-        updateScrollFade();
+          const selected = i === index
+          tab.setAttribute('aria-selected', selected ? 'true' : 'false')
+          tab.tabIndex = selected ? 0 : -1
+          panelEls[i].hidden = !selected
+        })
+        tabEls[index].focus()
+        updateScrollFade()
       }
 
       tabEls.forEach((tab, i) => {
-        tab.addEventListener("click", () => activate(i));
-      });
+        tab.addEventListener('click', () => activate(i))
+      })
 
-      const tablistWrap = tabs.querySelector(".findings-tablist-wrap");
+      const tablistWrap = tabs.querySelector('.findings-tablist-wrap')
 
       function updateScrollFade() {
-        const max = tabList.scrollWidth - tabList.clientWidth;
-        tablistWrap.classList.toggle("can-scroll-left", tabList.scrollLeft > 1);
-        tablistWrap.classList.toggle("can-scroll-right", tabList.scrollLeft < max - 1);
+        const max = tabList.scrollWidth - tabList.clientWidth
+        tablistWrap.classList.toggle('can-scroll-left', tabList.scrollLeft > 1)
+        tablistWrap.classList.toggle(
+          'can-scroll-right',
+          tabList.scrollLeft < max - 1,
+        )
       }
 
-      updateScrollFade();
-      tabList.addEventListener("scroll", updateScrollFade);
-      window.addEventListener("resize", updateScrollFade);
+      updateScrollFade()
+      tabList.addEventListener('scroll', updateScrollFade)
+      window.addEventListener('resize', updateScrollFade)
 
-      tabList.addEventListener("keydown", (event) => {
-        const current = tabEls.indexOf(document.activeElement);
-        if (current === -1) return;
+      tabList.addEventListener('keydown', event => {
+        const current = tabEls.indexOf(document.activeElement)
+        if (current === -1) return
 
-        let next;
+        let next
         switch (event.key) {
-          case "ArrowRight":
-            next = (current + 1) % tabEls.length;
-            break;
-          case "ArrowLeft":
-            next = (current - 1 + tabEls.length) % tabEls.length;
-            break;
-          case "Home":
-            next = 0;
-            break;
-          case "End":
-            next = tabEls.length - 1;
-            break;
+          case 'ArrowRight':
+            next = (current + 1) % tabEls.length
+            break
+          case 'ArrowLeft':
+            next = (current - 1 + tabEls.length) % tabEls.length
+            break
+          case 'Home':
+            next = 0
+            break
+          case 'End':
+            next = tabEls.length - 1
+            break
           default:
-            return;
+            return
         }
 
-        event.preventDefault();
-        activate(next);
-      });
-    });
+        event.preventDefault()
+        activate(next)
+      })
+    })
   </script>
 </BaseLayout>

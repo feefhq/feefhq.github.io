@@ -2,116 +2,90 @@
 
 ## Project overview
 
-Personal portfolio website for Phil Powell, Fractional CTO. A multi-page static site served via GitHub Pages at feef.io.
+Personal portfolio website for Phil Powell, Fractional CTO. A multi-page static site served via GitHub Pages at feef.io. Built with Astro 5.
 
 ## Tech stack
 
-- Pure HTML5 — no build tools, no framework, no package manager
-- Plain CSS with custom properties (CSS variables) — no Tailwind, no preprocessor
-- Shared design system in `css/site.css` (tokens, nav, callouts, noise overlay)
-- Fraunces (variable, via Google Fonts CDN) for headings/display
-- System font stack (`-apple-system, BlinkMacSystemFont, …`) for body text
-- Vanilla JS (one line: auto-populates copyright year in `index.html`)
+- **Astro 5** — static output, no UI framework (no React/Vue/Svelte)
+- **TypeScript** — `tsconfig.json` present; content collection schema in `src/content/config.ts`
+- **Plain CSS** with custom properties — no Tailwind, no preprocessor
+- **Shared design tokens** in `src/styles/theme.css` (nav, callouts, noise overlay, buttons, footer)
+- **Page-specific styles** in `src/styles/essay.css` and `src/styles/portfolio.css`
+- **Fonts via Google Fonts CDN**: Fraunces (display/headings everywhere) + Spectral (body text on essays)
+- **Plausible analytics** — integrated in `BaseLayout.astro`; tagged events via `window.plausible()`
+- **Custom remark plugin** — `src/lib/remark-heading-attrs.mjs` adds attributes to headings during Markdown processing
 
 ## Running locally
 
 ```bash
-python -m http.server 8000
-# or
-npx http-server
+npm run dev      # start dev server at http://localhost:4321
+npm run build    # production build to dist/
+npm run preview  # preview the built output
 ```
-
-No build step. Open `http://localhost:8000` in a browser.
 
 ## Deployment
 
-Push to `master` → GitHub Actions workflow (`.github/workflows/static.yml`) deploys to GitHub Pages. Live within seconds. Custom domain configured via `CNAME` (feef.io).
+Push to `master` → GitHub Actions workflow (`.github/workflows/deploy.yml`) builds with `withastro/action@v3` and deploys to GitHub Pages. Custom domain via `public/CNAME` (feef.io).
 
 ## File structure
 
-```
-index.html              # Main portfolio page
-writing/index.html      # Writing index
-roadmap/index.html      # "Why Your Roadmap Keeps Slipping" web book
-css/site.css            # Shared design system — tokens, nav, callouts, noise overlay
-CNAME                   # feef.io
-.github/workflows/      # GitHub Actions Pages deploy
+```text
+src/
+  pages/
+    index.astro              # Portfolio/about page
+    writing/index.astro      # Writing index (reads from content collection)
+    roadmap/index.astro      # "Why Your Roadmap Keeps Slipping" essay page
+    behavioural-drift/index.astro
+    at-eye-level/index.astro
+  layouts/
+    BaseLayout.astro         # Shared shell: <head>, nav, footer, Plausible
+    EssayLayout.astro        # Essay wrapper: progress bar, ToC rail, copy-link CTAs
+  styles/
+    theme.css                # Design tokens, nav, callouts, buttons, footer, noise overlay
+    essay.css                # Essay-specific layout and typography
+    portfolio.css            # Portfolio/writing-index layout
+  content/
+    config.ts                # Zod schema for essays collection
+    essays/
+      roadmap.md
+      behavioural-drift.md
+      at-eye-level.md
+  lib/
+    remark-heading-attrs.mjs # Custom remark plugin
+public/
+  images/                    # Favicons, OG images, icons
+  CNAME                      # feef.io
+  site.webmanifest
+astro.config.mjs
 ```
 
 ## Conventions
 
-- All styling via custom CSS properties defined in `:root` blocks. No utility-class framework.
-- Dark mode via `prefers-color-scheme: dark` media query — NOT a forced `class="dark"`. Pages respond to the user's system preference.
-- Color palette (warm tones): `--paper` (background), `--ink` (foreground), `--ink-soft` (muted), `--rule` (borders), `--accent` (amber). Light and dark values set via media query.
-- Shared tokens (nav, callouts) live in `css/site.css` and are used across all pages.
-- Page-specific tokens and layout styles are in inline `<style>` blocks within each HTML file.
-- Fraunces is used for display/heading type; system fonts for body.
-- Semantic HTML: `<header>`, `<main>`, `<section>`, `<footer>` with proper heading hierarchy (h1 → h2 → h3).
-- Accessibility: ARIA labels, focus-visible rings, `prefers-reduced-motion` support in `site.css`, `rel="noopener noreferrer"` on external links.
+- Design tokens defined in `:root` in `theme.css`; page-specific overrides go in that page's `.astro` `<style>` block or its CSS file.
+- Dark mode via `prefers-color-scheme: dark` — NOT a class toggle.
+- Color palette: `--paper`, `--ink`, `--ink-soft`, `--paper-raised`, `--rule`, `--accent` (orange/amber), `--accent-hover`.
+- Essays use the `EssayLayout.astro` wrapper; the portfolio page and writing index use `BaseLayout.astro` directly.
+- Essay content lives as Markdown in `src/content/essays/`. Frontmatter must satisfy the Zod schema in `config.ts`: `title`, `standfirst`, `description`, `summary`, `pubDate`, `revision`, plus optional `ogImage` and `toc`.
+- The `toc` frontmatter field drives both the sidebar rail ToC and the inline ToC in `EssayLayout`. Each entry is `{ id, label }`.
+- Plausible event tracking: CTA links get a class like `plausible-event-name=Connect:+rail`; copy-link buttons call `window.plausible(...)` directly in the `<script>` block of `EssayLayout`.
+- Semantic HTML throughout: `<header>`, `<main>`, `<section>`, `<footer>`, proper heading hierarchy.
+- Accessibility: `aria-label`, `aria-current` on nav links, `focus-visible` rings, `prefers-reduced-motion` in `theme.css`, `rel="noopener noreferrer"` on external links.
 - Content tone: British English, professional, direct, understated.
 
 ## What not to do
 
-- Don't introduce a build system, bundler, or package.json — the zero-dependency approach is intentional.
-- Don't use a CSS framework or CDN stylesheet (no Tailwind, no Bootstrap) — the hand-written CSS is intentional.
-- Don't add a local font directory — fonts are loaded via Google Fonts CDN.
+- Don't add a UI framework (React, Vue, etc.) — Astro is used for its static build, not for interactivity.
+- Don't use a CSS framework (no Tailwind, no Bootstrap) — hand-written CSS is intentional.
+- Don't add a local font directory — fonts load via Google Fonts CDN.
+- Don't commit the `dist/` directory — the CI workflow builds it.
 
-## CTA, Analytics & Sharing Work (current focus)
+## CTA & analytics
 
-### Goal
+- **Plausible** is already wired up in `BaseLayout.astro`. Cookieless, GDPR-ready — no consent banner.
+- CTA placements follow the sequencing principle: Share at conviction peak (two-thirds through), Connect at end-of-book; both equal in the persistent footer bar only.
+- Tone is feedback pitch, not launch marketing — no hype, no newsletter capture.
 
-Add CTAs across the book to encourage sharing and professional connection,
-plus privacy-friendly analytics. Restraint is deliberate — senior readers
-(engineering + business leaders) reward a few well-placed asks over many.
-Only two of the touchpoints below actively ask; the rest are ambient.
-
-### CTA placement map
-
-- **Two-thirds inline** (after the strongest chapter): leads with SHARE,
-  with a quiet CONNECT link underneath. Conviction peaks here; use the
-  soft "if this resonates" framing.
-- **End of book** (highest intent): leads with CONNECT, with SHARE as the
-  immediate second line ("if someone on your team is fighting this, send
-  it their way").
-- **Persistent thin footer bar**: both share + connect as small equal
-  links. This is the ONLY place co-equal links are acceptable, because
-  it's ambient, not a decision moment.
-- **About/author block** (near the end): credibility bridge, not a button.
-  One paragraph + LinkedIn link.
-
-### Sequencing principle
-
-Share and connect matter equally, but never present them as two co-equal
-buttons at a decision moment — that causes readers to do neither. Let
-page position prioritize: share at conviction peaks, connect at the end.
-
-### Voice / content discipline
-
-- Dual audience (engineering + business leaders) — keep CTA copy legible
-  to both, no jargon that excludes either.
-- Main text keeps its no-named-frameworks discipline. Do not introduce
-  framework names into CTA copy.
-- Tone is feedback pitch, NOT launch marketing. Avoid hype, newsletter
-  capture, and aggressive asks.
-
-### Analytics: Plausible
-
-- Privacy-friendly, cookieless, GDPR-ready — no consent banner needed
-  (and a banner would clash with the feedback-pitch tone, so don't add one).
-- Scroll depth is built in by default (tracked as percentage). Read it
-  alongside time-on-page — scroll depth alone overcounts fast scanners.
-- CTA clicks = tagged custom events on outbound links (the
-  `script.tagged-events.js` variant). Every CTA link should fire a
-  trackable event so we can see whether reads convert to engagement.
-- Skip Google Analytics: overkill, triggers consent obligations, wrong tone.
-
-### Hosting
-
-- Static HTML on GitHub Pages — do not migrate. Serve the book at a clean
-  dedicated path/subdomain, not buried under the portfolio one-pager.
-
-### Working rules for edits
+## Working rules
 
 - Work on a branch; surface diffs for review before committing.
-- Let GitHub Pages deploy only after diffs are eyeballed — don't run
-  unattended.
+- Let GitHub Pages deploy only after diffs are eyeballed — don't push unattended.

@@ -25,6 +25,13 @@
   --feef-callout-border: #c2410c;
 }
 
+/* Wider measure on large desktop screens. */
+@media (min-width: 80rem) {
+  :root {
+    --measure: 40rem;
+  }
+}
+
 /* Dark mode — all pages use system preference. */
 @media (prefers-color-scheme: dark) {
   :root {

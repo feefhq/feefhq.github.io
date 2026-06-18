@@ -159,10 +159,10 @@
 
 /* ---------- RESPONSIVE ---------- */
 .toc-inline { display: none; }
-/* 74rem = content column (38rem) + two 18rem sidebar tracks — below
+/* 76rem = content column (40rem at wide breakpoint) + two 18rem sidebar tracks — below
    this the sidebar can't fit its own width and pushes the content
    column off-centre, so it's hidden in favour of the inline ToC. */
-@media (max-width: 74rem) {
+@media (max-width: 76rem) {
   .wrap { grid-template-columns: 1fr; padding: 0 1.5rem; }
   .wrap > * { grid-column: 1; max-width: var(--measure); margin-left: auto; margin-right: auto; width: 100%; }
   .book-nav { display: none; }

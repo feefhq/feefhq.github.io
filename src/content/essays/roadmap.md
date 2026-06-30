@@ -4,7 +4,7 @@ standfirst: "And what your system has to do with it."
 description: "Roadmap slippage is a systems problem, not an execution problem — and the usual responses tend to make it worse."
 summary: "Roadmap slippage is a systems problem, not an execution problem — and the usual responses tend to make it worse."
 pubDate: 2026-05-26
-revision: "r1"
+revision: "r2"
 ogImage: "/images/roadmap-splash.png"
 toc:
   - id: introduction
@@ -13,8 +13,6 @@ toc:
     label: The Symptom
   - id: misdiagnosis
     label: The Misdiagnosis
-  - id: reality
-    label: The Reality
   - id: reading-the-system
     label: Reading the System
   - id: complexity
@@ -131,25 +129,7 @@ Which means the system becomes harder to predict — not easier.
 
 This is why the same pattern keeps returning. The responses aren't wrong in isolation; they're aimed at the symptoms rather than the behaviour producing them. And as long as the model stays the same, so does the outcome.
 
-## The Reality {#reality}
-
-Software delivery is not a pipeline. It behaves like a system.
-
-When we say "the system", we don't just mean the software itself. We mean the whole environment that delivery happens within: the code and infrastructure, the people working on it, the decisions being made, and the way work flows between all of these.
-
-All of these interact to produce the outcomes you see.
-
-That sounds abstract, but the implications are very practical.
-
-In a pipeline, work moves forward step by step. Each stage is largely independent. If something goes wrong, you look at that stage and fix it.
-
-In a system, things don't behave independently.
-
-- Work interacts with other work
-- Changes combine in ways you didn't plan for
-- Effects show up later, and often somewhere else
-
-What happens in one part influences what happens in another — often indirectly.
+Software delivery is not a pipeline, then. It behaves like a system — and by "the system" we don't just mean the software itself. We mean the whole environment delivery happens within: the code and infrastructure, the people working on it, the decisions being made, and the way work flows between all of these. All of these interact to produce the outcomes you see.
 
 This is why the same piece of work can behave differently at different times. A change that felt simple last month can become slow, unpredictable, or risky today. The team hasn't forgotten how to deliver. The environment the change is being introduced into has shifted underneath them.
 
@@ -177,23 +157,11 @@ One more thing worth naming. The system isn't just something that behaves a cert
 
 You don't need to see the system directly to understand how it behaves. You can observe it — through what's already happening around you.
 
-Three patterns are worth paying attention to.
-
-The first is the gap between how work was planned and how it actually moves. Things that start quickly and then slow for reasons that weren't visible at the outset. Tasks that block on something nobody anticipated. Features that sit at "nearly done" for longer than anyone expected.
-
-The second is where problems surface — not where you expected them, not when you expected them, and often not in the part of the codebase where the original change was made.
-
-The third is how decisions play out over time. A push to move faster that leads to more instability later. More work being started that leads to less being finished. Small shortcuts that compound into larger problems downstream.
-
-None of these are random. They are the system expressing its current state.
+Three patterns are worth watching. The first is the gap between how work was planned and how it actually moves: work that starts quickly then slows for reasons that weren't visible at the outset, tasks that block on something nobody anticipated, features that sit at "nearly done" far longer than expected. The second is where problems surface: often not where, not when, and not in the part of the codebase you'd expect. The third is how decisions play out over time: a push to move faster that leads to more instability later, more work started that leaves less finished, small shortcuts that compound downstream. None of these are random. They are the system expressing its current state.
 
 The useful shift is this: instead of asking why a specific thing went wrong, you start asking what the system is telling you about how it behaves. You don't need perfect visibility, and you don't need to understand every technical detail. You can infer a great deal from the patterns the system produces.
 
-The signals are already there. The question is whether you're reading them as isolated events or as expressions of something deeper.
-
-Unpredictability doesn't arrive suddenly. It accumulates — in small ways that are easy to miss while things are still moving. A task takes slightly longer than expected. A dependency takes time to resolve. A piece of work needs rework that wasn't anticipated. Each one feels ordinary on its own. They combine, they overlap, and over time they shift how the system responds to change.
-
-At a certain point, unpredictability stops being occasional. It becomes the default behaviour of a system operating under increasing pressure from a set of underlying forces.
+Unpredictability doesn't arrive suddenly. It accumulates — in small ways that are easy to miss while things are still moving. A task takes slightly longer than expected. A dependency takes time to resolve. A piece of work needs rework that wasn't anticipated. Each one feels ordinary on its own. They combine, they overlap, and over time they shift how the system responds to change. At a certain point, unpredictability stops being occasional. It becomes the default behaviour of a system operating under increasing pressure from a set of underlying forces.
 
 The next sections break those forces down — starting with the one that's hardest to see.
 
@@ -236,6 +204,8 @@ Three weeks later, it's still being worked on. The change itself wasn't wrong. I
 This is coupling. Where complexity is about how much behaviour the system contains, coupling is about how that behaviour is connected — and therefore how far a change in one place travels before it stops. A loosely coupled system can be enormously complex and still let you change one piece without disturbing the others. A tightly coupled system can be small and still force every change to ripple outward. The two forces compound, but they're different levers. Complexity is what makes the system hard to hold in your head. Coupling is what makes a change in one place show up in another.
 
 Coupling lives across the whole system, not just the code. Components rely on each other. Teams depend on shared areas. Releases need to be sequenced. Decisions made in one place constrain decisions made elsewhere. Each of these is a connection that a change has to travel through.
+
+Some of the most demanding coupling runs outside the system entirely. A regulator sets a requirement with a date attached. An integration with a national platform — the NHS, a banking rail, a government service — moves on a timetable you don't control. A customer contract names a delivery deadline. A third-party API you depend on announces a breaking change and a date it switches off. These are connections too, and they behave like the internal ones — a change in one place forcing change in another — with one difference that matters enormously: you can't decouple them by choice. Internal coupling can be loosened with enough will and time. External coupling is a fixed point. The system has to move around it.
 
 Early on, coupling is often low. Changes tend to be contained, and teams can make progress without extensive coordination. As the system grows, connections increase — usually as the fastest way to get things working. Reusing existing behaviour, integrating with shared services, building on top of what's already there. Each decision makes sense in isolation. Over time, they create a network of dependencies.
 
@@ -335,6 +305,8 @@ Or consider pressure on timelines. Also rational, especially when delivery is al
 
 Adding people follows a similar pattern. Capacity increases in theory. So do coordination overhead, communication paths, and the number of interactions that need to be managed. In a system that's already tightly coupled, more people can mean more friction before they mean more throughput.
 
+And some of this load isn't chosen at all — not by engineering, and not even by the leaders nominally setting the roadmap. A funding round closes against a set of commitments. A board expects the plan it signed off on. A partnership has milestones written into a contract. An investor deck quietly becomes a delivery schedule. From inside engineering these look like leadership's choices; from the leadership seat they often feel like external constraints arriving with the same force as a regulatory deadline. The roadmap is tied to obligations that can't simply be re-drawn because the system underneath turned out to be carrying more than anyone had priced in.
+
 None of these decisions are inherently wrong. In isolation, they often make sense. The challenge is that their impact is not isolated. They interact with each other, they compound over time, and they often show up later — not at the moment the decision is made, but weeks or months afterwards, when the connection between cause and effect has become hard to trace.
 
 This is why delivery problems are so easy to misattribute. A delay that looks like a local execution issue is often the accumulated result of decisions made much earlier — each one sensible on its own, but collectively reshaping the conditions the system is operating under.
@@ -358,12 +330,6 @@ Through the roadmaps you set, the timelines you expect, the trade-offs you make,
 This is where responsibility shifts. Not away from engineering, but across the system as a whole.
 
 If the system is producing unpredictable outcomes, it is responding to the conditions it has been given. Change those conditions, and the behaviour changes with them.
-
-<div class="cta-inline">
-  <p class="cta-inline__body">This is the argument I most want to get right. If it resonates, share it with someone who'd recognise the pattern.</p>
-  <button class="cta-inline__copy" id="copyLinkBtn" type="button">Copy link</button>
-  <p class="cta-inline__secondary">And if it doesn't — <a href="https://www.linkedin.com/in/pmpowell/" rel="noopener noreferrer" class="plausible-event-name=Connect:+inline+feedback">I'd value knowing why</a>.</p>
-</div>
 
 ## What Good Looks Like {#what-good-looks-like}
 
@@ -396,6 +362,16 @@ In organisations where that trust exists, the system view becomes actionable. Le
 Where that trust hasn't been built, the system view stays intellectual. Leaders understand it but don't act on it, because acting on it means doing things that look wrong from the outside — shipping less, starting less, investing in things that aren't visible on a roadmap. And engineering stops surfacing the signals, because the signals aren't heard the way they're intended.
 
 There's a quieter version of this trust worth naming, because it points the same idea in the other direction. The disciplines that make engineering systems predictable — small changes, fast feedback, treating problems as signals rather than failures — are not only useful inside engineering. Offered outward, they often land productively in functions that have under-invested in them: marketing operations, customer experience, internal tooling, planning itself. The same rigour that can feel imposed when it travels into engineering from the outside is frequently welcomed when it travels out of engineering into adjacent work. Healthy organisations make room for that traffic in both directions. It's part of how the shared language gets built.
+
+In a large share of founder-led companies, the line doesn't run between two people at all. The person setting the roadmap is technical — often the person who built the original system. Here the trust doesn't disappear; it changes shape. It folds inward.
+
+A technical founder doesn't have to trust someone else's read of the system. They have their own, and it's usually a good one — they wrote much of it, they've reasoned about it for years, their instinct for it is real. The difficulty is that the instinct is also subjective in a way that's hard to feel from the inside. It's their product. Their baby. The judgement that served them brilliantly while they held the whole system in their head doesn't announce when it has started running on a model that's out of date.
+
+Because that's the actual risk, and it's worth being precise about it. The friction with a technical founder rarely comes when they step back and let the team run — that part usually goes fine. It comes when they step back in. A strategic decision needs making, they re-engage to make it, and they make it from the model they had the last time they looked closely — which may be months or years stale. The system has kept moving. The complexity has compounded, the coupling has spread, the parts that were safe to change then aren't the parts that are safe to change now. None of that is visible from memory.
+
+So the trust a technical founder has to extend is mostly to themselves, in a particular and counterintuitive form: trusting that the system has changed in ways their instinct hasn't caught up with, and that the people closest to it now can see things they no longer can. That's harder than trusting another person, not easier — because it means treating your own expertise as the thing most likely to be quietly out of date. It's the same gap the rest of this essay is about, opened up inside the one person who once had no gap at all.
+
+Trust like this is hardest to find at the moment it matters most. The forces in this essay tend to come to a head at a handover — a founder stepping back, an incoming MD or CEO stepping in, a new investor arriving. The new leadership inherits the business but not the model of it: much of how the system actually behaves lived in the outgoing founder's head, and it doesn't transfer with the title. So the people now steering are reading the system through someone else's translation, at the very point the gap between belief and behaviour is widest — and they're being asked to trust a team they haven't yet had the time to build trust with. This is why the trust can't be assumed into place or declared at a kick-off. It's built the same way everywhere, one surfaced signal that gets heard at a time, but the clock starts later and the stakes start higher. Naming that early — that the trust isn't there yet, and the first job is to build it — tends to go better than discovering it absent in the first hard decision.
 
 This is what good looks like. Not control, not perfection, but a system that can absorb change — and an organisation that trusts itself enough to let that happen.
 
@@ -498,6 +474,8 @@ In most cases, the most useful first move is a version of the same thing: *give 
 
 **Reduce what's in flight.** This feels like doing less. It isn't. It's how the system finishes things. The first move here doesn't have to be dramatic. Pick the one or two pieces of work that are clearly stalling everything around them, decide explicitly to finish those before starting anything new, and watch what happens to the rate at which work clears. The data tends to be quick and surprisingly clear. From a steering position, this looks like agreeing — explicitly — to not start something new this sprint, this week, this fortnight. From closer to the work, it looks like protecting the team from new work entering before existing work finishes, and being willing to make that visible when challenged.
 
+This is where the advice to reduce what's in flight meets its hardest case. Sometimes you genuinely can't. The contract is signed, the integration date is fixed, the regulator isn't negotiating, the round was raised on this plan. Telling a team in that position to simply carry less isn't advice — it's a denial of the conditions they're working under. The honest move isn't to pretend the constraint away, and it isn't to absorb it silently and hope. It's to make the constraint explicit and let the rest of the system organise around it. If one commitment genuinely can't move, it becomes the fixed point — and everything that isn't fixed should be reduced hard to make room for it. The obligation you can't walk back is the reason to walk back the ones you can. A system carrying one immovable deadline and little else has a chance; the same deadline laid on top of everything the system was already holding is where the expensive failures come from. And the cost of the fixed commitment should be named, not buried. "We can hit that date" is rarely the whole truth. "We can hit that date, and here is what it will displace, and here is the part of the system we're betting holds to do it" is the truth — and it's the version that lets the people steering decide with their eyes open. An externally imposed deadline doesn't suspend the four forces. It means you're choosing to run the system hot in one place, on purpose. That can be exactly the right call. It's only dangerous when nobody admits it's what's happening.
+
 **Shorten the feedback loops that matter most.** This feels like an investment without a clear return. It produces compounding returns once it lands. Pick the loop that's currently producing the most painful surprises — the one where you most often hear "we didn't know that until..." — and ask what it would take to halve it. The shape of the answer varies. Sometimes it's making changes smaller, so they reach a point of real behaviour faster. Sometimes it's integrating earlier, so problems surface in days rather than weeks. Sometimes it's making behaviour visible that currently isn't — adding a metric, a check, a moment of verification that catches drift before it travels. The specific intervention matters less than the principle: find where the system is producing late signal, and move the signal earlier. From a steering position, the move is mostly about creating space and authorisation for this work, and treating it as real work rather than overhead. From closer to the work, it's about being clear-eyed about which loops are silently costing the most, and willing to invest in fixing them ahead of feature work.
 
 Neither of these is a cure. Both are first moves — small enough to be reversible, specific enough to produce a signal, concrete enough to actually do. And neither is automatically the right move for every system. In some organisations, the more pressing intervention is something else entirely: making coupling visible, restructuring how a particular team interacts with the rest of the system, changing what gets measured. The point isn't that these two moves are the answer. The point is that whatever the first move is, it should share their character — small, specific, designed to produce a signal you can read.
@@ -512,7 +490,7 @@ Which is why the first move, finally, isn't really about any specific interventi
 
 I've built engineering systems from the ground up in several early-stage companies. In the beginning, it's scrappy and chaotic — and that's fine, because the system is small enough that you can hold it in your head and change course whenever you need to.
 
-The problems started when the business began to scale. Growth brought pressure, and the pressure always took the same shape: more features, a faster roadmap, and a promise to pay off technical debt once we could afford more people. All the forces described in these pages started to compete at once. My instinct, more than once, was to respond with process — to put structure in place that would strengthen confidence in delivery. Quarterly KPIs, roadmap snapshots, progress reports against plan. These felt responsible. They spoke the language that leadership teams naturally use in other disciplines, where quarterly targets and actuals are how you measure performance.
+The problems started, in company after company, when the business began to scale. Growth brought pressure, and the pressure always took the same shape: more features, a faster roadmap, and a promise to pay off technical debt once we could afford more people. All the forces described in these pages started to compete at once. My instinct, more than once, was to respond with process — to put structure in place that would strengthen confidence in delivery. Quarterly KPIs, roadmap snapshots, progress reports against plan. These felt responsible. They spoke the language that leadership teams naturally use in other disciplines, where quarterly targets and actuals are how you measure performance.
 
 But delivery systems don't produce those metrics naturally. The system is in a constantly changing state, and looking back through the lens of a quarter that didn't go to plan tells you very little about what is still happening now. The measures that actually help — the kind discussed earlier, like cadence and throughput — require a different conversation entirely.
 
@@ -534,9 +512,7 @@ So the question isn't: how do we make this plan hold?
 
 It's: what kind of system are we asking this plan to run on?
 
-That question changes more than it first appears to. It moves the conversation away from blame and toward conditions. It moves attention away from individual performance and toward the environment that performance happens in. And it moves responsibility away from any single team and across the organisation as a whole — because the system's behaviour is the accumulated result of decisions that span every part of it.
-
-Underneath the forces and the signals and the moves, this has really been about how organisations talk to themselves. Whether the people closest to the work can describe what they're seeing in a way that travels. Whether the people steering can hear it without it sounding like an excuse. Whether the language exists for system behaviour to be a real input into decisions, alongside revenue, growth, and timelines. When that conversation works, almost everything else becomes possible. When it doesn't, no amount of process or planning will compensate.
+That question moves the conversation off blame and onto conditions — off individual performance and onto the environment performance happens in, and off any single team and across the organisation whose decisions, together, produce the system's behaviour. Underneath the forces and the signals, this has really been about how an organisation talks to itself: whether the people closest to the work can describe what they see in a way that travels, and whether the people steering can hear it without it sounding like an excuse. When that conversation works, almost everything else becomes possible. When it doesn't, no amount of process compensates.
 
 This is slower work than it sounds. It doesn't produce a quarterly result. It produces something more durable: an organisation that can read itself, respond to what it reads, and keep doing both as it grows. That capacity compounds. The teams that build it don't just deliver more predictably — they absorb change more gracefully, recover from setbacks more quickly, and make better decisions earlier, because the information they're working from is closer to the truth.
 
@@ -549,11 +525,7 @@ And that readiness — the trust, the conversations, the shared language between
 It's where the work begins.
 
 <section class="about-author">
-  <p>I'm a fractional CTO. I work in the space between business leadership and engineering reality — helping founder-led SaaS companies turn engineering drag into something the business can trust, before accumulated fragility becomes too expensive to ignore. I wrote <em>Why Your Roadmap Keeps Slipping</em> because of a pattern I kept seeing: roadmaps slip not because anyone failed, but because the product <em>worked</em>, and the system underneath was never built for the pressure that followed. If that's familiar, I'd genuinely like to compare notes.</p>
-  <p><a href="https://www.linkedin.com/in/pmpowell/" rel="noopener noreferrer">Let's talk on LinkedIn &rarr;</a></p>
-</section>
-
-<section class="cta-end">
-  <p class="cta-end__primary">This is still a draft I'm sharpening, and the readers I trust most are the ones who push back. If you've got a reaction — agreement, disagreement, a story of your own — <a href="https://www.linkedin.com/in/pmpowell/" rel="noopener noreferrer" class="plausible-event-name=Connect:+end-of-book">I want it</a>.</p>
-  <p class="cta-end__secondary">And if it's worth a colleague's time, send it along. <button class="cta-inline__copy" id="copyLinkBtnEnd" type="button">Copy link</button></p>
+  <p>I'm Phil Powell, a fractional CTO for founder-led SaaS, based between the UK and Austria and working in English across the UK and DACH. I work in the space between business leadership and engineering reality — closing the gap between how systems actually behave and how a business believes they do, while it's still a correction and not yet a crisis.</p>
+  <p>I wrote <em>Why Your Roadmap Keeps Slipping</em> because of a pattern I kept seeing across companies: roadmaps slip not because anyone failed, but because the product <em>worked</em>, and the system underneath was never built for the pressure that followed. If that's familiar from inside your own company, I'm always glad to compare notes.</p>
+  <p><a href="https://www.linkedin.com/in/pmpowell/" rel="noopener noreferrer" class="plausible-event-name=Connect:+author+bio">Compare notes on LinkedIn &rarr;</a></p>
 </section>

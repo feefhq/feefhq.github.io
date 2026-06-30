@@ -85,6 +85,19 @@ astro.config.mjs
 - CTA placements follow the sequencing principle: Share at conviction peak (two-thirds through), Connect at end-of-book; both equal in the persistent footer bar only.
 - Tone is feedback pitch, not launch marketing — no hype, no newsletter capture.
 
+## Visual verification
+
+- **Playwright** is installed as a dev dependency (Chromium browser only) specifically for taking screenshots to verify UI changes — there's no test suite using it.
+- With the dev server running (`npm run dev`), capture a screenshot via:
+
+  ```bash
+  npm run screenshot -- http://localhost:4321/ screenshot.png
+  ```
+
+  This wraps Playwright's built-in CLI (`playwright screenshot`) at a 1280×800 viewport. Pass any local URL (e.g. `http://localhost:4321/roadmap/`) and output path.
+- Useful flags: `--full-page` (capture entire scrollable page), `--device="iPhone 13"` (emulate a device), `--color-scheme=dark` (test dark mode, relevant here since dark mode is `prefers-color-scheme`-driven).
+- Browser binaries live in the global Playwright cache (`~/Library/Caches/ms-playwright`), not in the repo — no need to gitignore anything extra. If they're ever missing, reinstall with `npx playwright install chromium`.
+
 ## Working rules
 
 - Work on a branch; surface diffs for review before committing.

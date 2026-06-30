@@ -23,6 +23,9 @@
 
   --feef-callout-bg:     rgba(194, 65, 12, 0.07);
   --feef-callout-border: #c2410c;
+
+  --nav-cta-bg:       rgba(32, 36, 43, 0.06);
+  --nav-cta-bg-hover: rgba(32, 36, 43, 0.1);
 }
 
 /* Wider measure on large desktop screens. */
@@ -45,6 +48,9 @@
 
     --feef-callout-bg:     rgba(251, 146, 60, 0.07);
     --feef-callout-border: #fb923c;
+
+    --nav-cta-bg:       rgba(255, 255, 255, 0.08);
+    --nav-cta-bg-hover: rgba(255, 255, 255, 0.16);
   }
 }
 
@@ -107,6 +113,12 @@ body {
   letter-spacing: -0.01em;
 }
 
+/* Drop the wordmark on narrow screens so the logo mark plus all
+   nav links keep fitting on a single row instead of wrapping. */
+@media (max-width: 30rem) {
+  .site-nav__wordmark { display: none; }
+}
+
 .site-nav__links {
   display: flex;
   align-items: center;
@@ -124,6 +136,15 @@ body {
 
 .site-nav__link:hover,
 .site-nav__link[aria-current="page"] { color: var(--accent); }
+
+.site-nav__link--cta {
+  padding: 0.3rem 0.75rem;
+  margin: -0.3rem -0.75rem;
+  border-radius: 10px;
+  background: var(--nav-cta-bg);
+}
+
+.site-nav__link--cta:hover { background: var(--nav-cta-bg-hover); }
 
 /* --- CALLOUTS ---
    Use on any page: <div class="callout">...</div>

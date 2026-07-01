@@ -351,7 +351,7 @@ header.masthead {
 
 .price-desc {
   margin: 0;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--ink-soft);
 }
 
@@ -393,17 +393,32 @@ header.masthead {
 .price-block .price-duration {
   margin: 0.9rem 0 0;
   font-family: var(--display);
-  font-size: 0.9375rem;
+  font-size: 1.05rem;
   color: var(--accent);
 }
 
-.price-footnote {
-  margin: 1.25rem 0 0;
-  padding: 1.25rem 0 0;
-  border-top: 1px solid var(--rule);
-  font-size: 0.9375rem;
+.price-left-note {
+  margin: 1.1rem 0 0;
+  font-size: 0.875rem;
   color: var(--ink-soft);
 }
+
+.price-cta {
+  margin: var(--space) 0 0;
+  padding: var(--space) 0 0;
+  border-top: 1px solid var(--rule);
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.price-cta-link {
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.price-cta-link .arrow-accent { color: var(--accent); }
+.price-cta-link:hover { color: var(--accent); }
 
 @media (max-width: 42rem) {
   .price-block {

@@ -1,0 +1,18 @@
+---
+const destination = "https://calendar.app.google/HP1RBffrG9Xh1Wu6A";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${destination}`} />
+    <link rel="canonical" href={destination} />
+    <title>Booking — redirecting…</title>
+    <script define:vars={{ destination }}>
+      window.location.replace(destination);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to booking page… <a href={destination}>Book a call with Phil Powell</a>.</p>
+  </body>
+</html>

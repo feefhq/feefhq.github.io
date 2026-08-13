@@ -1,0 +1,13 @@
+---
+import { getEntry, render } from "astro:content";
+import EssayLayout from "../../layouts/EssayLayout.astro";
+
+const entry = await getEntry("essays", "load-bearing");
+if (!entry) throw new Error("Missing essay: load-bearing");
+const { Content } = await render(entry);
+const { title, standfirst, description, pubDate, revision, ogImage, toc } = entry.data;
+---
+
+<EssayLayout title={title} standfirst={standfirst} description={description} pubDate={pubDate} revision={revision} ogImage={ogImage} toc={toc}>
+  <Content />
+</EssayLayout>
